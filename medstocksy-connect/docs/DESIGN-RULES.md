@@ -189,7 +189,6 @@ Complexity: Too high for mobile
 Decision: Desktop only
 Mobile: View existing rules (read-only)
 ```
-
 ---
 
 ## Operational Rules
@@ -199,7 +198,7 @@ Mobile: View existing rules (read-only)
 
 1. **Does it increase repeat purchases?**
    - By how much? (estimate)
-   - How do we measure?
+   - How do we measure ?
    - Example: "Refill reminders → +15% repeat rate"
 
 2. **Does it reduce staff time?**
