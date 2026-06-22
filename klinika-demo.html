@@ -1,0 +1,2749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Klinika — Telemedicine CRM Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:opsz,wght@9..40,300..700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+  :root {
+    --bg: #F6F2E9;
+    --bg-elev: #FDFBF5;
+    --bg-sunk: #EFEADE;
+    --ink: #121826;
+    --ink-soft: #394256;
+    --ink-mute: #6B7388;
+    --ink-faint: #A5A9B5;
+    --line: #DCD5C4;
+    --line-strong: #B8AE97;
+    --accent: #B4781E;            /* warm ochre — CTAs, highlights */
+    --accent-deep: #8E5E13;
+    --accent-soft: #F3E6CA;
+    --teal: #2D4A5C;              /* secondary, calm info */
+    --teal-soft: #D7E2E7;
+    --sage: #5A7C5F;              /* success */
+    --sage-soft: #DCE4DA;
+    --rust: #A14D3A;              /* danger */
+    --rust-soft: #EFD7CD;
+    --alert: #C33B2A;             /* air raid red */
+    --alert-soft: #F5D7D1;
+    --radius: 8px;
+    --radius-lg: 14px;
+    --shadow-sm: 0 1px 0 rgba(18, 24, 38, 0.04), 0 0 0 1px var(--line);
+    --shadow-md: 0 4px 20px -8px rgba(18, 24, 38, 0.12), 0 0 0 1px var(--line);
+    --shadow-lg: 0 20px 50px -16px rgba(18, 24, 38, 0.25), 0 0 0 1px var(--line);
+  }
+  :root[data-theme="dark"] {
+    --bg: #0F1319;
+    --bg-elev: #161B24;
+    --bg-sunk: #0A0D13;
+    --ink: #F3EEE1;
+    --ink-soft: #C8C2B2;
+    --ink-mute: #8A8675;
+    --ink-faint: #5A5749;
+    --line: #262D39;
+    --line-strong: #3A4352;
+    --accent: #D49B3F;
+    --accent-deep: #B4781E;
+    --accent-soft: #2B2316;
+    --teal: #6B99AE;
+    --teal-soft: #1B2A33;
+    --sage: #8FAE93;
+    --sage-soft: #1E2A20;
+    --rust: #D47A65;
+    --rust-soft: #33201A;
+    --alert: #E05B4A;
+    --alert-soft: #331814;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 14.5px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.3s, color 0.3s;
+  }
+  .serif { font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; letter-spacing: -0.01em; }
+  .mono  { font-family: 'DM Mono', ui-monospace, monospace; letter-spacing: 0; }
+
+  /* ======================== Layout ======================== */
+  .app { min-height: 100vh; display: flex; flex-direction: column; }
+
+  .alert-bar {
+    background: var(--alert);
+    color: #fff;
+    padding: 10px 24px;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    animation: slideDown 0.3s ease;
+  }
+  .alert-bar .pulse {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #fff; margin-right: 10px;
+    animation: pulse 1.2s infinite;
+  }
+  .alert-bar button {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1 } 50% { opacity: 0.3 } }
+  @keyframes slideDown { from { transform: translateY(-100%) } to { transform: translateY(0) } }
+
+  .topbar {
+    background: var(--bg-elev);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .logo-mark {
+    width: 28px; height: 28px;
+    background: var(--ink);
+    color: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 6px;
+    font-style: italic;
+  }
+  .topbar-actions { display: flex; align-items: center; gap: 12px; }
+
+  .topbar-btn {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+    font-size: 13px;
+    font-family: inherit;
+    transition: all 0.15s;
+  }
+  .topbar-btn:hover { background: var(--bg-sunk); border-color: var(--line-strong); }
+
+  .role-switch {
+    display: flex;
+    background: var(--bg-sunk);
+    border-radius: 8px;
+    padding: 3px;
+    border: 1px solid var(--line);
+  }
+  .role-switch button {
+    background: transparent;
+    border: 0;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-family: inherit;
+    cursor: pointer;
+    border-radius: 5px;
+    color: var(--ink-mute);
+    transition: all 0.15s;
+  }
+  .role-switch button.active {
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  .shell { flex: 1; display: flex; min-height: 0; }
+
+  .sidebar {
+    width: 220px;
+    background: var(--bg-elev);
+    border-right: 1px solid var(--line);
+    padding: 20px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+  .sidebar-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    padding: 8px 10px 4px;
+    font-weight: 500;
+  }
+  .sidebar a {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 12px;
+    border-radius: 7px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 13.5px;
+    cursor: pointer;
+    transition: all 0.15s;
+    border: 1px solid transparent;
+  }
+  .sidebar a:hover { background: var(--bg-sunk); color: var(--ink); }
+  .sidebar a.active {
+    background: var(--ink);
+    color: var(--bg);
+    font-weight: 500;
+  }
+  .sidebar a .icon { width: 16px; height: 16px; flex-shrink: 0; }
+  .sidebar .spacer { flex: 1; }
+  .sidebar-footer {
+    padding: 10px;
+    border-top: 1px solid var(--line);
+    margin-top: 10px;
+    font-size: 11px;
+    color: var(--ink-mute);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .avatar {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent-deep);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600;
+    font-size: 12px;
+    flex-shrink: 0;
+    border: 1px solid var(--line);
+  }
+
+  .main {
+    flex: 1;
+    padding: 32px 44px;
+    overflow-y: auto;
+    max-width: 100%;
+  }
+  .page-head {
+    margin-bottom: 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .page-title {
+    font-family: 'Fraunces', serif;
+    font-size: 38px;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin: 0 0 4px;
+  }
+  .page-title em { font-style: italic; color: var(--accent); font-weight: 300; }
+  .page-sub {
+    color: var(--ink-mute);
+    font-size: 13.5px;
+    margin: 0;
+  }
+
+  /* ======================== Buttons ======================== */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--ink);
+    background: var(--ink);
+    color: var(--bg);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn:hover { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .btn.accent { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn.accent:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
+  .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+  .btn.ghost:hover { background: var(--bg-sunk); }
+  .btn.danger { background: var(--rust); border-color: var(--rust); color: #fff; }
+  .btn.danger:hover { filter: brightness(0.9); }
+  .btn.sm { padding: 5px 10px; font-size: 12px; }
+  .btn .icon { width: 14px; height: 14px; }
+
+  /* ======================== Cards ======================== */
+  .card {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+  }
+  .card-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .card-title {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink-mute);
+    margin: 0;
+  }
+
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 28px; }
+  .stat {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 18px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); font-weight: 500; margin-bottom: 10px; }
+  .stat-value { font-family: 'Fraunces', serif; font-size: 34px; font-weight: 400; letter-spacing: -0.02em; line-height: 1; }
+  .stat-value em { font-style: normal; font-size: 16px; color: var(--ink-mute); margin-left: 4px; }
+  .stat-delta { font-size: 11.5px; color: var(--sage); margin-top: 6px; font-family: 'DM Mono', monospace; }
+  .stat-delta.neg { color: var(--rust); }
+  .stat .deco {
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 80px; height: 80px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+
+  /* ======================== Tables ======================== */
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  thead th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 500;
+    border-bottom: 1px solid var(--line);
+  }
+  tbody td {
+    padding: 14px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: middle;
+  }
+  tbody tr:hover { background: var(--bg-sunk); }
+  tbody tr:last-child td { border-bottom: 0; }
+
+  /* ======================== Chips & Tags ======================== */
+  .chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 3px 9px;
+    border-radius: 100px;
+    font-size: 11.5px;
+    font-weight: 500;
+    background: var(--bg-sunk);
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+  }
+  .chip.dot::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  .chip.sage { background: var(--sage-soft); color: var(--sage); }
+  .chip.rust { background: var(--rust-soft); color: var(--rust); }
+  .chip.teal { background: var(--teal-soft); color: var(--teal); }
+  .chip.accent { background: var(--accent-soft); color: var(--accent-deep); }
+  .tag-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 3px 9px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    border: 1px solid currentColor;
+    background: transparent;
+  }
+  .tag-pill::before {
+    content: '';
+    width: 6px; height: 6px; border-radius: 50%;
+    background: currentColor;
+  }
+
+  /* ======================== Forms ======================== */
+  .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+  .field label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); font-weight: 500; }
+  .field input, .field select, .field textarea {
+    font-family: inherit;
+    font-size: 14px;
+    padding: 9px 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    background: var(--bg-elev);
+    color: var(--ink);
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  .field textarea { resize: vertical; min-height: 70px; font-family: inherit; }
+  .field .hint { font-size: 11.5px; color: var(--ink-mute); }
+
+  /* ======================== Modal ======================== */
+  .modal-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(18, 24, 38, 0.45);
+    backdrop-filter: blur(3px);
+    z-index: 50;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.15s ease;
+  }
+  .modal {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    max-width: 560px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    animation: modalIn 0.2s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  .modal.wide { max-width: 820px; }
+  .modal.xl { max-width: 1080px; }
+  .modal-head {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .modal-head h3 { margin: 0; font-family: 'Fraunces', serif; font-weight: 500; font-size: 22px; letter-spacing: -0.01em; }
+  .modal-body { padding: 22px 24px; }
+  .modal-foot {
+    padding: 16px 24px;
+    border-top: 1px solid var(--line);
+    display: flex; justify-content: flex-end; gap: 10px;
+    background: var(--bg-sunk);
+  }
+  .close-btn {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    background: transparent;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink-mute);
+  }
+  .close-btn:hover { background: var(--bg-sunk); color: var(--ink); }
+  @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+  @keyframes modalIn { from { opacity: 0; transform: translateY(12px) scale(0.98) } to { opacity: 1; transform: none } }
+
+  /* ======================== Toast ======================== */
+  .toast-stack {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    z-index: 100;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .toast {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    box-shadow: var(--shadow-lg);
+    display: flex; align-items: center; gap: 10px;
+    min-width: 260px;
+    animation: toastIn 0.2s cubic-bezier(0.2, 0.7, 0.3, 1);
+    border: 1px solid var(--line-strong);
+  }
+  @keyframes toastIn { from { transform: translateX(120%) } to { transform: translateX(0) } }
+  .toast.success { background: var(--sage); border-color: var(--sage); color: #fff; }
+  .toast.error   { background: var(--rust); border-color: var(--rust); color: #fff; }
+
+  /* ======================== Calendar & slot picker ======================== */
+  .slot-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .slot {
+    padding: 12px 10px;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    background: var(--bg-elev);
+    cursor: pointer;
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    transition: all 0.15s;
+    position: relative;
+  }
+  .slot:hover:not(:disabled):not(.selected) { border-color: var(--accent); background: var(--accent-soft); }
+  .slot.selected { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .slot:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: var(--bg-sunk);
+    text-decoration: line-through;
+  }
+
+  .day-calendar { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--bg-elev); overflow: hidden; }
+  .day-hour {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    border-bottom: 1px solid var(--line);
+    min-height: 68px;
+  }
+  .day-hour:last-child { border-bottom: 0; }
+  .day-hour .time { padding: 10px 14px; font-family: 'DM Mono', monospace; font-size: 12px; color: var(--ink-mute); border-right: 1px solid var(--line); background: var(--bg-sunk); }
+  .day-hour .slot-content { padding: 10px 14px; }
+  .booking-chip {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .booking-chip:hover { background: var(--accent); color: #fff; }
+  .booking-chip.completed { background: var(--sage-soft); border-left-color: var(--sage); }
+  .booking-chip.completed:hover { background: var(--sage); color: #fff; }
+  .booking-chip.cancelled { background: var(--rust-soft); border-left-color: var(--rust); opacity: 0.6; }
+  .booking-chip .name { font-weight: 500; }
+  .booking-chip .reason { font-size: 11.5px; color: var(--ink-mute); margin-top: 2px; }
+  .booking-chip:hover .reason { color: rgba(255,255,255,0.8); }
+
+  /* ======================== Doctor cards ======================== */
+  .doc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .doc-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    display: flex; flex-direction: column; gap: 12px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .doc-card:hover { border-color: var(--line-strong); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .doc-card.inactive { opacity: 0.55; }
+  .doc-head { display: flex; gap: 14px; }
+  .doc-avatar {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent-deep);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 500;
+    border: 1px solid var(--line);
+    flex-shrink: 0;
+  }
+  .doc-meta h4 { margin: 0; font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; letter-spacing: -0.01em; }
+  .doc-meta .spec { color: var(--ink-mute); font-size: 12.5px; margin-top: 2px; }
+  .doc-rating { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--ink-mute); }
+  .doc-rating .star { color: var(--accent); }
+  .doc-langs { display: flex; gap: 4px; }
+  .lang-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    background: var(--bg-sunk);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    color: var(--ink-soft);
+  }
+  .doc-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 4px; border-top: 1px solid var(--line); padding-top: 14px; }
+  .fee { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 500; }
+  .fee small { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink-mute); letter-spacing: 0.08em; font-weight: 400; margin-left: 4px; }
+
+  /* ======================== Consultation split ======================== */
+  .consult-split {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 20px;
+    height: calc(100vh - 260px);
+    min-height: 560px;
+  }
+  .video-pane {
+    background: linear-gradient(145deg, #1a2332 0%, #2d3d52 50%, #1e2a3c 100%);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .video-pane::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 40%, rgba(180, 120, 30, 0.2), transparent 60%),
+                radial-gradient(circle at 70% 70%, rgba(45, 74, 92, 0.4), transparent 60%);
+  }
+  .video-main { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; }
+  .video-fake-doctor {
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #C9A467 0%, #8E6C3E 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-family: 'Fraunces', serif;
+    font-size: 64px;
+    font-weight: 500;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3), inset 0 -10px 20px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 1;
+  }
+  .video-pip {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 120px; height: 90px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #2d3d52 0%, #1a2332 100%);
+    border: 2px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    z-index: 2;
+  }
+  .video-toolbar {
+    padding: 16px 20px;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(10px);
+    display: flex; align-items: center; justify-content: space-between;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+  }
+  .video-timer { font-family: 'DM Mono', monospace; font-size: 14px; }
+  .video-timer::before { content: '●'; color: #e05b4a; margin-right: 8px; animation: pulse 1.2s infinite; }
+  .video-controls { display: flex; gap: 8px; }
+  .v-ctrl {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .v-ctrl:hover { background: rgba(255,255,255,0.2); }
+  .v-ctrl.end { background: var(--alert); border-color: var(--alert); }
+
+  .rx-pane {
+    background: var(--bg-elev);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .rx-head {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .rx-head h3 { margin: 0; font-family: 'Fraunces', serif; font-weight: 500; font-size: 18px; }
+  .rx-body { flex: 1; padding: 20px; overflow-y: auto; }
+  .rx-foot { padding: 14px 20px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; background: var(--bg-sunk); }
+
+  .med-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    gap: 8px;
+    margin-bottom: 8px;
+    align-items: center;
+  }
+  .med-row input {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    padding: 7px 10px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--bg);
+    color: var(--ink);
+  }
+  .med-row input:focus { outline: none; border-color: var(--accent); }
+  .med-row button {
+    background: transparent;
+    border: 0;
+    color: var(--ink-mute);
+    cursor: pointer;
+    padding: 4px;
+  }
+  .med-row button:hover { color: var(--rust); }
+
+  .live-indicator {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px;
+    color: var(--sage);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .live-indicator::before {
+    content: ''; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--sage);
+    animation: pulse 1.5s infinite;
+  }
+
+  /* ======================== Mini patient preview ======================== */
+  .preview-card {
+    background: var(--bg);
+    border: 1px dashed var(--line-strong);
+    border-radius: 10px;
+    padding: 16px;
+    margin-top: 16px;
+    position: relative;
+  }
+  .preview-card::before {
+    content: 'PATIENT VIEW';
+    position: absolute;
+    top: -9px; left: 14px;
+    background: var(--bg-elev);
+    padding: 0 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: var(--ink-mute);
+  }
+
+  /* ======================== Prescription PDF render ======================== */
+  .pdf-canvas {
+    background: #fff;
+    color: #121826;
+    padding: 40px 48px;
+    font-family: 'DM Sans', sans-serif;
+    max-width: 640px;
+    margin: 0 auto;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    border-radius: 2px;
+  }
+  .pdf-canvas h1 { font-family: 'Fraunces', serif; font-size: 28px; margin: 0 0 8px; font-weight: 500; }
+  .pdf-canvas .clinic { font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; color: #888; text-transform: uppercase; }
+  .pdf-canvas hr { border: 0; border-top: 1px solid #ddd; margin: 20px 0; }
+  .pdf-canvas .row { display: flex; justify-content: space-between; font-size: 12px; color: #666; margin-bottom: 4px; }
+  .pdf-canvas .sig { margin-top: 50px; display: flex; justify-content: space-between; align-items: flex-end; font-family: 'Fraunces', serif; font-style: italic; font-size: 18px; border-top: 1px solid #ccc; padding-top: 10px; }
+
+  /* ======================== Misc helpers ======================== */
+  .hstack { display: flex; gap: 12px; align-items: center; }
+  .vstack { display: flex; flex-direction: column; }
+  .grow { flex: 1; }
+  .muted { color: var(--ink-mute); }
+  .small { font-size: 12px; }
+  .tiny { font-size: 11px; }
+  .divider { height: 1px; background: var(--line); margin: 16px 0; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .hide { display: none !important; }
+  .right { text-align: right; }
+
+  .demo-banner {
+    position: fixed;
+    bottom: 20px; left: 20px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 10px 16px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    z-index: 40;
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    border: 1px solid var(--line-strong);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .demo-banner::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--accent); border-radius: 50%;
+    animation: pulse 1.8s infinite;
+  }
+
+  .empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--ink-mute);
+  }
+  .empty h4 { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 400; color: var(--ink); margin: 0 0 6px; }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 10px; border: 2px solid var(--bg); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--line-strong); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react">
+const { useState, useEffect, useMemo, useRef, createContext, useContext } = React;
+
+/* ================================================================
+   I18N
+================================================================ */
+const T = {
+  en: {
+    'brand': 'Klinika',
+    'brand.tag': 'Telemedicine',
+    'nav.dashboard': 'Dashboard',
+    'nav.book': 'Book consultation',
+    'nav.appointments': 'My appointments',
+    'nav.prescriptions': 'Prescriptions',
+    'nav.calendar': 'Calendar',
+    'nav.patients': 'Patients',
+    'nav.consult': 'Live consultation',
+    'nav.tags': 'Patient tags',
+    'nav.doctors': 'Doctors',
+    'nav.bookings': 'All bookings',
+    'nav.audit': 'Audit log',
+    'nav.profile': 'Profile',
+    'section.patient': 'Patient',
+    'section.doctor': 'Practice',
+    'section.admin': 'Administration',
+    'role.admin': 'Admin',
+    'role.doctor': 'Doctor',
+    'role.patient': 'Patient',
+    'action.book': 'Book slot',
+    'action.cancel': 'Cancel',
+    'action.confirm': 'Confirm',
+    'action.save': 'Save',
+    'action.close': 'Close',
+    'action.reschedule': 'Reschedule',
+    'action.join': 'Join call',
+    'action.viewPrescription': 'View prescription',
+    'action.addDoctor': 'Add doctor',
+    'action.deactivate': 'Deactivate',
+    'action.activate': 'Activate',
+    'action.remove': 'Remove',
+    'action.finalize': 'Finalize & send',
+    'action.downloadPdf': 'Download PDF',
+    'action.endCall': 'End consultation',
+    'action.addMedication': 'Add medication',
+    'action.upload': 'Upload report',
+    'action.newTag': 'New tag',
+    'patient.home.welcome': 'Welcome back',
+    'patient.home.next': 'Your next consultation',
+    'patient.home.noNext': 'No upcoming consultations',
+    'patient.home.noNext.cta': 'Browse available doctors and book a time that works for you.',
+    'patient.home.recent': 'Recent prescriptions',
+    'patient.home.quick': 'Quick actions',
+    'patient.book.title': 'Find a doctor',
+    'patient.book.filters.spec': 'Specialization',
+    'patient.book.filters.lang': 'Language',
+    'patient.book.filters.all': 'All',
+    'patient.book.fee': 'per consult',
+    'patient.book.free': 'Free',
+    'patient.book.modal.title': 'Book consultation',
+    'patient.book.modal.date': 'Choose a date',
+    'patient.book.modal.time': 'Choose a time',
+    'patient.book.modal.reason': 'Reason for visit',
+    'patient.book.modal.reason.hint': 'A short description helps the doctor prepare.',
+    'patient.book.modal.taken': 'Slot already booked',
+    'patient.book.success': 'Consultation booked successfully',
+    'patient.appointments.upcoming': 'Upcoming',
+    'patient.appointments.past': 'Past consultations',
+    'patient.appointments.empty': 'No appointments yet',
+    'patient.cancel.title': 'Cancel this consultation?',
+    'patient.cancel.reason': 'Reason (optional)',
+    'patient.cancel.warn': 'Cancelling within 1 hour of the start time may incur a fee in paid tier.',
+    'patient.cancel.success': 'Consultation cancelled',
+    'doctor.home.today': 'Today',
+    'doctor.home.upcoming': 'Upcoming consultations',
+    'doctor.home.noToday': 'No consultations today',
+    'doctor.home.stats.today': 'Today',
+    'doctor.home.stats.week': 'This week',
+    'doctor.home.stats.total': 'Total patients',
+    'doctor.home.stats.rating': 'Rating',
+    'doctor.calendar.title': 'Day calendar',
+    'doctor.patients.title': 'Your patients',
+    'doctor.patients.lastVisit': 'Last visit',
+    'doctor.patients.visits': 'visits',
+    'doctor.patients.tagsAssigned': 'Tags',
+    'doctor.consult.patient': 'Patient',
+    'doctor.consult.reason': 'Reason for visit',
+    'doctor.consult.history': 'Past consultations',
+    'doctor.consult.notes': 'Private notes',
+    'doctor.consult.notes.hint': 'Not visible to patient. Stored with consultation record.',
+    'doctor.consult.rx': 'Prescription',
+    'doctor.consult.rx.diagnosis': 'Diagnosis',
+    'doctor.consult.rx.medications': 'Medications',
+    'doctor.consult.rx.med.name': 'Medication',
+    'doctor.consult.rx.med.dosage': 'Dosage',
+    'doctor.consult.rx.med.frequency': 'Frequency',
+    'doctor.consult.rx.med.duration': 'Duration',
+    'doctor.consult.rx.instructions': 'Additional instructions',
+    'doctor.consult.rx.live': 'Live — patient is watching',
+    'doctor.consult.finalized': 'Prescription finalized and sent',
+    'doctor.tags.title': 'Patient tags',
+    'doctor.tags.empty': 'No tags yet. Create one to categorize your patients.',
+    'admin.home.title': 'Overview',
+    'admin.stats.doctors': 'Active doctors',
+    'admin.stats.bookingsToday': 'Bookings today',
+    'admin.stats.patients': 'Registered patients',
+    'admin.stats.completion': 'Completion rate',
+    'admin.doctors.title': 'Doctors',
+    'admin.doctors.add': 'Add doctor',
+    'admin.doctors.empty': 'No doctors yet',
+    'admin.audit.title': 'Audit log',
+    'admin.audit.empty': 'No events recorded',
+    'admin.bookings.title': 'All bookings',
+    'profile.title': 'Profile',
+    'profile.name': 'Full name',
+    'profile.email': 'Email',
+    'profile.phone': 'Phone',
+    'profile.dob': 'Date of birth',
+    'profile.tz': 'Timezone',
+    'profile.language': 'Preferred language',
+    'air.raid.title': 'Air raid alert',
+    'air.raid.body': 'This region is under an active alert. Ongoing consultations will auto-reconnect when you are safe.',
+    'air.raid.dismiss': 'Dismiss',
+    'status.confirmed': 'Confirmed',
+    'status.completed': 'Completed',
+    'status.cancelled': 'Cancelled',
+    'status.no_show': 'No show',
+    'status.active': 'Active',
+    'status.inactive': 'Inactive',
+    'specialization.Cardiology': 'Cardiology',
+    'specialization.Dermatology': 'Dermatology',
+    'specialization.Pediatrics': 'Pediatrics',
+    'specialization.Neurology': 'Neurology',
+    'demo.badge': 'Static demo — no backend',
+    'demo.reset': 'Reset data',
+    'prescription.generated': 'Prescription PDF generated',
+    'toast.saved': 'Saved',
+    'toast.doctor.added': 'Doctor added',
+    'toast.doctor.removed': 'Doctor removed',
+    'toast.doctor.deactivated': 'Doctor deactivated',
+    'toast.doctor.activated': 'Doctor activated',
+    'toast.tag.added': 'Tag created',
+    'toast.tag.removed': 'Tag removed',
+    'toast.upload.success': 'File uploaded',
+  },
+  uk: {
+    'brand': 'Клініка',
+    'brand.tag': 'Телемедицина',
+    'nav.dashboard': 'Головна',
+    'nav.book': 'Записатися',
+    'nav.appointments': 'Мої прийоми',
+    'nav.prescriptions': 'Рецепти',
+    'nav.calendar': 'Календар',
+    'nav.patients': 'Пацієнти',
+    'nav.consult': 'Активна консультація',
+    'nav.tags': 'Теги пацієнтів',
+    'nav.doctors': 'Лікарі',
+    'nav.bookings': 'Усі записи',
+    'nav.audit': 'Журнал подій',
+    'nav.profile': 'Профіль',
+    'section.patient': 'Пацієнт',
+    'section.doctor': 'Практика',
+    'section.admin': 'Адміністрування',
+    'role.admin': 'Адмін',
+    'role.doctor': 'Лікар',
+    'role.patient': 'Пацієнт',
+    'action.book': 'Записатися',
+    'action.cancel': 'Скасувати',
+    'action.confirm': 'Підтвердити',
+    'action.save': 'Зберегти',
+    'action.close': 'Закрити',
+    'action.reschedule': 'Перенести',
+    'action.join': 'Приєднатися',
+    'action.viewPrescription': 'Переглянути рецепт',
+    'action.addDoctor': 'Додати лікаря',
+    'action.deactivate': 'Деактивувати',
+    'action.activate': 'Активувати',
+    'action.remove': 'Видалити',
+    'action.finalize': 'Завершити та надіслати',
+    'action.downloadPdf': 'Завантажити PDF',
+    'action.endCall': 'Завершити консультацію',
+    'action.addMedication': 'Додати препарат',
+    'action.upload': 'Завантажити файл',
+    'action.newTag': 'Новий тег',
+    'patient.home.welcome': 'Вітаємо',
+    'patient.home.next': 'Найближча консультація',
+    'patient.home.noNext': 'Немає запланованих консультацій',
+    'patient.home.noNext.cta': 'Оберіть лікаря та зручний час.',
+    'patient.home.recent': 'Останні рецепти',
+    'patient.home.quick': 'Швидкі дії',
+    'patient.book.title': 'Знайти лікаря',
+    'patient.book.filters.spec': 'Спеціалізація',
+    'patient.book.filters.lang': 'Мова',
+    'patient.book.filters.all': 'Усі',
+    'patient.book.fee': 'за консультацію',
+    'patient.book.free': 'Безкоштовно',
+    'patient.book.modal.title': 'Запис на консультацію',
+    'patient.book.modal.date': 'Оберіть дату',
+    'patient.book.modal.time': 'Оберіть час',
+    'patient.book.modal.reason': 'Причина звернення',
+    'patient.book.modal.reason.hint': 'Короткий опис допоможе лікарю підготуватися.',
+    'patient.book.modal.taken': 'Слот вже зайнятий',
+    'patient.book.success': 'Консультацію успішно заброньовано',
+    'patient.appointments.upcoming': 'Майбутні',
+    'patient.appointments.past': 'Попередні консультації',
+    'patient.appointments.empty': 'Записів ще немає',
+    'patient.cancel.title': 'Скасувати консультацію?',
+    'patient.cancel.reason': 'Причина (необов\'язково)',
+    'patient.cancel.warn': 'Скасування менш ніж за годину до початку може мати комісію у платному тарифі.',
+    'patient.cancel.success': 'Консультацію скасовано',
+    'doctor.home.today': 'Сьогодні',
+    'doctor.home.upcoming': 'Найближчі консультації',
+    'doctor.home.noToday': 'Сьогодні немає консультацій',
+    'doctor.home.stats.today': 'Сьогодні',
+    'doctor.home.stats.week': 'Цього тижня',
+    'doctor.home.stats.total': 'Усього пацієнтів',
+    'doctor.home.stats.rating': 'Рейтинг',
+    'doctor.calendar.title': 'Денний розклад',
+    'doctor.patients.title': 'Ваші пацієнти',
+    'doctor.patients.lastVisit': 'Останній візит',
+    'doctor.patients.visits': 'візитів',
+    'doctor.patients.tagsAssigned': 'Теги',
+    'doctor.consult.patient': 'Пацієнт',
+    'doctor.consult.reason': 'Причина звернення',
+    'doctor.consult.history': 'Попередні консультації',
+    'doctor.consult.notes': 'Особисті нотатки',
+    'doctor.consult.notes.hint': 'Не видимі пацієнту. Зберігаються в картці консультації.',
+    'doctor.consult.rx': 'Рецепт',
+    'doctor.consult.rx.diagnosis': 'Діагноз',
+    'doctor.consult.rx.medications': 'Препарати',
+    'doctor.consult.rx.med.name': 'Назва',
+    'doctor.consult.rx.med.dosage': 'Дозування',
+    'doctor.consult.rx.med.frequency': 'Частота',
+    'doctor.consult.rx.med.duration': 'Тривалість',
+    'doctor.consult.rx.instructions': 'Додаткові вказівки',
+    'doctor.consult.rx.live': 'У прямому ефірі — пацієнт бачить',
+    'doctor.consult.finalized': 'Рецепт завершено та надіслано',
+    'doctor.tags.title': 'Теги пацієнтів',
+    'doctor.tags.empty': 'Ще немає тегів. Створіть, щоб категоризувати пацієнтів.',
+    'admin.home.title': 'Огляд',
+    'admin.stats.doctors': 'Активних лікарів',
+    'admin.stats.bookingsToday': 'Записів сьогодні',
+    'admin.stats.patients': 'Зареєстрованих пацієнтів',
+    'admin.stats.completion': 'Рівень завершення',
+    'admin.doctors.title': 'Лікарі',
+    'admin.doctors.add': 'Додати лікаря',
+    'admin.doctors.empty': 'Поки що немає лікарів',
+    'admin.audit.title': 'Журнал подій',
+    'admin.audit.empty': 'Подій не зафіксовано',
+    'admin.bookings.title': 'Усі записи',
+    'profile.title': 'Профіль',
+    'profile.name': 'Повне ім\'я',
+    'profile.email': 'Ел. пошта',
+    'profile.phone': 'Телефон',
+    'profile.dob': 'Дата народження',
+    'profile.tz': 'Часовий пояс',
+    'profile.language': 'Основна мова',
+    'air.raid.title': 'Повітряна тривога',
+    'air.raid.body': 'У цьому регіоні активна тривога. Активні консультації автоматично відновляться, коли буде безпечно.',
+    'air.raid.dismiss': 'Зрозуміло',
+    'status.confirmed': 'Підтверджено',
+    'status.completed': 'Завершено',
+    'status.cancelled': 'Скасовано',
+    'status.no_show': 'Неявка',
+    'status.active': 'Активний',
+    'status.inactive': 'Неактивний',
+    'specialization.Cardiology': 'Кардіологія',
+    'specialization.Dermatology': 'Дерматологія',
+    'specialization.Pediatrics': 'Педіатрія',
+    'specialization.Neurology': 'Неврологія',
+    'demo.badge': 'Статичне демо — без бекенду',
+    'demo.reset': 'Скинути дані',
+    'prescription.generated': 'PDF рецепт створено',
+    'toast.saved': 'Збережено',
+    'toast.doctor.added': 'Лікаря додано',
+    'toast.doctor.removed': 'Лікаря видалено',
+    'toast.doctor.deactivated': 'Лікаря деактивовано',
+    'toast.doctor.activated': 'Лікаря активовано',
+    'toast.tag.added': 'Тег створено',
+    'toast.tag.removed': 'Тег видалено',
+    'toast.upload.success': 'Файл завантажено',
+  }
+};
+
+/* ================================================================
+   INITIAL DATA
+================================================================ */
+const todayStr = () => new Date().toISOString().slice(0,10);
+const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate()+n); return x; };
+const atHour = (d, h) => { const x = new Date(d); x.setHours(h, 0, 0, 0); return x.toISOString(); };
+
+const INITIAL = () => {
+  const t = new Date();
+  return {
+    users: [
+      { id: 'u-admin-1',   role: 'admin',   fullName: 'Taras Bondarenko', email: 'admin@klinika.ua',     phone: '+380 50 123 4567', language: 'uk', timezone: 'Europe/Kyiv' },
+      { id: 'u-doctor-1',  role: 'doctor',  fullName: 'Dr. Olena Ivanenko',   email: 'o.ivanenko@klinika.ua',  phone: '+380 50 234 5678', language: 'uk', timezone: 'Europe/Kyiv' },
+      { id: 'u-doctor-2',  role: 'doctor',  fullName: 'Dr. Mykola Kovalenko', email: 'm.kovalenko@klinika.ua', phone: '+380 50 345 6789', language: 'uk', timezone: 'Europe/Kyiv' },
+      { id: 'u-doctor-3',  role: 'doctor',  fullName: 'Dr. Sofia Melnyk',     email: 's.melnyk@klinika.ua',    phone: '+380 50 456 7890', language: 'uk', timezone: 'Europe/Kyiv' },
+      { id: 'u-doctor-4',  role: 'doctor',  fullName: 'Dr. Andriy Shevchenko',email: 'a.shevchenko@klinika.ua',phone: '+380 50 567 8901', language: 'uk', timezone: 'Europe/Kyiv' },
+      { id: 'u-patient-1', role: 'patient', fullName: 'Olena Shevchuk',       email: 'olena.s@mail.ua',    phone: '+380 67 111 2222', language: 'uk', timezone: 'Europe/Kyiv' },
+      { id: 'u-patient-2', role: 'patient', fullName: 'Marta Wójcik',         email: 'marta.w@mail.pl',    phone: '+48 501 234 567',  language: 'en', timezone: 'Europe/Warsaw' },
+      { id: 'u-patient-3', role: 'patient', fullName: 'Lukas Schmidt',        email: 'lukas.s@mail.de',    phone: '+49 170 1234567',  language: 'en', timezone: 'Europe/Berlin' },
+      { id: 'u-patient-4', role: 'patient', fullName: 'Anna Petrenko',        email: 'anna.p@mail.ca',     phone: '+1 416 555 0143',  language: 'en', timezone: 'America/Toronto' },
+      { id: 'u-patient-5', role: 'patient', fullName: 'Dmytro Koval',         email: 'd.koval@mail.ua',    phone: '+380 93 888 9999', language: 'uk', timezone: 'Europe/Kyiv' },
+    ],
+    doctors: [
+      { profileId: 'u-doctor-1', specialization: 'Cardiology',  registrationNo: 'UA-MED-00123', bio: 'Interventional cardiologist with 12 years of practice. Special interest in hypertension management.', languages: ['uk','en'],     fee: 800, currency: 'UAH', rating: 4.9, totalConsults: 342, isActive: true },
+      { profileId: 'u-doctor-2', specialization: 'Dermatology', registrationNo: 'UA-MED-00456', bio: 'Clinical dermatology and teledermatoscopy. Certified specialist in atopic conditions.',               languages: ['uk','en','pl'],fee: 650, currency: 'UAH', rating: 4.7, totalConsults: 218, isActive: true },
+      { profileId: 'u-doctor-3', specialization: 'Pediatrics',  registrationNo: 'UA-MED-00789', bio: 'Pediatrician focused on respiratory conditions and preventive care. Speaks German.',                   languages: ['uk','en','de'],fee: 700, currency: 'UAH', rating: 4.9, totalConsults: 501, isActive: true },
+      { profileId: 'u-doctor-4', specialization: 'Neurology',   registrationNo: 'UA-MED-01011', bio: 'Headache disorders, epilepsy, and sleep medicine. 10 years of clinical experience.',                   languages: ['uk','en'],     fee: 900, currency: 'UAH', rating: 4.8, totalConsults: 187, isActive: true },
+    ],
+    patients: [
+      { profileId: 'u-patient-1', dob: '1990-04-12', gender: 'female' },
+      { profileId: 'u-patient-2', dob: '1985-09-03', gender: 'female' },
+      { profileId: 'u-patient-3', dob: '2001-01-22', gender: 'male'   },
+      { profileId: 'u-patient-4', dob: '1978-11-30', gender: 'female' },
+      { profileId: 'u-patient-5', dob: '1995-06-18', gender: 'male'   },
+    ],
+    bookings: [
+      // Olena Shevchuk (current patient demo) — one upcoming, one past
+      { id: 'b-1', doctorId: 'u-doctor-1', patientId: 'u-patient-1', startTime: atHour(addDays(t,0),16), endTime: atHour(addDays(t,0),17), status: 'confirmed', reason: 'Occasional chest discomfort at night, worse after caffeine.' },
+      { id: 'b-2', doctorId: 'u-doctor-3', patientId: 'u-patient-1', startTime: atHour(addDays(t,-14),11),endTime: atHour(addDays(t,-14),12),status: 'completed', reason: 'Annual check-up for child.' },
+      // Other doctors' bookings, to populate calendars
+      { id: 'b-3', doctorId: 'u-doctor-1', patientId: 'u-patient-2', startTime: atHour(addDays(t,0),10), endTime: atHour(addDays(t,0),11), status: 'confirmed', reason: 'Follow-up on hypertension medication.' },
+      { id: 'b-4', doctorId: 'u-doctor-1', patientId: 'u-patient-5', startTime: atHour(addDays(t,0),14), endTime: atHour(addDays(t,0),15), status: 'confirmed', reason: 'New patient — fatigue, palpitations.' },
+      { id: 'b-5', doctorId: 'u-doctor-1', patientId: 'u-patient-3', startTime: atHour(addDays(t,1),11), endTime: atHour(addDays(t,1),12), status: 'confirmed', reason: 'Blood pressure review.' },
+      { id: 'b-6', doctorId: 'u-doctor-2', patientId: 'u-patient-4', startTime: atHour(addDays(t,0),9),  endTime: atHour(addDays(t,0),10), status: 'confirmed', reason: 'Persistent rash on forearms.' },
+      { id: 'b-7', doctorId: 'u-doctor-1', patientId: 'u-patient-2', startTime: atHour(addDays(t,-7),10),endTime: atHour(addDays(t,-7),11),status: 'completed', reason: 'Hypertension consult.' },
+      { id: 'b-8', doctorId: 'u-doctor-1', patientId: 'u-patient-5', startTime: atHour(addDays(t,-21),14),endTime: atHour(addDays(t,-21),15),status: 'completed', reason: 'Initial cardiology consult.' },
+      { id: 'b-9', doctorId: 'u-doctor-1', patientId: 'u-patient-3', startTime: atHour(addDays(t,-3),15), endTime: atHour(addDays(t,-3),16), status: 'cancelled', reason: 'Patient cancelled.' },
+    ],
+    consultations: [
+      { id: 'c-2', bookingId: 'b-2', endedAt: atHour(addDays(t,-14),12), doctorPrivateNotes: 'Child developing well. Next check-up in 6 months.' },
+      { id: 'c-7', bookingId: 'b-7', endedAt: atHour(addDays(t,-7),11),  doctorPrivateNotes: 'BP stable on current regimen.' },
+      { id: 'c-8', bookingId: 'b-8', endedAt: atHour(addDays(t,-21),15), doctorPrivateNotes: 'Initial workup. ECG requested.' },
+    ],
+    prescriptions: [
+      { id: 'rx-2', consultationId: 'c-2', diagnosis: 'Healthy toddler, routine check.', medications: [{ name: 'Vitamin D3', dosage: '400 IU', frequency: 'Once daily', duration: '12 months' }], instructions: 'Continue vitamin D supplementation through winter. Next visit in 6 months.', finalizedAt: atHour(addDays(t,-14),12) },
+      { id: 'rx-7', consultationId: 'c-7', diagnosis: 'Essential hypertension, stage 1.', medications: [
+        { name: 'Perindopril',    dosage: '5 mg',    frequency: 'Once daily, morning', duration: 'Ongoing' },
+        { name: 'Amlodipine',     dosage: '5 mg',    frequency: 'Once daily, evening', duration: 'Ongoing' },
+      ], instructions: 'Monitor BP twice daily. Reduce sodium intake. Follow-up in 4 weeks.', finalizedAt: atHour(addDays(t,-7),11) },
+      { id: 'rx-8', consultationId: 'c-8', diagnosis: 'Suspected non-specific palpitations.', medications: [], instructions: 'Complete 24-hour Holter monitoring. Return with results.', finalizedAt: atHour(addDays(t,-21),15) },
+    ],
+    tags: [
+      { id: 't-1', doctorId: 'u-doctor-1', label: 'Hypertension', color: '#A14D3A' },
+      { id: 't-2', doctorId: 'u-doctor-1', label: 'Follow-up',    color: '#2D4A5C' },
+      { id: 't-3', doctorId: 'u-doctor-1', label: 'Chronic',      color: '#B4781E' },
+      { id: 't-4', doctorId: 'u-doctor-1', label: 'VIP',          color: '#5A7C5F' },
+    ],
+    tagAssignments: [
+      { patientId: 'u-patient-2', tagId: 't-1' },
+      { patientId: 'u-patient-2', tagId: 't-2' },
+      { patientId: 'u-patient-5', tagId: 't-3' },
+      { patientId: 'u-patient-1', tagId: 't-2' },
+    ],
+    auditLog: [
+      { id: 'a-1', actorId: 'u-admin-1',  action: 'doctor.created',       targetId: 'u-doctor-4', createdAt: atHour(addDays(t,-30),10) },
+      { id: 'a-2', actorId: 'u-doctor-1', action: 'prescription.finalized',targetId: 'rx-7',      createdAt: atHour(addDays(t,-7),11) },
+      { id: 'a-3', actorId: 'u-patient-1',action: 'booking.created',      targetId: 'b-1',        createdAt: atHour(addDays(t,-1),14) },
+      { id: 'a-4', actorId: 'u-patient-3',action: 'booking.cancelled',    targetId: 'b-9',        createdAt: atHour(addDays(t,-3),12) },
+      { id: 'a-5', actorId: 'u-doctor-1', action: 'patient.accessed',     targetId: 'u-patient-5',createdAt: atHour(addDays(t,-1),16) },
+      { id: 'a-6', actorId: 'u-admin-1',  action: 'doctor.deactivated',   targetId: 'u-doctor-2', createdAt: atHour(addDays(t,-60),9) },
+    ],
+  };
+};
+
+/* ================================================================
+   CONTEXTS
+================================================================ */
+const AppCtx = createContext(null);
+const useApp = () => useContext(AppCtx);
+
+/* ================================================================
+   UTILS
+================================================================ */
+const fmtTime = (iso, tz='Europe/Kyiv') => {
+  try { return new Date(iso).toLocaleTimeString('en-GB', { timeZone: tz, hour: '2-digit', minute: '2-digit' }); }
+  catch { return ''; }
+};
+const fmtDate = (iso, lang='en', tz='Europe/Kyiv') => {
+  try {
+    const l = lang === 'uk' ? 'uk-UA' : 'en-GB';
+    return new Date(iso).toLocaleDateString(l, { timeZone: tz, weekday: 'short', day: 'numeric', month: 'short' });
+  } catch { return iso; }
+};
+const fmtDateLong = (iso, lang='en', tz='Europe/Kyiv') => {
+  try {
+    const l = lang === 'uk' ? 'uk-UA' : 'en-GB';
+    return new Date(iso).toLocaleDateString(l, { timeZone: tz, weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  } catch { return iso; }
+};
+const initials = (name) => name.split(' ').filter(p => p && p !== 'Dr.').slice(0,2).map(p => p[0]).join('').toUpperCase();
+const uid = (p) => `${p}-${Math.random().toString(36).slice(2,8)}`;
+
+/* ================================================================
+   ICONS (inline SVG, lucide-style)
+================================================================ */
+const Ic = {
+  home:      ({sz=16}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>,
+  plus:      ({sz=16}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5v14"/></svg>,
+  cal:       ({sz=16}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>,
+  list:      ({sz=16}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>,
+  file:      ({sz=16}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>,
+  users:     ({sz=16}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
+  video:     ({sz=16}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="m22 8-6 4 6 4V8Z"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>,
+  tag:       ({sz=16}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M20.59 13.41L13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><path d="M7 7h.01"/></svg>,
+  user:      ({sz=16}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>,
+  stetho:    ({sz=16}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.3.3 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>,
+  shield:    ({sz=16}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
+  x:         ({sz=16}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>,
+  check:     ({sz=16}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>,
+  trash:     ({sz=16}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>,
+  mic:       ({sz=18}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 1 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/></svg>,
+  cam:       ({sz=18}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="m22 8-6 4 6 4V8Z"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>,
+  phoneOff:  ({sz=18}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-3.48-2.79M2 2l20 20"/></svg>,
+  upload:    ({sz=14}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>,
+  chevRight: ({sz=14}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>,
+  sun:       ({sz=14}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>,
+  moon:      ({sz=14}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>,
+  alert:     ({sz=14}) => <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>,
+};
+
+/* ================================================================
+   APP
+================================================================ */
+function App() {
+  const [data, setData] = useState(INITIAL);
+  const [currentUserId, setCurrentUserId] = useState('u-patient-1');
+  const [lang, setLang] = useState('uk');
+  const [theme, setTheme] = useState('light');
+  const [airRaid, setAirRaid] = useState(false);
+  const [toasts, setToasts] = useState([]);
+  const [page, setPage] = useState('home');
+  const [modal, setModal] = useState(null);   // {kind, props}
+
+  useEffect(() => { document.documentElement.setAttribute('data-theme', theme); }, [theme]);
+
+  const currentUser = data.users.find(u => u.id === currentUserId);
+  const role = currentUser.role;
+  const tr = (k) => T[lang][k] || k;
+
+  const pushToast = (msg, kind='default') => {
+    const id = uid('t');
+    setToasts(prev => [...prev, { id, msg, kind }]);
+    setTimeout(() => setToasts(prev => prev.filter(x => x.id !== id)), 3000);
+  };
+
+  const switchRole = (newRole) => {
+    const target =
+      newRole === 'admin'  ? 'u-admin-1' :
+      newRole === 'doctor' ? 'u-doctor-1' :
+                             'u-patient-1';
+    setCurrentUserId(target);
+    setPage('home');
+    setModal(null);
+  };
+
+  const ctx = {
+    data, setData, currentUser, role, lang, setLang, theme, setTheme,
+    tr, pushToast, page, setPage, modal, setModal, switchRole
+  };
+
+  return (
+    <AppCtx.Provider value={ctx}>
+      <div className="app">
+        {airRaid && <AirRaidBar onDismiss={() => setAirRaid(false)} />}
+        <TopBar onToggleAirRaid={() => setAirRaid(x => !x)} />
+        <div className="shell">
+          <Sidebar />
+          <main className="main">
+            {role === 'patient' && <PatientRouter />}
+            {role === 'doctor'  && <DoctorRouter />}
+            {role === 'admin'   && <AdminRouter />}
+          </main>
+        </div>
+        {modal && <ModalHost />}
+        <ToastStack toasts={toasts} />
+        <div className="demo-banner" onClick={() => { setData(INITIAL()); pushToast(tr('demo.reset'), 'success'); }}>
+          {tr('demo.badge')} · {tr('demo.reset')}
+        </div>
+      </div>
+    </AppCtx.Provider>
+  );
+}
+
+/* ================================================================
+   TOP-LEVEL COMPONENTS
+================================================================ */
+function AirRaidBar({ onDismiss }) {
+  const { tr } = useApp();
+  return (
+    <div className="alert-bar">
+      <div className="hstack"><span className="pulse"></span><Ic.alert sz={14}/><strong style={{marginLeft:4}}>{tr('air.raid.title')}</strong><span style={{opacity:0.9, marginLeft:10}}>{tr('air.raid.body')}</span></div>
+      <button onClick={onDismiss}>{tr('air.raid.dismiss')}</button>
+    </div>
+  );
+}
+
+function TopBar({ onToggleAirRaid }) {
+  const { role, switchRole, lang, setLang, theme, setTheme, tr } = useApp();
+  return (
+    <header className="topbar">
+      <div className="hstack" style={{gap: 24}}>
+        <div className="logo">
+          <div className="logo-mark">K</div>
+          <span>{tr('brand')}</span>
+          <span style={{fontSize:10, letterSpacing:'0.15em', textTransform:'uppercase', color:'var(--ink-mute)', fontFamily:'DM Mono, monospace', marginLeft:8, paddingLeft:12, borderLeft:'1px solid var(--line)'}}>{tr('brand.tag')}</span>
+        </div>
+      </div>
+      <div className="topbar-actions">
+        <div className="role-switch">
+          <button className={role === 'patient' ? 'active' : ''} onClick={() => switchRole('patient')}>{tr('role.patient')}</button>
+          <button className={role === 'doctor'  ? 'active' : ''} onClick={() => switchRole('doctor')}>{tr('role.doctor')}</button>
+          <button className={role === 'admin'   ? 'active' : ''} onClick={() => switchRole('admin')}>{tr('role.admin')}</button>
+        </div>
+        <button className="topbar-btn" onClick={onToggleAirRaid} title="Toggle air raid demo">
+          <Ic.alert sz={13} />
+        </button>
+        <button className="topbar-btn mono" style={{fontSize:11, letterSpacing:'0.1em'}} onClick={() => setLang(lang === 'uk' ? 'en' : 'uk')}>
+          {lang === 'uk' ? 'UK' : 'EN'}
+        </button>
+        <button className="topbar-btn" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+          {theme === 'light' ? <Ic.moon /> : <Ic.sun />}
+        </button>
+      </div>
+    </header>
+  );
+}
+
+function Sidebar() {
+  const { role, page, setPage, currentUser, tr } = useApp();
+  const nav = {
+    patient: [
+      { k: 'home',          icon: <Ic.home />,   label: 'nav.dashboard' },
+      { k: 'book',          icon: <Ic.plus />,   label: 'nav.book' },
+      { k: 'appointments',  icon: <Ic.cal />,    label: 'nav.appointments' },
+      { k: 'prescriptions', icon: <Ic.file />,   label: 'nav.prescriptions' },
+      { k: 'profile',       icon: <Ic.user />,   label: 'nav.profile' },
+    ],
+    doctor: [
+      { k: 'home',          icon: <Ic.home />,   label: 'nav.dashboard' },
+      { k: 'calendar',      icon: <Ic.cal />,    label: 'nav.calendar' },
+      { k: 'patients',      icon: <Ic.users />,  label: 'nav.patients' },
+      { k: 'consult',       icon: <Ic.video />,  label: 'nav.consult' },
+      { k: 'tags',          icon: <Ic.tag />,    label: 'nav.tags' },
+      { k: 'profile',       icon: <Ic.user />,   label: 'nav.profile' },
+    ],
+    admin: [
+      { k: 'home',          icon: <Ic.home />,    label: 'nav.dashboard' },
+      { k: 'doctors',       icon: <Ic.stetho />,  label: 'nav.doctors' },
+      { k: 'bookings',      icon: <Ic.cal />,     label: 'nav.bookings' },
+      { k: 'audit',         icon: <Ic.shield />,  label: 'nav.audit' },
+    ],
+  };
+  const items = nav[role];
+  const sectionLabel = role === 'patient' ? 'section.patient' : role === 'doctor' ? 'section.doctor' : 'section.admin';
+  return (
+    <aside className="sidebar">
+      <div className="sidebar-label">{tr(sectionLabel)}</div>
+      {items.map(item => (
+        <a key={item.k} className={page === item.k ? 'active' : ''} onClick={() => setPage(item.k)}>
+          <span className="icon">{item.icon}</span>
+          <span>{tr(item.label)}</span>
+        </a>
+      ))}
+      <div className="spacer" />
+      <div className="sidebar-footer">
+        <div className="avatar">{initials(currentUser.fullName)}</div>
+        <div style={{minWidth:0}}>
+          <div style={{fontSize:12, fontWeight:500, color:'var(--ink)', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap'}}>{currentUser.fullName}</div>
+          <div className="mono tiny">{currentUser.timezone}</div>
+        </div>
+      </div>
+    </aside>
+  );
+}
+
+function ToastStack({ toasts }) {
+  return (
+    <div className="toast-stack">
+      {toasts.map(t => (
+        <div key={t.id} className={`toast ${t.kind}`}>
+          {t.kind === 'success' && <Ic.check sz={14} />}
+          {t.msg}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ================================================================
+   MODAL HOST
+================================================================ */
+function ModalHost() {
+  const { modal, setModal } = useApp();
+  const close = () => setModal(null);
+  if (!modal) return null;
+  return (
+    <div className="modal-backdrop" onClick={(e) => e.target === e.currentTarget && close()}>
+      {modal.kind === 'book'       && <BookModal       {...modal.props} onClose={close} />}
+      {modal.kind === 'cancel'     && <CancelModal     {...modal.props} onClose={close} />}
+      {modal.kind === 'addDoctor'  && <AddDoctorModal  {...modal.props} onClose={close} />}
+      {modal.kind === 'rxPdf'      && <PrescriptionPdfModal {...modal.props} onClose={close} />}
+      {modal.kind === 'upload'     && <UploadModal     {...modal.props} onClose={close} />}
+      {modal.kind === 'newTag'     && <NewTagModal     {...modal.props} onClose={close} />}
+      {modal.kind === 'doctorBio'  && <DoctorBioModal  {...modal.props} onClose={close} />}
+    </div>
+  );
+}
+
+/* ================================================================
+   PATIENT ROUTER + VIEWS
+================================================================ */
+function PatientRouter() {
+  const { page } = useApp();
+  if (page === 'home')          return <PatientHome />;
+  if (page === 'book')          return <PatientBook />;
+  if (page === 'appointments')  return <PatientAppointments />;
+  if (page === 'prescriptions') return <PatientPrescriptions />;
+  if (page === 'profile')       return <Profile />;
+  return <PatientHome />;
+}
+
+function PatientHome() {
+  const { data, currentUser, tr, lang, setPage, setModal } = useApp();
+  const mine = data.bookings.filter(b => b.patientId === currentUser.id);
+  const upcoming = mine.filter(b => b.status === 'confirmed' && new Date(b.startTime) > new Date()).sort((a,b) => new Date(a.startTime)-new Date(b.startTime));
+  const past = mine.filter(b => b.status === 'completed').sort((a,b) => new Date(b.startTime)-new Date(a.startTime));
+  const nextB = upcoming[0];
+  const myRx = data.prescriptions.filter(rx => {
+    const c = data.consultations.find(c => c.id === rx.consultationId);
+    const b = c && data.bookings.find(b => b.id === c.bookingId);
+    return b && b.patientId === currentUser.id;
+  }).sort((a,b) => new Date(b.finalizedAt) - new Date(a.finalizedAt));
+
+  return (
+    <>
+      <div className="page-head">
+        <div>
+          <h1 className="page-title">{tr('patient.home.welcome')}, <em>{currentUser.fullName.split(' ')[0]}</em></h1>
+          <p className="page-sub mono">{fmtDateLong(new Date().toISOString(), lang, currentUser.timezone)} · {currentUser.timezone}</p>
+        </div>
+        <button className="btn accent" onClick={() => setPage('book')}><Ic.plus /> {tr('action.book')}</button>
+      </div>
+
+      <div className="grid-2" style={{alignItems:'start'}}>
+        <div className="card" style={{background: nextB ? 'var(--bg-elev)' : 'var(--bg-sunk)'}}>
+          <div className="card-head">
+            <div>
+              <h3 className="card-title">{tr('patient.home.next')}</h3>
+            </div>
+            {nextB && <span className="chip sage dot">{tr('status.confirmed')}</span>}
+          </div>
+          {nextB ? (
+            <NextBookingBlock b={nextB} />
+          ) : (
+            <div className="empty" style={{padding:'24px 0'}}>
+              <h4>{tr('patient.home.noNext')}</h4>
+              <p>{tr('patient.home.noNext.cta')}</p>
+              <button className="btn accent" onClick={() => setPage('book')} style={{marginTop:8}}><Ic.plus /> {tr('action.book')}</button>
+            </div>
+          )}
+        </div>
+
+        <div className="card">
+          <div className="card-head"><h3 className="card-title">{tr('patient.home.quick')}</h3></div>
+          <div style={{display:'flex', flexDirection:'column', gap:8}}>
+            <QuickAction icon={<Ic.plus/>}    label={tr('action.book')} onClick={() => setPage('book')} />
+            <QuickAction icon={<Ic.upload/>}  label={tr('action.upload')} onClick={() => setModal({ kind: 'upload' })} />
+            <QuickAction icon={<Ic.list/>}    label={tr('nav.appointments')} onClick={() => setPage('appointments')} />
+            <QuickAction icon={<Ic.file/>}    label={tr('nav.prescriptions')} onClick={() => setPage('prescriptions')} />
+          </div>
+        </div>
+      </div>
+
+      <div style={{height:28}} />
+      <div className="card">
+        <div className="card-head">
+          <h3 className="card-title">{tr('patient.home.recent')}</h3>
+          <button className="btn ghost sm" onClick={() => setPage('prescriptions')}>{tr('action.viewPrescription')} <Ic.chevRight /></button>
+        </div>
+        {myRx.length === 0 ? (
+          <div className="empty"><h4>—</h4></div>
+        ) : (
+          <div>
+            {myRx.slice(0,3).map(rx => <RxRow key={rx.id} rx={rx} />)}
+          </div>
+        )}
+      </div>
+    </>
+  );
+}
+
+function NextBookingBlock({ b }) {
+  const { data, lang, currentUser, tr, setModal } = useApp();
+  const doc = data.users.find(u => u.id === b.doctorId);
+  const docDetail = data.doctors.find(d => d.profileId === b.doctorId);
+  const startsIn = Math.round((new Date(b.startTime) - new Date()) / 3600000);
+  return (
+    <div>
+      <div className="hstack" style={{gap: 16, marginBottom: 16}}>
+        <div className="doc-avatar">{initials(doc.fullName)}</div>
+        <div>
+          <div className="serif" style={{fontSize: 22, fontWeight: 500}}>{doc.fullName}</div>
+          <div className="muted small">{tr(`specialization.${docDetail.specialization}`)}</div>
+        </div>
+      </div>
+      <div className="mono small" style={{color:'var(--ink-mute)', letterSpacing:'0.06em', textTransform:'uppercase', marginBottom:6}}>
+        {fmtDateLong(b.startTime, lang, currentUser.timezone)}
+      </div>
+      <div className="serif" style={{fontSize: 30, fontWeight: 400, letterSpacing: '-0.02em'}}>
+        {fmtTime(b.startTime, currentUser.timezone)} — {fmtTime(b.endTime, currentUser.timezone)}
+      </div>
+      {startsIn > 0 && startsIn < 48 && <div className="mono tiny muted" style={{marginTop:4}}>in ~{startsIn}h</div>}
+      {b.reason && (
+        <div style={{marginTop: 14, padding: '12px 14px', background:'var(--bg-sunk)', borderRadius: 6, fontSize: 13.5, borderLeft:'3px solid var(--accent)'}}>
+          <span className="mono tiny muted" style={{letterSpacing:'0.08em', textTransform:'uppercase'}}>Reason · </span>{b.reason}
+        </div>
+      )}
+      <div className="hstack" style={{marginTop: 18, gap: 8}}>
+        <button className="btn accent" disabled={startsIn > 1}><Ic.video sz={14}/> {tr('action.join')}</button>
+        <button className="btn ghost sm">{tr('action.reschedule')}</button>
+        <button className="btn ghost sm" onClick={() => setModal({ kind: 'cancel', props: { booking: b } })}>{tr('action.cancel')}</button>
+      </div>
+    </div>
+  );
+}
+
+function QuickAction({ icon, label, onClick }) {
+  return (
+    <button onClick={onClick} className="hstack" style={{
+      padding: '10px 12px', border: '1px solid var(--line)', borderRadius: 8, background: 'var(--bg)',
+      color: 'var(--ink)', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer', textAlign:'left', justifyContent:'space-between'
+    }}>
+      <span className="hstack" style={{gap:10}}>{icon}{label}</span>
+      <Ic.chevRight />
+    </button>
+  );
+}
+
+function RxRow({ rx }) {
+  const { data, lang, tr, setModal } = useApp();
+  const c = data.consultations.find(c => c.id === rx.consultationId);
+  const b = data.bookings.find(b => b.id === c.bookingId);
+  const doc = data.users.find(u => u.id === b.doctorId);
+  return (
+    <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', padding:'12px 0', borderBottom:'1px solid var(--line)'}}>
+      <div>
+        <div className="serif" style={{fontSize:16, fontWeight:500}}>{rx.diagnosis}</div>
+        <div className="small muted">{doc.fullName} · <span className="mono">{fmtDate(rx.finalizedAt, lang)}</span></div>
+      </div>
+      <button className="btn ghost sm" onClick={() => setModal({ kind: 'rxPdf', props: { rx } })}>
+        <Ic.file sz={13} /> PDF
+      </button>
+    </div>
+  );
+}
+
+function PatientBook() {
+  const { data, tr, setModal, lang } = useApp();
+  const [specFilter, setSpecFilter] = useState('');
+  const [langFilter, setLangFilter] = useState('');
+  const specs = [...new Set(data.doctors.map(d => d.specialization))];
+  const langs = ['uk','en','pl','de'];
+
+  const filtered = data.doctors.filter(d => d.isActive)
+    .filter(d => !specFilter || d.specialization === specFilter)
+    .filter(d => !langFilter || d.languages.includes(langFilter));
+
+  return (
+    <>
+      <div className="page-head">
+        <div>
+          <h1 className="page-title">{tr('patient.book.title')}</h1>
+          <p className="page-sub">{filtered.length} doctors · 9:00 — 21:00 Europe/Kyiv</p>
+        </div>
+      </div>
+      <div className="hstack" style={{gap:12, marginBottom:20, flexWrap:'wrap'}}>
+        <FilterChip label={tr('patient.book.filters.spec')} value={specFilter} options={[['',tr('patient.book.filters.all')], ...specs.map(s => [s, tr(`specialization.${s}`)])]} onChange={setSpecFilter} />
+        <FilterChip label={tr('patient.book.filters.lang')} value={langFilter} options={[['',tr('patient.book.filters.all')], ...langs.map(l => [l, l.toUpperCase()])]} onChange={setLangFilter} />
+      </div>
+      <div className="doc-grid">
+        {filtered.map(d => {
+          const u = data.users.find(u => u.id === d.profileId);
+          return (
+            <div key={d.profileId} className="doc-card">
+              <div className="doc-head">
+                <div className="doc-avatar">{initials(u.fullName)}</div>
+                <div className="doc-meta grow">
+                  <h4>{u.fullName}</h4>
+                  <div className="spec">{tr(`specialization.${d.specialization}`)}</div>
+                  <div className="doc-rating" style={{marginTop:4}}><span className="star">★</span> {d.rating.toFixed(1)} · {d.totalConsults} {tr('doctor.patients.visits')}</div>
+                </div>
+              </div>
+              <div className="small muted" style={{minHeight:38}}>{d.bio}</div>
+              <div className="doc-langs">
+                {d.languages.map(l => <span key={l} className="lang-pill">{l}</span>)}
+              </div>
+              <div className="doc-foot">
+                <div className="fee">{d.fee ? `${d.fee} ${d.currency}` : tr('patient.book.free')} <small>{tr('patient.book.fee')}</small></div>
+                <button className="btn accent sm" onClick={() => setModal({ kind: 'book', props: { doctor: d } })}>{tr('action.book')}</button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+}
+
+function FilterChip({ label, value, options, onChange }) {
+  return (
+    <div className="hstack" style={{background:'var(--bg-elev)', border:'1px solid var(--line)', borderRadius:8, padding:'4px 4px 4px 12px'}}>
+      <span className="mono tiny muted" style={{letterSpacing:'0.1em', textTransform:'uppercase'}}>{label}</span>
+      <select value={value} onChange={e => onChange(e.target.value)} style={{border:0, background:'transparent', fontFamily:'inherit', fontSize:13, padding:'6px 8px', color:'var(--ink)', cursor:'pointer'}}>
+        {options.map(([v,n]) => <option key={v} value={v}>{n}</option>)}
+      </select>
+    </div>
+  );
+}
+
+function PatientAppointments() {
+  const { data, currentUser, tr, lang, setModal } = useApp();
+  const mine = data.bookings.filter(b => b.patientId === currentUser.id);
+  const upcoming = mine.filter(b => b.status === 'confirmed' && new Date(b.startTime) > new Date()).sort((a,b) => new Date(a.startTime)-new Date(b.startTime));
+  const past = mine.filter(b => ['completed','cancelled','no_show'].includes(b.status)).sort((a,b) => new Date(b.startTime)-new Date(a.startTime));
+
+  return (
+    <>
+      <div className="page-head"><div><h1 className="page-title">{tr('nav.appointments')}</h1></div></div>
+      <div className="card" style={{marginBottom: 20}}>
+        <div className="card-head"><h3 className="card-title">{tr('patient.appointments.upcoming')} · {upcoming.length}</h3></div>
+        {upcoming.length === 0
+          ? <div className="empty"><h4>—</h4><p>{tr('patient.appointments.empty')}</p></div>
+          : upcoming.map(b => <AppointmentRow key={b.id} b={b} />)
+        }
+      </div>
+      <div className="card">
+        <div className="card-head"><h3 className="card-title">{tr('patient.appointments.past')} · {past.length}</h3></div>
+        {past.length === 0
+          ? <div className="empty"><h4>—</h4></div>
+          : past.map(b => <AppointmentRow key={b.id} b={b} />)
+        }
+      </div>
+    </>
+  );
+}
+
+function AppointmentRow({ b }) {
+  const { data, tr, lang, currentUser, setModal } = useApp();
+  const doc = data.users.find(u => u.id === b.doctorId);
+  const docDetail = data.doctors.find(d => d.profileId === b.doctorId);
+  const rx = data.consultations.find(c => c.bookingId === b.id) &&
+             data.prescriptions.find(rx => rx.consultationId === data.consultations.find(c => c.bookingId === b.id).id);
+
+  const statusChipClass = {
+    confirmed: 'sage',
+    completed: 'teal',
+    cancelled: 'rust',
+    no_show:   'rust',
+  }[b.status];
+
+  return (
+    <div style={{display:'grid', gridTemplateColumns:'auto 1fr auto', gap:16, padding:'14px 0', borderBottom:'1px solid var(--line)', alignItems:'center'}}>
+      <div className="doc-avatar" style={{width:40, height:40, fontSize:14}}>{initials(doc.fullName)}</div>
+      <div>
+        <div style={{fontWeight:500}}>{doc.fullName} <span className="muted small">· {tr(`specialization.${docDetail.specialization}`)}</span></div>
+        <div className="mono small muted" style={{marginTop:2}}>{fmtDateLong(b.startTime, lang, currentUser.timezone)} · {fmtTime(b.startTime, currentUser.timezone)}</div>
+        {b.reason && <div className="small muted" style={{marginTop:3, fontStyle:'italic'}}>{b.reason}</div>}
+      </div>
+      <div className="hstack" style={{gap:8}}>
+        <span className={`chip ${statusChipClass} dot`}>{tr(`status.${b.status}`)}</span>
+        {b.status === 'confirmed' && <button className="btn ghost sm" onClick={() => setModal({ kind: 'cancel', props: { booking: b } })}>{tr('action.cancel')}</button>}
+        {rx && <button className="btn ghost sm" onClick={() => setModal({ kind: 'rxPdf', props: { rx } })}><Ic.file sz={12}/> PDF</button>}
+      </div>
+    </div>
+  );
+}
+
+function PatientPrescriptions() {
+  const { data, currentUser, tr, lang, setModal } = useApp();
+  const myRx = data.prescriptions.filter(rx => {
+    const c = data.consultations.find(c => c.id === rx.consultationId);
+    const b = c && data.bookings.find(b => b.id === c.bookingId);
+    return b && b.patientId === currentUser.id;
+  }).sort((a,b) => new Date(b.finalizedAt) - new Date(a.finalizedAt));
+
+  return (
+    <>
+      <div className="page-head"><div><h1 className="page-title">{tr('nav.prescriptions')}</h1><p className="page-sub">{myRx.length} records</p></div></div>
+      {myRx.length === 0 ? <div className="card empty"><h4>—</h4></div> : (
+        <div className="card">
+          {myRx.map(rx => {
+            const c = data.consultations.find(c => c.id === rx.consultationId);
+            const b = data.bookings.find(b => b.id === c.bookingId);
+            const doc = data.users.find(u => u.id === b.doctorId);
+            return (
+              <div key={rx.id} style={{padding:'18px 0', borderBottom:'1px solid var(--line)'}}>
+                <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-start', gap:16}}>
+                  <div>
+                    <div className="serif" style={{fontSize:20, fontWeight:500, letterSpacing:'-0.01em'}}>{rx.diagnosis}</div>
+                    <div className="small muted" style={{marginTop:4}}>{doc.fullName} · <span className="mono">{fmtDateLong(rx.finalizedAt, lang, currentUser.timezone)}</span></div>
+                  </div>
+                  <button className="btn ghost sm" onClick={() => setModal({ kind: 'rxPdf', props: { rx } })}><Ic.file sz={13}/> {tr('action.downloadPdf')}</button>
+                </div>
+                {rx.medications.length > 0 && (
+                  <div style={{marginTop:12, display:'flex', gap:8, flexWrap:'wrap'}}>
+                    {rx.medications.map((m,i) => (
+                      <div key={i} className="chip accent">{m.name} · {m.dosage} · {m.frequency}</div>
+                    ))}
+                  </div>
+                )}
+                {rx.instructions && <div className="small" style={{marginTop:10, color:'var(--ink-soft)'}}>{rx.instructions}</div>}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </>
+  );
+}
+
+/* ================================================================
+   DOCTOR VIEWS
+================================================================ */
+function DoctorRouter() {
+  const { page } = useApp();
+  if (page === 'home')     return <DoctorHome />;
+  if (page === 'calendar') return <DoctorCalendar />;
+  if (page === 'patients') return <DoctorPatients />;
+  if (page === 'consult')  return <DoctorConsult />;
+  if (page === 'tags')     return <DoctorTags />;
+  if (page === 'profile')  return <Profile />;
+  return <DoctorHome />;
+}
+
+function DoctorHome() {
+  const { data, currentUser, tr, lang, setPage } = useApp();
+  const mine = data.bookings.filter(b => b.doctorId === currentUser.id);
+  const now = new Date();
+  const today = mine.filter(b => {
+    const d = new Date(b.startTime);
+    return d.toDateString() === now.toDateString() && b.status === 'confirmed';
+  }).sort((a,b) => new Date(a.startTime) - new Date(b.startTime));
+  const upcoming = mine.filter(b => b.status === 'confirmed' && new Date(b.startTime) > now).sort((a,b) => new Date(a.startTime)-new Date(b.startTime));
+
+  const weekStart = new Date(now); weekStart.setDate(now.getDate() - now.getDay());
+  const weekCount = mine.filter(b => new Date(b.startTime) >= weekStart && b.status !== 'cancelled').length;
+  const uniquePatients = new Set(mine.map(b => b.patientId)).size;
+  const docDetail = data.doctors.find(d => d.profileId === currentUser.id);
+
+  return (
+    <>
+      <div className="page-head">
+        <div>
+          <h1 className="page-title">Good morning, <em>Dr. {currentUser.fullName.split(' ')[1]}</em></h1>
+          <p className="page-sub mono">{fmtDateLong(now.toISOString(), lang, currentUser.timezone)}</p>
+        </div>
+      </div>
+
+      <div className="stat-grid">
+        <Stat label={tr('doctor.home.stats.today')} value={today.length} deco />
+        <Stat label={tr('doctor.home.stats.week')}  value={weekCount} deco />
+        <Stat label={tr('doctor.home.stats.total')} value={uniquePatients} deco />
+        <Stat label={tr('doctor.home.stats.rating')} value={docDetail.rating.toFixed(1)} suffix="★" deco />
+      </div>
+
+      <div className="grid-2" style={{alignItems:'start'}}>
+        <div className="card">
+          <div className="card-head">
+            <h3 className="card-title">{tr('doctor.home.today')} · {today.length}</h3>
+            <button className="btn ghost sm" onClick={() => setPage('calendar')}>{tr('nav.calendar')} <Ic.chevRight /></button>
+          </div>
+          {today.length === 0
+            ? <div className="empty"><h4>{tr('doctor.home.noToday')}</h4></div>
+            : today.map(b => <DoctorBookingRow key={b.id} b={b} />)
+          }
+        </div>
+        <div className="card">
+          <div className="card-head"><h3 className="card-title">{tr('doctor.home.upcoming')}</h3></div>
+          {upcoming.slice(0,5).map(b => <DoctorBookingRow key={b.id} b={b} />)}
+        </div>
+      </div>
+    </>
+  );
+}
+
+function Stat({ label, value, suffix, delta, deltaNeg, deco }) {
+  return (
+    <div className="stat">
+      {deco && <div className="deco" />}
+      <div className="stat-label">{label}</div>
+      <div className="stat-value">{value}{suffix && <em>{suffix}</em>}</div>
+      {delta && <div className={`stat-delta ${deltaNeg ? 'neg' : ''}`}>{delta}</div>}
+    </div>
+  );
+}
+
+function DoctorBookingRow({ b }) {
+  const { data, tr, lang, currentUser, setPage } = useApp();
+  const p = data.users.find(u => u.id === b.patientId);
+  const pDetail = data.patients.find(pp => pp.profileId === b.patientId);
+  const age = pDetail && pDetail.dob ? Math.floor((new Date() - new Date(pDetail.dob)) / 31536000000) : null;
+  const tagAssigns = data.tagAssignments.filter(a => a.patientId === b.patientId);
+  const tags = tagAssigns.map(a => data.tags.find(t => t.id === a.tagId)).filter(Boolean);
+
+  return (
+    <div style={{display:'grid', gridTemplateColumns:'auto 1fr auto', gap:14, padding:'12px 0', borderBottom:'1px solid var(--line)', alignItems:'center', cursor:'pointer'}} onClick={() => setPage('consult')}>
+      <div className="mono" style={{fontSize:13, color:'var(--ink-mute)', minWidth:60}}>{fmtTime(b.startTime, currentUser.timezone)}</div>
+      <div style={{minWidth:0}}>
+        <div style={{fontWeight:500}}>{p.fullName} {age && <span className="muted small">· {age}y</span>}</div>
+        <div className="small muted" style={{overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap'}}>{b.reason}</div>
+        {tags.length > 0 && (
+          <div className="hstack" style={{gap:5, marginTop:5}}>
+            {tags.map(t => <span key={t.id} className="tag-pill" style={{color: t.color}}>{t.label}</span>)}
+          </div>
+        )}
+      </div>
+      <Ic.chevRight />
+    </div>
+  );
+}
+
+function DoctorCalendar() {
+  const { data, currentUser, tr, lang } = useApp();
+  const [day, setDay] = useState(() => { const d = new Date(); d.setHours(0,0,0,0); return d; });
+
+  const dayISO = day.toISOString().slice(0,10);
+  const mine = data.bookings.filter(b => b.doctorId === currentUser.id && b.startTime.slice(0,10) === dayISO);
+
+  const hours = [];
+  for (let h = 9; h <= 20; h++) hours.push(h);
+
+  return (
+    <>
+      <div className="page-head">
+        <div>
+          <h1 className="page-title">{tr('doctor.calendar.title')}</h1>
+          <p className="page-sub mono">{fmtDateLong(day.toISOString(), lang, currentUser.timezone)}</p>
+        </div>
+        <div className="hstack">
+          <button className="btn ghost sm" onClick={() => setDay(addDays(day, -1))}>◀</button>
+          <button className="btn ghost sm" onClick={() => { const d = new Date(); d.setHours(0,0,0,0); setDay(d); }}>Today</button>
+          <button className="btn ghost sm" onClick={() => setDay(addDays(day, 1))}>▶</button>
+        </div>
+      </div>
+      <div className="day-calendar">
+        {hours.map(h => {
+          const hourBookings = mine.filter(b => new Date(b.startTime).getHours() === h);
+          return (
+            <div key={h} className="day-hour">
+              <div className="time">{String(h).padStart(2,'0')}:00</div>
+              <div className="slot-content">
+                {hourBookings.map(b => {
+                  const p = data.users.find(u => u.id === b.patientId);
+                  return (
+                    <div key={b.id} className={`booking-chip ${b.status}`}>
+                      <div className="name">{p.fullName}</div>
+                      <div className="reason">{b.reason}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+}
+
+function DoctorPatients() {
+  const { data, currentUser, tr, lang, setData, pushToast } = useApp();
+  const mineBookings = data.bookings.filter(b => b.doctorId === currentUser.id);
+  const patientIds = [...new Set(mineBookings.map(b => b.patientId))];
+
+  const rows = patientIds.map(pid => {
+    const u = data.users.find(u => u.id === pid);
+    const detail = data.patients.find(p => p.profileId === pid);
+    const age = detail && detail.dob ? Math.floor((new Date() - new Date(detail.dob)) / 31536000000) : null;
+    const visits = mineBookings.filter(b => b.patientId === pid && b.status === 'completed').length;
+    const last = mineBookings.filter(b => b.patientId === pid).sort((a,b) => new Date(b.startTime)-new Date(a.startTime))[0];
+    const tagAssigns = data.tagAssignments.filter(a => a.patientId === pid);
+    const tags = tagAssigns.map(a => data.tags.find(t => t.id === a.tagId)).filter(Boolean);
+    return { u, detail, age, visits, last, tags };
+  });
+
+  const doctorTags = data.tags.filter(t => t.doctorId === currentUser.id);
+
+  const toggleTag = (patientId, tagId) => {
+    setData(prev => {
+      const exists = prev.tagAssignments.find(a => a.patientId === patientId && a.tagId === tagId);
+      if (exists) {
+        return { ...prev, tagAssignments: prev.tagAssignments.filter(a => !(a.patientId === patientId && a.tagId === tagId)) };
+      } else {
+        return { ...prev, tagAssignments: [...prev.tagAssignments, { patientId, tagId }] };
+      }
+    });
+  };
+
+  return (
+    <>
+      <div className="page-head"><div><h1 className="page-title">{tr('doctor.patients.title')}</h1><p className="page-sub">{rows.length} patients</p></div></div>
+      <div className="card" style={{padding: 0}}>
+        <table>
+          <thead>
+            <tr>
+              <th>Patient</th>
+              <th>{tr('doctor.patients.lastVisit')}</th>
+              <th style={{width:80, textAlign:'center'}}>{tr('doctor.patients.visits')}</th>
+              <th>{tr('doctor.patients.tagsAssigned')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map(r => (
+              <tr key={r.u.id}>
+                <td>
+                  <div className="hstack">
+                    <div className="avatar">{initials(r.u.fullName)}</div>
+                    <div>
+                      <div style={{fontWeight:500}}>{r.u.fullName} {r.age && <span className="muted small">· {r.age}y</span>}</div>
+                      <div className="mono tiny muted">{r.u.timezone}</div>
+                    </div>
+                  </div>
+                </td>
+                <td className="mono small muted">{r.last ? fmtDate(r.last.startTime, lang, currentUser.timezone) : '—'}</td>
+                <td className="mono" style={{textAlign:'center', fontWeight:500}}>{r.visits}</td>
+                <td>
+                  <div className="hstack" style={{gap:5, flexWrap:'wrap'}}>
+                    {doctorTags.map(t => {
+                      const active = r.tags.some(tt => tt.id === t.id);
+                      return (
+                        <button key={t.id}
+                          onClick={() => toggleTag(r.u.id, t.id)}
+                          className="tag-pill"
+                          style={{color: active ? t.color : 'var(--ink-faint)', opacity: active ? 1 : 0.5, cursor:'pointer', background:'transparent', fontFamily:'inherit'}}>
+                          {t.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
+}
+
+function DoctorConsult() {
+  const { data, currentUser, tr, lang, setData, setModal, pushToast } = useApp();
+  const mine = data.bookings.filter(b => b.doctorId === currentUser.id && b.status === 'confirmed' && new Date(b.startTime).toDateString() === new Date().toDateString());
+  const active = mine[0];
+
+  const [timer, setTimer] = useState(0);
+  const [diagnosis, setDiagnosis]   = useState('');
+  const [instructions, setInstructions] = useState('');
+  const [medications, setMedications] = useState([]);
+  const [privateNotes, setPrivateNotes] = useState('');
+  const [finalized, setFinalized] = useState(false);
+
+  useEffect(() => {
+    const i = setInterval(() => setTimer(t => t + 1), 1000);
+    return () => clearInterval(i);
+  }, []);
+
+  const fmtT = (s) => {
+    const m = Math.floor(s / 60);
+    const ss = s % 60;
+    return `${String(m).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;
+  };
+
+  if (!active) {
+    return (
+      <>
+        <div className="page-head"><div><h1 className="page-title">{tr('nav.consult')}</h1></div></div>
+        <div className="card empty">
+          <h4>{tr('doctor.home.noToday')}</h4>
+          <p>Switch to the patient view and book a consultation for today, then come back here.</p>
+        </div>
+      </>
+    );
+  }
+
+  const p = data.users.find(u => u.id === active.patientId);
+  const pDetail = data.patients.find(pp => pp.profileId === active.patientId);
+  const age = pDetail && pDetail.dob ? Math.floor((new Date() - new Date(pDetail.dob)) / 31536000000) : null;
+  const pastCount = data.bookings.filter(b => b.patientId === active.patientId && b.status === 'completed').length;
+
+  const addMedication = () => setMedications([...medications, { name: '', dosage: '', frequency: '', duration: '' }]);
+  const updateMed = (i, field, val) => setMedications(medications.map((m, idx) => idx === i ? { ...m, [field]: val } : m));
+  const removeMed = (i) => setMedications(medications.filter((_, idx) => idx !== i));
+
+  const finalize = () => {
+    const consultId = uid('c');
+    const rxId = uid('rx');
+    setData(prev => ({
+      ...prev,
+      consultations: [...prev.consultations, { id: consultId, bookingId: active.id, endedAt: new Date().toISOString(), doctorPrivateNotes: privateNotes }],
+      prescriptions: [...prev.prescriptions, { id: rxId, consultationId: consultId, diagnosis, medications: medications.filter(m => m.name), instructions, finalizedAt: new Date().toISOString() }],
+      bookings: prev.bookings.map(b => b.id === active.id ? { ...b, status: 'completed' } : b),
+    }));
+    setFinalized(true);
+    pushToast(tr('doctor.consult.finalized'), 'success');
+  };
+
+  return (
+    <>
+      <div className="page-head">
+        <div>
+          <h1 className="page-title">{tr('nav.consult')}</h1>
+          <p className="page-sub"><span className="live-indicator">LIVE</span> &nbsp; with {p.fullName}</p>
+        </div>
+      </div>
+
+      <div className="consult-split">
+        <div className="video-pane">
+          <div className="video-main">
+            <div className="video-pip">{initials(currentUser.fullName)}</div>
+            <div className="video-fake-doctor">{initials(p.fullName)}</div>
+          </div>
+          <div className="video-toolbar">
+            <div className="video-timer mono">{fmtT(timer)}</div>
+            <div className="video-controls">
+              <button className="v-ctrl"><Ic.mic /></button>
+              <button className="v-ctrl"><Ic.cam /></button>
+              <button className="v-ctrl end"><Ic.phoneOff /></button>
+            </div>
+          </div>
+        </div>
+
+        <div className="rx-pane">
+          <div className="rx-head">
+            <div>
+              <h3>{tr('doctor.consult.patient')} · {p.fullName}</h3>
+              <div className="small muted">
+                {age && `${age}y · `}<span className="mono">{p.timezone}</span> · {pastCount} past consults
+              </div>
+            </div>
+            {!finalized && <div className="live-indicator">{tr('doctor.consult.rx.live')}</div>}
+            {finalized && <span className="chip sage dot">{tr('status.completed')}</span>}
+          </div>
+          <div className="rx-body">
+            <div style={{padding:'10px 12px', background:'var(--bg-sunk)', borderRadius:6, marginBottom:16, fontSize:13}}>
+              <div className="mono tiny muted" style={{letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:4}}>{tr('doctor.consult.reason')}</div>
+              {active.reason}
+            </div>
+
+            <div className="field">
+              <label>{tr('doctor.consult.rx.diagnosis')}</label>
+              <input value={diagnosis} onChange={e => setDiagnosis(e.target.value)} placeholder="e.g. Essential hypertension" disabled={finalized} />
+            </div>
+
+            <div className="field">
+              <label>{tr('doctor.consult.rx.medications')}</label>
+              {medications.map((m, i) => (
+                <div key={i} className="med-row">
+                  <input placeholder={tr('doctor.consult.rx.med.name')} value={m.name} onChange={e => updateMed(i,'name',e.target.value)} disabled={finalized}/>
+                  <input placeholder={tr('doctor.consult.rx.med.dosage')} value={m.dosage} onChange={e => updateMed(i,'dosage',e.target.value)} disabled={finalized}/>
+                  <input placeholder={tr('doctor.consult.rx.med.frequency')} value={m.frequency} onChange={e => updateMed(i,'frequency',e.target.value)} disabled={finalized}/>
+                  <input placeholder={tr('doctor.consult.rx.med.duration')} value={m.duration} onChange={e => updateMed(i,'duration',e.target.value)} disabled={finalized}/>
+                  <button onClick={() => removeMed(i)} disabled={finalized}><Ic.x sz={14}/></button>
+                </div>
+              ))}
+              <button className="btn ghost sm" onClick={addMedication} disabled={finalized} style={{marginTop:4}}><Ic.plus sz={13}/> {tr('action.addMedication')}</button>
+            </div>
+
+            <div className="field">
+              <label>{tr('doctor.consult.rx.instructions')}</label>
+              <textarea value={instructions} onChange={e => setInstructions(e.target.value)} placeholder="..." disabled={finalized}/>
+            </div>
+
+            <div className="preview-card">
+              <div className="small muted mono" style={{letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:6}}>Updating live as you type</div>
+              <div className="serif" style={{fontSize:16, fontWeight:500, minHeight:22}}>{diagnosis || <span style={{color:'var(--ink-faint)'}}>— diagnosis —</span>}</div>
+              {medications.filter(m => m.name).length > 0 && (
+                <div style={{display:'flex', gap:6, flexWrap:'wrap', marginTop:8}}>
+                  {medications.filter(m => m.name).map((m,i) => <span key={i} className="chip accent">{m.name}{m.dosage && ` · ${m.dosage}`}</span>)}
+                </div>
+              )}
+              {instructions && <div className="small" style={{marginTop:8, color:'var(--ink-soft)'}}>{instructions}</div>}
+            </div>
+
+            <div style={{height:16}} />
+            <div className="field">
+              <label>{tr('doctor.consult.notes')}</label>
+              <textarea value={privateNotes} onChange={e => setPrivateNotes(e.target.value)} placeholder="Private notes — not shared with patient" disabled={finalized}/>
+              <div className="hint">🔒 {tr('doctor.consult.notes.hint')}</div>
+            </div>
+          </div>
+          <div className="rx-foot">
+            <div className="small muted">{medications.filter(m => m.name).length} medications</div>
+            <div className="hstack" style={{gap:8}}>
+              <button className="btn ghost sm">{tr('action.save')}</button>
+              <button className="btn accent" onClick={finalize} disabled={!diagnosis || finalized}>
+                <Ic.check sz={13}/> {tr('action.finalize')}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function DoctorTags() {
+  const { data, currentUser, tr, setModal, setData, pushToast } = useApp();
+  const tags = data.tags.filter(t => t.doctorId === currentUser.id);
+  const count = (tagId) => data.tagAssignments.filter(a => a.tagId === tagId).length;
+
+  const removeTag = (id) => {
+    setData(prev => ({
+      ...prev,
+      tags: prev.tags.filter(t => t.id !== id),
+      tagAssignments: prev.tagAssignments.filter(a => a.tagId !== id),
+    }));
+    pushToast(tr('toast.tag.removed'), 'success');
+  };
+
+  return (
+    <>
+      <div className="page-head">
+        <div><h1 className="page-title">{tr('doctor.tags.title')}</h1><p className="page-sub">{tags.length} tags · Per-doctor taxonomy</p></div>
+        <button className="btn accent" onClick={() => setModal({ kind: 'newTag' })}><Ic.plus /> {tr('action.newTag')}</button>
+      </div>
+      {tags.length === 0 ? (
+        <div className="card empty"><h4>—</h4><p>{tr('doctor.tags.empty')}</p></div>
+      ) : (
+        <div className="card" style={{padding:0}}>
+          <table>
+            <thead><tr><th>Tag</th><th>Assigned to</th><th></th></tr></thead>
+            <tbody>
+              {tags.map(t => (
+                <tr key={t.id}>
+                  <td><span className="tag-pill" style={{color: t.color}}>{t.label}</span></td>
+                  <td className="mono">{count(t.id)} patients</td>
+                  <td style={{textAlign:'right'}}><button className="btn ghost sm danger" onClick={() => removeTag(t.id)}><Ic.trash sz={13}/></button></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </>
+  );
+}
+
+/* ================================================================
+   ADMIN VIEWS
+================================================================ */
+function AdminRouter() {
+  const { page } = useApp();
+  if (page === 'home')     return <AdminHome />;
+  if (page === 'doctors')  return <AdminDoctors />;
+  if (page === 'bookings') return <AdminBookings />;
+  if (page === 'audit')    return <AdminAudit />;
+  return <AdminHome />;
+}
+
+function AdminHome() {
+  const { data, tr, lang } = useApp();
+  const todayStr = new Date().toDateString();
+  const activeDocs = data.doctors.filter(d => d.isActive).length;
+  const bookingsToday = data.bookings.filter(b => new Date(b.startTime).toDateString() === todayStr).length;
+  const totalPatients = data.patients.length;
+  const completed = data.bookings.filter(b => b.status === 'completed').length;
+  const all = data.bookings.filter(b => b.status !== 'confirmed').length;
+  const completion = all > 0 ? Math.round((completed / all) * 100) : 100;
+
+  const recentActivity = [...data.auditLog].sort((a,b) => new Date(b.createdAt)-new Date(a.createdAt)).slice(0,6);
+
+  return (
+    <>
+      <div className="page-head"><div><h1 className="page-title">{tr('admin.home.title')}</h1><p className="page-sub mono">{fmtDateLong(new Date().toISOString(), lang)}</p></div></div>
+
+      <div className="stat-grid">
+        <Stat label={tr('admin.stats.doctors')}        value={activeDocs}     deco delta="+1 this month" />
+        <Stat label={tr('admin.stats.bookingsToday')}  value={bookingsToday}  deco />
+        <Stat label={tr('admin.stats.patients')}       value={totalPatients}  deco delta="+3 this week" />
+        <Stat label={tr('admin.stats.completion')}     value={`${completion}`} suffix="%" deco />
+      </div>
+
+      <div className="grid-2" style={{alignItems:'start'}}>
+        <div className="card">
+          <div className="card-head"><h3 className="card-title">Recent activity</h3></div>
+          {recentActivity.map(e => <AuditRow key={e.id} e={e} />)}
+        </div>
+        <div className="card">
+          <div className="card-head"><h3 className="card-title">Doctors by specialization</h3></div>
+          {[...new Set(data.doctors.map(d => d.specialization))].map(s => {
+            const count = data.doctors.filter(d => d.specialization === s && d.isActive).length;
+            return (
+              <div key={s} style={{display:'flex', justifyContent:'space-between', padding:'10px 0', borderBottom:'1px solid var(--line)'}}>
+                <div>{tr(`specialization.${s}`)}</div>
+                <div className="mono" style={{fontWeight:500}}>{count}</div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </>
+  );
+}
+
+function AuditRow({ e }) {
+  const { data, lang } = useApp();
+  const actor = data.users.find(u => u.id === e.actorId);
+  const actionLabel = {
+    'doctor.created': 'created doctor',
+    'doctor.deactivated': 'deactivated doctor',
+    'doctor.removed': 'removed doctor',
+    'prescription.finalized': 'finalized prescription',
+    'booking.created': 'created booking',
+    'booking.cancelled': 'cancelled booking',
+    'patient.accessed': 'accessed patient record',
+  }[e.action] || e.action;
+  return (
+    <div style={{display:'grid', gridTemplateColumns:'1fr auto', padding:'10px 0', borderBottom:'1px solid var(--line)', alignItems:'center'}}>
+      <div>
+        <div className="small"><strong>{actor ? actor.fullName : 'System'}</strong> <span className="muted">{actionLabel}</span> <span className="mono tiny muted">{e.targetId}</span></div>
+      </div>
+      <div className="mono tiny muted">{fmtDate(e.createdAt, lang)} · {fmtTime(e.createdAt)}</div>
+    </div>
+  );
+}
+
+function AdminDoctors() {
+  const { data, tr, setData, setModal, pushToast } = useApp();
+
+  const toggle = (id) => {
+    const d = data.doctors.find(d => d.profileId === id);
+    setData(prev => ({
+      ...prev,
+      doctors: prev.doctors.map(doc => doc.profileId === id ? { ...doc, isActive: !doc.isActive } : doc),
+    }));
+    pushToast(d.isActive ? tr('toast.doctor.deactivated') : tr('toast.doctor.activated'), 'success');
+  };
+
+  const remove = (id) => {
+    setData(prev => ({
+      ...prev,
+      doctors: prev.doctors.filter(doc => doc.profileId !== id),
+      users: prev.users.filter(u => u.id !== id),
+    }));
+    pushToast(tr('toast.doctor.removed'), 'success');
+  };
+
+  return (
+    <>
+      <div className="page-head">
+        <div><h1 className="page-title">{tr('admin.doctors.title')}</h1><p className="page-sub">{data.doctors.length} total · {data.doctors.filter(d => d.isActive).length} active</p></div>
+        <button className="btn accent" onClick={() => setModal({ kind: 'addDoctor' })}><Ic.plus/> {tr('admin.doctors.add')}</button>
+      </div>
+      <div className="card" style={{padding:0}}>
+        <table>
+          <thead>
+            <tr>
+              <th>Doctor</th>
+              <th>Specialization</th>
+              <th>Reg. No.</th>
+              <th>Languages</th>
+              <th style={{textAlign:'center'}}>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.doctors.map(d => {
+              const u = data.users.find(u => u.id === d.profileId);
+              return (
+                <tr key={d.profileId} style={{opacity: d.isActive ? 1 : 0.55}}>
+                  <td>
+                    <div className="hstack">
+                      <div className="avatar">{initials(u.fullName)}</div>
+                      <div>
+                        <div style={{fontWeight:500}}>{u.fullName}</div>
+                        <div className="tiny muted">{u.email}</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{tr(`specialization.${d.specialization}`)}</td>
+                  <td className="mono small">{d.registrationNo}</td>
+                  <td><div className="hstack" style={{gap:4}}>{d.languages.map(l => <span key={l} className="lang-pill">{l}</span>)}</div></td>
+                  <td style={{textAlign:'center'}}><span className={`chip ${d.isActive ? 'sage' : 'rust'} dot`}>{tr(d.isActive ? 'status.active' : 'status.inactive')}</span></td>
+                  <td style={{textAlign:'right'}}>
+                    <div className="hstack" style={{gap:6, justifyContent:'flex-end'}}>
+                      <button className="btn ghost sm" onClick={() => toggle(d.profileId)}>{tr(d.isActive ? 'action.deactivate' : 'action.activate')}</button>
+                      <button className="btn ghost sm danger" onClick={() => remove(d.profileId)}><Ic.trash sz={13}/></button>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
+}
+
+function AdminBookings() {
+  const { data, tr, lang } = useApp();
+  const [filter, setFilter] = useState('all');
+  const list = [...data.bookings]
+    .sort((a,b) => new Date(b.startTime) - new Date(a.startTime))
+    .filter(b => filter === 'all' || b.status === filter);
+  return (
+    <>
+      <div className="page-head">
+        <div><h1 className="page-title">{tr('admin.bookings.title')}</h1><p className="page-sub">{list.length} bookings</p></div>
+        <div className="hstack">
+          {['all','confirmed','completed','cancelled'].map(s => (
+            <button key={s} className={`btn ${filter === s ? '' : 'ghost'} sm`} onClick={() => setFilter(s)}>{s === 'all' ? 'All' : tr(`status.${s}`)}</button>
+          ))}
+        </div>
+      </div>
+      <div className="card" style={{padding:0}}>
+        <table>
+          <thead><tr><th>When</th><th>Doctor</th><th>Patient</th><th>Reason</th><th style={{textAlign:'center'}}>Status</th></tr></thead>
+          <tbody>
+            {list.map(b => {
+              const doc = data.users.find(u => u.id === b.doctorId);
+              const pt = data.users.find(u => u.id === b.patientId);
+              return (
+                <tr key={b.id}>
+                  <td className="mono small">{fmtDate(b.startTime, lang)} · {fmtTime(b.startTime)}</td>
+                  <td>{doc.fullName}</td>
+                  <td>{pt.fullName}</td>
+                  <td className="small muted" style={{maxWidth:280, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap'}}>{b.reason}</td>
+                  <td style={{textAlign:'center'}}><span className={`chip dot ${b.status === 'completed' ? 'teal' : b.status === 'confirmed' ? 'sage' : 'rust'}`}>{tr(`status.${b.status}`)}</span></td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
+}
+
+function AdminAudit() {
+  const { data, tr } = useApp();
+  const list = [...data.auditLog].sort((a,b) => new Date(b.createdAt)-new Date(a.createdAt));
+  return (
+    <>
+      <div className="page-head"><div><h1 className="page-title">{tr('admin.audit.title')}</h1><p className="page-sub">{list.length} events · Append-only</p></div></div>
+      <div className="card">
+        {list.map(e => <AuditRow key={e.id} e={e} />)}
+      </div>
+    </>
+  );
+}
+
+/* ================================================================
+   PROFILE (shared)
+================================================================ */
+function Profile() {
+  const { currentUser, tr, setData, pushToast } = useApp();
+  const [form, setForm] = useState({
+    fullName: currentUser.fullName,
+    email: currentUser.email,
+    phone: currentUser.phone,
+    timezone: currentUser.timezone,
+    language: currentUser.language,
+  });
+  const save = () => {
+    setData(prev => ({
+      ...prev,
+      users: prev.users.map(u => u.id === currentUser.id ? { ...u, ...form } : u),
+    }));
+    pushToast(tr('toast.saved'), 'success');
+  };
+  return (
+    <>
+      <div className="page-head"><div><h1 className="page-title">{tr('profile.title')}</h1></div></div>
+      <div className="card" style={{maxWidth: 640}}>
+        <div className="grid-2">
+          <div className="field"><label>{tr('profile.name')}</label><input value={form.fullName} onChange={e => setForm({...form, fullName: e.target.value})}/></div>
+          <div className="field"><label>{tr('profile.email')}</label><input value={form.email} onChange={e => setForm({...form, email: e.target.value})}/></div>
+          <div className="field"><label>{tr('profile.phone')}</label><input value={form.phone} onChange={e => setForm({...form, phone: e.target.value})}/></div>
+          <div className="field"><label>{tr('profile.tz')}</label>
+            <select value={form.timezone} onChange={e => setForm({...form, timezone: e.target.value})}>
+              <option>Europe/Kyiv</option><option>Europe/Warsaw</option><option>Europe/Berlin</option><option>America/Toronto</option><option>America/New_York</option>
+            </select>
+          </div>
+          <div className="field"><label>{tr('profile.language')}</label>
+            <select value={form.language} onChange={e => setForm({...form, language: e.target.value})}>
+              <option value="uk">Українська</option><option value="en">English</option>
+            </select>
+          </div>
+        </div>
+        <div style={{textAlign:'right', marginTop:10}}>
+          <button className="btn accent" onClick={save}><Ic.check sz={13}/> {tr('action.save')}</button>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ================================================================
+   MODALS
+================================================================ */
+function BookModal({ doctor, onClose }) {
+  const { data, currentUser, tr, lang, setData, pushToast } = useApp();
+  const [day, setDay] = useState(0);  // days from today
+  const [hour, setHour] = useState(null);
+  const [reason, setReason] = useState('');
+
+  const date = addDays(new Date(), day);
+  const dateStr = date.toISOString().slice(0,10);
+
+  // Which hours are taken for this doctor on this day?
+  const doctorBookings = data.bookings.filter(b =>
+    b.doctorId === doctor.profileId && b.status === 'confirmed' && b.startTime.slice(0,10) === dateStr
+  );
+  const patientBookings = data.bookings.filter(b =>
+    b.patientId === currentUser.id && b.status === 'confirmed' && b.startTime.slice(0,10) === dateStr
+  );
+  const takenByDoctor = new Set(doctorBookings.map(b => new Date(b.startTime).getHours()));
+  const takenByPatient = new Set(patientBookings.map(b => new Date(b.startTime).getHours()));
+
+  const hours = [];
+  for (let h = 9; h <= 20; h++) hours.push(h);
+
+  const confirm = () => {
+    if (hour == null) return;
+    const start = new Date(date); start.setHours(hour, 0, 0, 0);
+    const end = new Date(start); end.setHours(hour + 1);
+    const newBooking = {
+      id: uid('b'),
+      doctorId: doctor.profileId,
+      patientId: currentUser.id,
+      startTime: start.toISOString(),
+      endTime: end.toISOString(),
+      status: 'confirmed',
+      reason,
+    };
+    setData(prev => ({
+      ...prev,
+      bookings: [...prev.bookings, newBooking],
+      auditLog: [...prev.auditLog, { id: uid('a'), actorId: currentUser.id, action: 'booking.created', targetId: newBooking.id, createdAt: new Date().toISOString() }],
+    }));
+    pushToast(tr('patient.book.success'), 'success');
+    onClose();
+  };
+
+  const u = data.users.find(u => u.id === doctor.profileId);
+
+  return (
+    <div className="modal wide">
+      <div className="modal-head">
+        <div>
+          <h3>{tr('patient.book.modal.title')}</h3>
+          <div className="small muted">{u.fullName} · {tr(`specialization.${doctor.specialization}`)}</div>
+        </div>
+        <button className="close-btn" onClick={onClose}><Ic.x/></button>
+      </div>
+      <div className="modal-body">
+        <div className="field">
+          <label>{tr('patient.book.modal.date')}</label>
+          <div className="hstack" style={{gap:6, overflowX:'auto', paddingBottom:4}}>
+            {[0,1,2,3,4,5,6].map(offset => {
+              const d = addDays(new Date(), offset);
+              const active = offset === day;
+              return (
+                <button key={offset} onClick={() => { setDay(offset); setHour(null); }} style={{
+                  padding:'8px 14px', borderRadius: 8, border:'1px solid var(--line-strong)',
+                  background: active ? 'var(--ink)' : 'var(--bg-elev)',
+                  color: active ? 'var(--bg)' : 'var(--ink)',
+                  fontFamily:'inherit', fontSize:12, cursor:'pointer', flexShrink: 0, minWidth: 86, textAlign:'center'
+                }}>
+                  <div className="mono tiny" style={{opacity:0.7}}>{d.toLocaleDateString(lang === 'uk' ? 'uk-UA' : 'en-GB', { weekday: 'short' }).toUpperCase()}</div>
+                  <div style={{fontSize:16, fontWeight:500, marginTop:2}}>{d.getDate()}</div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="field">
+          <label>{tr('patient.book.modal.time')}</label>
+          <div className="slot-grid">
+            {hours.map(h => {
+              const taken = takenByDoctor.has(h) || takenByPatient.has(h);
+              return (
+                <button key={h} className={`slot ${hour === h ? 'selected' : ''}`} disabled={taken} onClick={() => setHour(h)}>
+                  {String(h).padStart(2,'0')}:00
+                </button>
+              );
+            })}
+          </div>
+          <div className="hint">{tr('patient.book.modal.taken')}: locked slots are shown with strike-through</div>
+        </div>
+
+        <div className="field">
+          <label>{tr('patient.book.modal.reason')}</label>
+          <textarea value={reason} onChange={e => setReason(e.target.value)} placeholder="..." />
+          <div className="hint">{tr('patient.book.modal.reason.hint')}</div>
+        </div>
+      </div>
+      <div className="modal-foot">
+        <button className="btn ghost" onClick={onClose}>{tr('action.cancel')}</button>
+        <button className="btn accent" onClick={confirm} disabled={hour == null}>{tr('action.confirm')}</button>
+      </div>
+    </div>
+  );
+}
+
+function CancelModal({ booking, onClose }) {
+  const { tr, setData, pushToast, currentUser } = useApp();
+  const [reason, setReason] = useState('');
+
+  const confirm = () => {
+    setData(prev => ({
+      ...prev,
+      bookings: prev.bookings.map(b => b.id === booking.id ? { ...b, status: 'cancelled' } : b),
+      auditLog: [...prev.auditLog, { id: uid('a'), actorId: currentUser.id, action: 'booking.cancelled', targetId: booking.id, createdAt: new Date().toISOString() }],
+    }));
+    pushToast(tr('patient.cancel.success'), 'success');
+    onClose();
+  };
+
+  return (
+    <div className="modal">
+      <div className="modal-head"><h3>{tr('patient.cancel.title')}</h3><button className="close-btn" onClick={onClose}><Ic.x/></button></div>
+      <div className="modal-body">
+        <div style={{padding:'12px 14px', background:'var(--rust-soft)', color:'var(--rust)', borderRadius:8, fontSize:13, marginBottom:14}}>
+          ⓘ {tr('patient.cancel.warn')}
+        </div>
+        <div className="field">
+          <label>{tr('patient.cancel.reason')}</label>
+          <textarea value={reason} onChange={e => setReason(e.target.value)} placeholder="..." />
+        </div>
+      </div>
+      <div className="modal-foot">
+        <button className="btn ghost" onClick={onClose}>{tr('action.close')}</button>
+        <button className="btn danger" onClick={confirm}>{tr('action.cancel')}</button>
+      </div>
+    </div>
+  );
+}
+
+function AddDoctorModal({ onClose }) {
+  const { tr, setData, pushToast, currentUser } = useApp();
+  const [form, setForm] = useState({
+    fullName: '', email: '', regNo: '', specialization: 'Cardiology', fee: 700, bio: '', languages: 'uk,en'
+  });
+  const submit = () => {
+    if (!form.fullName || !form.email) return;
+    const id = uid('u-doctor');
+    setData(prev => ({
+      ...prev,
+      users: [...prev.users, { id, role: 'doctor', fullName: form.fullName, email: form.email, phone: '', language: 'uk', timezone: 'Europe/Kyiv' }],
+      doctors: [...prev.doctors, {
+        profileId: id, specialization: form.specialization, registrationNo: form.regNo, bio: form.bio,
+        languages: form.languages.split(',').map(s => s.trim()).filter(Boolean),
+        fee: Number(form.fee), currency: 'UAH', rating: 5.0, totalConsults: 0, isActive: true
+      }],
+      auditLog: [...prev.auditLog, { id: uid('a'), actorId: currentUser.id, action: 'doctor.created', targetId: id, createdAt: new Date().toISOString() }],
+    }));
+    pushToast(tr('toast.doctor.added'), 'success');
+    onClose();
+  };
+  return (
+    <div className="modal wide">
+      <div className="modal-head"><h3>{tr('admin.doctors.add')}</h3><button className="close-btn" onClick={onClose}><Ic.x/></button></div>
+      <div className="modal-body">
+        <div className="grid-2">
+          <div className="field"><label>Full name</label><input value={form.fullName} onChange={e => setForm({...form, fullName: e.target.value})} placeholder="Dr. Ivan Petrenko" /></div>
+          <div className="field"><label>Email</label><input type="email" value={form.email} onChange={e => setForm({...form, email: e.target.value})} placeholder="i.petrenko@klinika.ua" /></div>
+          <div className="field"><label>Registration No.</label><input value={form.regNo} onChange={e => setForm({...form, regNo: e.target.value})} placeholder="UA-MED-00000" /></div>
+          <div className="field"><label>Specialization</label>
+            <select value={form.specialization} onChange={e => setForm({...form, specialization: e.target.value})}>
+              <option>Cardiology</option><option>Dermatology</option><option>Pediatrics</option><option>Neurology</option>
+            </select>
+          </div>
+          <div className="field"><label>Fee (UAH)</label><input type="number" value={form.fee} onChange={e => setForm({...form, fee: e.target.value})} /></div>
+          <div className="field"><label>Languages (csv)</label><input value={form.languages} onChange={e => setForm({...form, languages: e.target.value})} /></div>
+        </div>
+        <div className="field"><label>Bio</label><textarea value={form.bio} onChange={e => setForm({...form, bio: e.target.value})} placeholder="Brief clinical description..." /></div>
+      </div>
+      <div className="modal-foot">
+        <button className="btn ghost" onClick={onClose}>{tr('action.cancel')}</button>
+        <button className="btn accent" onClick={submit}>{tr('action.addDoctor')}</button>
+      </div>
+    </div>
+  );
+}
+
+function PrescriptionPdfModal({ rx, onClose }) {
+  const { data, tr, lang, pushToast } = useApp();
+  const c = data.consultations.find(c => c.id === rx.consultationId);
+  const b = data.bookings.find(b => b.id === c.bookingId);
+  const doc = data.users.find(u => u.id === b.doctorId);
+  const docDetail = data.doctors.find(d => d.profileId === b.doctorId);
+  const pt = data.users.find(u => u.id === b.patientId);
+
+  return (
+    <div className="modal xl" style={{background:'transparent', border:0, boxShadow:'none'}}>
+      <div style={{display:'flex', justifyContent:'space-between', padding:'10px 14px', marginBottom:10}}>
+        <div className="mono tiny" style={{color:'#fff', letterSpacing:'0.12em', textTransform:'uppercase'}}>Prescription · {rx.id}</div>
+        <div className="hstack" style={{gap:8}}>
+          <button className="btn" onClick={() => pushToast(tr('prescription.generated'), 'success')}>{tr('action.downloadPdf')}</button>
+          <button className="close-btn" onClick={onClose} style={{color:'#fff', borderColor:'rgba(255,255,255,0.3)'}}><Ic.x/></button>
+        </div>
+      </div>
+      <div className="pdf-canvas">
+        <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-start'}}>
+          <div>
+            <h1>Prescription</h1>
+            <div className="clinic">Klinika · Telemedicine</div>
+          </div>
+          <div style={{textAlign:'right'}}>
+            <div style={{fontFamily:'DM Mono, monospace', fontSize:11, color:'#666', letterSpacing:'0.08em'}}>№ {rx.id.slice(-8).toUpperCase()}</div>
+            <div style={{fontFamily:'DM Mono, monospace', fontSize:11, color:'#666', marginTop:2}}>{new Date(rx.finalizedAt).toISOString().slice(0,10)}</div>
+          </div>
+        </div>
+        <hr/>
+        <div className="row"><span><strong>Patient</strong></span><span>{pt.fullName}</span></div>
+        <div className="row"><span><strong>Date of birth</strong></span><span style={{fontFamily:'DM Mono, monospace'}}>{data.patients.find(p => p.profileId === pt.id)?.dob || '—'}</span></div>
+        <div className="row"><span><strong>Physician</strong></span><span>{doc.fullName}, {docDetail.specialization}</span></div>
+        <div className="row"><span><strong>Reg. No.</strong></span><span style={{fontFamily:'DM Mono, monospace'}}>{docDetail.registrationNo}</span></div>
+        <hr/>
+        <div style={{marginBottom: 20}}>
+          <div style={{fontSize:10, letterSpacing:'0.14em', textTransform:'uppercase', color:'#888', marginBottom:6}}>Diagnosis</div>
+          <div style={{fontFamily:'Fraunces, serif', fontSize:20, fontWeight:500}}>{rx.diagnosis}</div>
+        </div>
+        {rx.medications.length > 0 && (
+          <div style={{marginBottom:20}}>
+            <div style={{fontSize:10, letterSpacing:'0.14em', textTransform:'uppercase', color:'#888', marginBottom:10}}>Rx — Medications</div>
+            {rx.medications.map((m, i) => (
+              <div key={i} style={{display:'grid', gridTemplateColumns:'auto 1fr', gap:20, padding:'10px 0', borderBottom:'1px solid #eee'}}>
+                <div style={{fontFamily:'Fraunces, serif', fontSize:17, fontWeight:500}}>{i+1}. {m.name}</div>
+                <div style={{fontSize:13, color:'#444'}}>{m.dosage} · {m.frequency} · {m.duration}</div>
+              </div>
+            ))}
+          </div>
+        )}
+        {rx.instructions && (
+          <div style={{marginBottom:20}}>
+            <div style={{fontSize:10, letterSpacing:'0.14em', textTransform:'uppercase', color:'#888', marginBottom:6}}>Instructions</div>
+            <div style={{fontSize:13.5, lineHeight:1.6, color:'#333'}}>{rx.instructions}</div>
+          </div>
+        )}
+        <div className="sig">
+          <div>{doc.fullName}</div>
+          <div style={{fontFamily:'DM Mono, monospace', fontSize:10, color:'#888', fontStyle:'normal', letterSpacing:'0.08em'}}>SIGNED · {new Date(rx.finalizedAt).toISOString().slice(0,16).replace('T',' ')} UTC</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function UploadModal({ onClose }) {
+  const { tr, pushToast } = useApp();
+  const [progress, setProgress] = useState(0);
+  const [file, setFile] = useState(null);
+
+  const fakeUpload = () => {
+    setFile('blood_test_2026_04.pdf');
+    let p = 0;
+    const interval = setInterval(() => {
+      p += 12;
+      setProgress(Math.min(p, 100));
+      if (p >= 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+          pushToast(tr('toast.upload.success'), 'success');
+          onClose();
+        }, 400);
+      }
+    }, 120);
+  };
+
+  return (
+    <div className="modal">
+      <div className="modal-head"><h3>{tr('action.upload')}</h3><button className="close-btn" onClick={onClose}><Ic.x/></button></div>
+      <div className="modal-body">
+        {!file ? (
+          <button onClick={fakeUpload} style={{
+            width:'100%', padding:'40px 20px', borderRadius: 12,
+            border:'2px dashed var(--line-strong)', background:'var(--bg-sunk)',
+            cursor:'pointer', color:'var(--ink-mute)', fontFamily:'inherit', fontSize:13.5
+          }}>
+            <div style={{marginBottom:10}}><Ic.upload sz={24}/></div>
+            Click to choose a file<br/>
+            <span className="tiny muted">PDF, PNG, JPG up to 10MB</span>
+          </button>
+        ) : (
+          <div>
+            <div className="hstack" style={{justifyContent:'space-between', marginBottom:10}}>
+              <div><Ic.file sz={16}/> <span style={{marginLeft:8, fontWeight:500}}>{file}</span></div>
+              <div className="mono small">{progress}%</div>
+            </div>
+            <div style={{height:6, background:'var(--bg-sunk)', borderRadius:6, overflow:'hidden'}}>
+              <div style={{height:'100%', width:`${progress}%`, background: progress === 100 ? 'var(--sage)' : 'var(--accent)', transition:'width 0.2s'}}/>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function NewTagModal({ onClose }) {
+  const { setData, currentUser, tr, pushToast } = useApp();
+  const colors = ['#A14D3A','#2D4A5C','#B4781E','#5A7C5F','#8E5E13','#6B7388'];
+  const [label, setLabel] = useState('');
+  const [color, setColor] = useState(colors[0]);
+  const submit = () => {
+    if (!label) return;
+    setData(prev => ({
+      ...prev,
+      tags: [...prev.tags, { id: uid('t'), doctorId: currentUser.id, label, color }],
+    }));
+    pushToast(tr('toast.tag.added'), 'success');
+    onClose();
+  };
+  return (
+    <div className="modal">
+      <div className="modal-head"><h3>{tr('action.newTag')}</h3><button className="close-btn" onClick={onClose}><Ic.x/></button></div>
+      <div className="modal-body">
+        <div className="field"><label>Label</label><input value={label} onChange={e => setLabel(e.target.value)} placeholder="e.g. Diabetic" /></div>
+        <div className="field">
+          <label>Color</label>
+          <div className="hstack" style={{gap:8, flexWrap:'wrap'}}>
+            {colors.map(c => (
+              <button key={c} onClick={() => setColor(c)} style={{
+                width:32, height:32, borderRadius:'50%', border: color === c ? '3px solid var(--ink)' : '1px solid var(--line)',
+                background: c, cursor:'pointer'
+              }}/>
+            ))}
+          </div>
+        </div>
+        {label && <div style={{marginTop:6}}><span className="tag-pill" style={{color}}>{label}</span></div>}
+      </div>
+      <div className="modal-foot">
+        <button className="btn ghost" onClick={onClose}>{tr('action.cancel')}</button>
+        <button className="btn accent" onClick={submit} disabled={!label}>{tr('action.save')}</button>
+      </div>
+    </div>
+  );
+}
+
+/* ================================================================
+   BOOT
+================================================================ */
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App/>);
+</script>
+</body>
+</html>
