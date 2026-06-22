@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Klinika — Telemedicine CRM Demo</title>
+<title>Klinika  Telemedicine CRM Demo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:opsz,wght@9..40,300..700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -21,7 +21,7 @@
     --ink-faint: #A5A9B5;
     --line: #DCD5C4;
     --line-strong: #B8AE97;
-    --accent: #B4781E;            /* warm ochre — CTAs, highlights */
+    --accent: #B4781E;      
     --accent-deep: #8E5E13;
     --accent-soft: #F3E6CA;
     --teal: #2D4A5C;              /* secondary, calm info */
@@ -890,7 +890,7 @@ const T = {
     'doctor.consult.rx.med.frequency': 'Frequency',
     'doctor.consult.rx.med.duration': 'Duration',
     'doctor.consult.rx.instructions': 'Additional instructions',
-    'doctor.consult.rx.live': 'Live — patient is watching',
+    'doctor.consult.rx.live': 'Live  patient is watching',
     'doctor.consult.finalized': 'Prescription finalized and sent',
     'doctor.tags.title': 'Patient tags',
     'doctor.tags.empty': 'No tags yet. Create one to categorize your patients.',
@@ -925,7 +925,7 @@ const T = {
     'specialization.Dermatology': 'Dermatology',
     'specialization.Pediatrics': 'Pediatrics',
     'specialization.Neurology': 'Neurology',
-    'demo.badge': 'Static demo — no backend',
+    'demo.badge': 'Static demo  no backend',
     'demo.reset': 'Reset data',
     'prescription.generated': 'Prescription PDF generated',
     'toast.saved': 'Saved',
@@ -1027,7 +1027,7 @@ const T = {
     'doctor.consult.rx.med.frequency': 'Частота',
     'doctor.consult.rx.med.duration': 'Тривалість',
     'doctor.consult.rx.instructions': 'Додаткові вказівки',
-    'doctor.consult.rx.live': 'У прямому ефірі — пацієнт бачить',
+    'doctor.consult.rx.live': 'У прямому ефірі  пацієнт бачить',
     'doctor.consult.finalized': 'Рецепт завершено та надіслано',
     'doctor.tags.title': 'Теги пацієнтів',
     'doctor.tags.empty': 'Ще немає тегів. Створіть, щоб категоризувати пацієнтів.',
@@ -1062,7 +1062,7 @@ const T = {
     'specialization.Dermatology': 'Дерматологія',
     'specialization.Pediatrics': 'Педіатрія',
     'specialization.Neurology': 'Неврологія',
-    'demo.badge': 'Статичне демо — без бекенду',
+    'demo.badge': 'Статичне демо  без бекенду',
     'demo.reset': 'Скинути дані',
     'prescription.generated': 'PDF рецепт створено',
     'toast.saved': 'Збережено',
@@ -1112,12 +1112,12 @@ const INITIAL = () => {
       { profileId: 'u-patient-5', dob: '1995-06-18', gender: 'male'   },
     ],
     bookings: [
-      // Olena Shevchuk (current patient demo) — one upcoming, one past
+      // Olena Shevchuk (current patient demo)  one upcoming, one past
       { id: 'b-1', doctorId: 'u-doctor-1', patientId: 'u-patient-1', startTime: atHour(addDays(t,0),16), endTime: atHour(addDays(t,0),17), status: 'confirmed', reason: 'Occasional chest discomfort at night, worse after caffeine.' },
       { id: 'b-2', doctorId: 'u-doctor-3', patientId: 'u-patient-1', startTime: atHour(addDays(t,-14),11),endTime: atHour(addDays(t,-14),12),status: 'completed', reason: 'Annual check-up for child.' },
       // Other doctors' bookings, to populate calendars
       { id: 'b-3', doctorId: 'u-doctor-1', patientId: 'u-patient-2', startTime: atHour(addDays(t,0),10), endTime: atHour(addDays(t,0),11), status: 'confirmed', reason: 'Follow-up on hypertension medication.' },
-      { id: 'b-4', doctorId: 'u-doctor-1', patientId: 'u-patient-5', startTime: atHour(addDays(t,0),14), endTime: atHour(addDays(t,0),15), status: 'confirmed', reason: 'New patient — fatigue, palpitations.' },
+      { id: 'b-4', doctorId: 'u-doctor-1', patientId: 'u-patient-5', startTime: atHour(addDays(t,0),14), endTime: atHour(addDays(t,0),15), status: 'confirmed', reason: 'New patient  fatigue, palpitations.' },
       { id: 'b-5', doctorId: 'u-doctor-1', patientId: 'u-patient-3', startTime: atHour(addDays(t,1),11), endTime: atHour(addDays(t,1),12), status: 'confirmed', reason: 'Blood pressure review.' },
       { id: 'b-6', doctorId: 'u-doctor-2', patientId: 'u-patient-4', startTime: atHour(addDays(t,0),9),  endTime: atHour(addDays(t,0),10), status: 'confirmed', reason: 'Persistent rash on forearms.' },
       { id: 'b-7', doctorId: 'u-doctor-1', patientId: 'u-patient-2', startTime: atHour(addDays(t,-7),10),endTime: atHour(addDays(t,-7),11),status: 'completed', reason: 'Hypertension consult.' },
@@ -1476,7 +1476,7 @@ function PatientHome() {
           <button className="btn ghost sm" onClick={() => setPage('prescriptions')}>{tr('action.viewPrescription')} <Ic.chevRight /></button>
         </div>
         {myRx.length === 0 ? (
-          <div className="empty"><h4>—</h4></div>
+          <div className="empty"><h4></h4></div>
         ) : (
           <div>
             {myRx.slice(0,3).map(rx => <RxRow key={rx.id} rx={rx} />)}
@@ -1505,7 +1505,7 @@ function NextBookingBlock({ b }) {
         {fmtDateLong(b.startTime, lang, currentUser.timezone)}
       </div>
       <div className="serif" style={{fontSize: 30, fontWeight: 400, letterSpacing: '-0.02em'}}>
-        {fmtTime(b.startTime, currentUser.timezone)} — {fmtTime(b.endTime, currentUser.timezone)}
+        {fmtTime(b.startTime, currentUser.timezone)}  {fmtTime(b.endTime, currentUser.timezone)}
       </div>
       {startsIn > 0 && startsIn < 48 && <div className="mono tiny muted" style={{marginTop:4}}>in ~{startsIn}h</div>}
       {b.reason && (
@@ -1568,7 +1568,7 @@ function PatientBook() {
       <div className="page-head">
         <div>
           <h1 className="page-title">{tr('patient.book.title')}</h1>
-          <p className="page-sub">{filtered.length} doctors · 9:00 — 21:00 Europe/Kyiv</p>
+          <p className="page-sub">{filtered.length} doctors · 9:00  21:00 Europe/Kyiv</p>
         </div>
       </div>
       <div className="hstack" style={{gap:12, marginBottom:20, flexWrap:'wrap'}}>
@@ -1627,14 +1627,14 @@ function PatientAppointments() {
       <div className="card" style={{marginBottom: 20}}>
         <div className="card-head"><h3 className="card-title">{tr('patient.appointments.upcoming')} · {upcoming.length}</h3></div>
         {upcoming.length === 0
-          ? <div className="empty"><h4>—</h4><p>{tr('patient.appointments.empty')}</p></div>
+          ? <div className="empty"><h4></h4><p>{tr('patient.appointments.empty')}</p></div>
           : upcoming.map(b => <AppointmentRow key={b.id} b={b} />)
         }
       </div>
       <div className="card">
         <div className="card-head"><h3 className="card-title">{tr('patient.appointments.past')} · {past.length}</h3></div>
         {past.length === 0
-          ? <div className="empty"><h4>—</h4></div>
+          ? <div className="empty"><h4></h4></div>
           : past.map(b => <AppointmentRow key={b.id} b={b} />)
         }
       </div>
@@ -1684,7 +1684,7 @@ function PatientPrescriptions() {
   return (
     <>
       <div className="page-head"><div><h1 className="page-title">{tr('nav.prescriptions')}</h1><p className="page-sub">{myRx.length} records</p></div></div>
-      {myRx.length === 0 ? <div className="card empty"><h4>—</h4></div> : (
+      {myRx.length === 0 ? <div className="card empty"><h4></h4></div> : (
         <div className="card">
           {myRx.map(rx => {
             const c = data.consultations.find(c => c.id === rx.consultationId);
@@ -1919,7 +1919,7 @@ function DoctorPatients() {
                     </div>
                   </div>
                 </td>
-                <td className="mono small muted">{r.last ? fmtDate(r.last.startTime, lang, currentUser.timezone) : '—'}</td>
+                <td className="mono small muted">{r.last ? fmtDate(r.last.startTime, lang, currentUser.timezone) : ''}</td>
                 <td className="mono" style={{textAlign:'center', fontWeight:500}}>{r.visits}</td>
                 <td>
                   <div className="hstack" style={{gap:5, flexWrap:'wrap'}}>
@@ -2070,7 +2070,7 @@ function DoctorConsult() {
 
             <div className="preview-card">
               <div className="small muted mono" style={{letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:6}}>Updating live as you type</div>
-              <div className="serif" style={{fontSize:16, fontWeight:500, minHeight:22}}>{diagnosis || <span style={{color:'var(--ink-faint)'}}>— diagnosis —</span>}</div>
+              <div className="serif" style={{fontSize:16, fontWeight:500, minHeight:22}}>{diagnosis || <span style={{color:'var(--ink-faint)'}}> diagnosis </span>}</div>
               {medications.filter(m => m.name).length > 0 && (
                 <div style={{display:'flex', gap:6, flexWrap:'wrap', marginTop:8}}>
                   {medications.filter(m => m.name).map((m,i) => <span key={i} className="chip accent">{m.name}{m.dosage && ` · ${m.dosage}`}</span>)}
@@ -2082,7 +2082,7 @@ function DoctorConsult() {
             <div style={{height:16}} />
             <div className="field">
               <label>{tr('doctor.consult.notes')}</label>
-              <textarea value={privateNotes} onChange={e => setPrivateNotes(e.target.value)} placeholder="Private notes — not shared with patient" disabled={finalized}/>
+              <textarea value={privateNotes} onChange={e => setPrivateNotes(e.target.value)} placeholder="Private notes  not shared with patient" disabled={finalized}/>
               <div className="hint">🔒 {tr('doctor.consult.notes.hint')}</div>
             </div>
           </div>
@@ -2122,7 +2122,7 @@ function DoctorTags() {
         <button className="btn accent" onClick={() => setModal({ kind: 'newTag' })}><Ic.plus /> {tr('action.newTag')}</button>
       </div>
       {tags.length === 0 ? (
-        <div className="card empty"><h4>—</h4><p>{tr('doctor.tags.empty')}</p></div>
+        <div className="card empty"><h4></h4><p>{tr('doctor.tags.empty')}</p></div>
       ) : (
         <div className="card" style={{padding:0}}>
           <table>
@@ -2614,7 +2614,7 @@ function PrescriptionPdfModal({ rx, onClose }) {
         </div>
         <hr/>
         <div className="row"><span><strong>Patient</strong></span><span>{pt.fullName}</span></div>
-        <div className="row"><span><strong>Date of birth</strong></span><span style={{fontFamily:'DM Mono, monospace'}}>{data.patients.find(p => p.profileId === pt.id)?.dob || '—'}</span></div>
+        <div className="row"><span><strong>Date of birth</strong></span><span style={{fontFamily:'DM Mono, monospace'}}>{data.patients.find(p => p.profileId === pt.id)?.dob || ''}</span></div>
         <div className="row"><span><strong>Physician</strong></span><span>{doc.fullName}, {docDetail.specialization}</span></div>
         <div className="row"><span><strong>Reg. No.</strong></span><span style={{fontFamily:'DM Mono, monospace'}}>{docDetail.registrationNo}</span></div>
         <hr/>
@@ -2624,7 +2624,7 @@ function PrescriptionPdfModal({ rx, onClose }) {
         </div>
         {rx.medications.length > 0 && (
           <div style={{marginBottom:20}}>
-            <div style={{fontSize:10, letterSpacing:'0.14em', textTransform:'uppercase', color:'#888', marginBottom:10}}>Rx — Medications</div>
+            <div style={{fontSize:10, letterSpacing:'0.14em', textTransform:'uppercase', color:'#888', marginBottom:10}}>Rx  Medications</div>
             {rx.medications.map((m, i) => (
               <div key={i} style={{display:'grid', gridTemplateColumns:'auto 1fr', gap:20, padding:'10px 0', borderBottom:'1px solid #eee'}}>
                 <div style={{fontFamily:'Fraunces, serif', fontSize:17, fontWeight:500}}>{i+1}. {m.name}</div>
