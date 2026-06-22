@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" font-family="Inter, system-ui, sans-serif">
+  <title>medcrm — Customer Profile</title>
+  <rect width="1440" height="900" fill="#FFFFFF"/>
+
+  <defs>
+    <linearGradient id="side" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FAFAFA"/>
+      <stop offset="1" stop-color="#F4F4F5"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="260" height="900" fill="url(#side)"/>
+  <line x1="260" y1="0" x2="260" y2="900" stroke="#E4E4E7"/>
+  <rect x="20" y="20" width="36" height="36" rx="9" fill="#3B82F6"/>
+  <text x="38" y="43" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">M</text>
+  <text x="68" y="36" font-size="14" font-weight="700" fill="#0F172A">Medstocksy</text>
+  <text x="68" y="51" font-size="11" fill="#71717A">Customer Relations</text>
+  <line x1="20" y1="76" x2="240" y2="76" stroke="#E4E4E7"/>
+
+  <g font-size="14" font-weight="500" fill="#52525B">
+    <text x="20" y="266" font-size="11" font-weight="600" fill="#A1A1AA" letter-spacing="1">CUSTOMER RELATIONS</text>
+    <text x="48" y="298">Dashboard</text>
+  </g>
+  <rect x="14" y="312" width="232" height="40" rx="10" fill="#EFF6FF"/>
+  <rect x="14" y="312" width="3" height="40" rx="2" fill="#3B82F6"/>
+  <text x="48" y="338" font-size="14" font-weight="600" fill="#1D4ED8">Customers</text>
+  <g font-size="14" font-weight="500" fill="#52525B">
+    <text x="48" y="378">Segments</text>
+    <text x="48" y="408">Campaigns</text>
+    <text x="48" y="438">Reminders</text>
+    <text x="48" y="468">Templates</text>
+    <text x="48" y="498">Activity</text>
+  </g>
+
+  <!-- ─────── HEADER (breadcrumb + name) ─────── -->
+  <text x="296" y="48" font-size="12" fill="#71717A">Customers › <tspan fill="#0F172A">Priya Sharma</tspan></text>
+  <text x="296" y="60" font-size="12" fill="#3B82F6">‹ Back</text>
+
+  <!-- ─────── HERO IDENTITY (clean, no card) ─────── -->
+  <g id="hero">
+    <circle cx="332" cy="148" r="44" fill="#FEF3C7"/>
+    <text x="332" y="158" font-size="22" font-weight="700" fill="#92400E" text-anchor="middle">PS</text>
+
+    <text x="396" y="124" font-size="32" font-weight="700" fill="#0F172A" letter-spacing="-0.5">Priya Sharma</text>
+    <rect x="650" y="100" width="62" height="26" rx="4" fill="#D1FAE5"/>
+    <text x="681" y="118" font-size="11" font-weight="700" fill="#047857" text-anchor="middle">ACTIVE</text>
+
+    <text x="396" y="150" font-size="14" font-family="JetBrains Mono, monospace" fill="#52525B">+91 91234 56789</text>
+    <text x="568" y="150" font-size="14" fill="#71717A">·  32 · Female  ·  Customer since Aug 2024</text>
+
+    <!-- Tag row -->
+    <rect x="396" y="170" width="64" height="26" rx="4" fill="#D1FAE5"/>
+    <text x="428" y="188" font-size="12" font-weight="600" fill="#047857" text-anchor="middle">Repeat</text>
+    <rect x="468" y="170" width="80" height="26" rx="4" fill="#FEF3C7"/>
+    <text x="508" y="188" font-size="12" font-weight="600" fill="#92400E" text-anchor="middle">High Value</text>
+    <rect x="556" y="170" width="76" height="26" rx="4" fill="#FFFFFF" stroke="#E4E4E7" stroke-dasharray="3,2"/>
+    <text x="594" y="188" font-size="12" fill="#71717A" text-anchor="middle">+ Add tag</text>
+
+    <!-- Actions -->
+    <rect x="1108" y="124" width="120" height="44" rx="22" fill="#FFFFFF" stroke="#E4E4E7"/>
+    <text x="1168" y="151" font-size="13" font-weight="500" fill="#0F172A" text-anchor="middle">✏ Edit</text>
+
+    <rect x="1238" y="124" width="178" height="44" rx="22" fill="#3B82F6"/>
+    <text x="1327" y="151" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">📤  Send message</text>
+  </g>
+
+  <!-- ─────── STAT STRIP (no card, gentle separators) ─────── -->
+  <line x1="296" y1="232" x2="1416" y2="232" stroke="#E4E4E7"/>
+  <g id="stats">
+    <text x="296" y="262" font-size="11" font-weight="600" fill="#A1A1AA" letter-spacing="1">LAST VISIT</text>
+    <text x="296" y="296" font-size="22" font-weight="700" fill="#0F172A">2 days ago</text>
+    <text x="296" y="318" font-size="12" fill="#71717A">May 5, 2026</text>
+
+    <text x="556" y="262" font-size="11" font-weight="600" fill="#A1A1AA" letter-spacing="1">LIFETIME SPEND</text>
+    <text x="556" y="296" font-size="22" font-weight="700" fill="#0F172A" font-family="JetBrains Mono, monospace">₹7,240</text>
+    <text x="556" y="318" font-size="12" fill="#71717A">12 purchases</text>
+
+    <text x="816" y="262" font-size="11" font-weight="600" fill="#A1A1AA" letter-spacing="1">FREQUENCY</text>
+    <text x="816" y="296" font-size="22" font-weight="700" fill="#0F172A">Every 17 days</text>
+    <text x="816" y="318" font-size="12" fill="#71717A">Very consistent</text>
+
+    <text x="1076" y="262" font-size="11" font-weight="600" fill="#A1A1AA" letter-spacing="1">MONTHLY AVG</text>
+    <text x="1076" y="296" font-size="22" font-weight="700" fill="#0F172A" font-family="JetBrains Mono, monospace">₹1,795</text>
+    <text x="1076" y="318" font-size="12" fill="#10B981">↑ 8% vs Apr</text>
+  </g>
+  <line x1="296" y1="346" x2="1416" y2="346" stroke="#E4E4E7"/>
+
+  <!-- ─────── TABS ─────── -->
+  <g id="tabs" font-size="14" font-weight="500">
+    <text x="296" y="386" fill="#0F172A" font-weight="600">Activity</text>
+    <line x1="296" y1="396" x2="354" y2="396" stroke="#3B82F6" stroke-width="2"/>
+    <text x="378" y="386" fill="#71717A">Bills (12)</text>
+    <text x="464" y="386" fill="#71717A">Messages (8)</text>
+    <text x="568" y="386" fill="#71717A">Reminders (3)</text>
+    <text x="688" y="386" fill="#71717A">Notes (1)</text>
+  </g>
+  <line x1="296" y1="396" x2="1416" y2="396" stroke="#F4F4F5"/>
+
+  <!-- ─────── TIMELINE (left) + INSIGHTS (right) ─────── -->
+  <g id="timeline">
+    <!-- vertical line -->
+    <line x1="332" y1="430" x2="332" y2="836" stroke="#E4E4E7"/>
+
+    <!-- Event 1: msg sent -->
+    <circle cx="332" cy="448" r="10" fill="#FFFFFF" stroke="#0EA5E9" stroke-width="3"/>
+    <text x="358" y="436" font-size="11" fill="#A1A1AA">May 5 · 2:15 PM</text>
+    <text x="358" y="456" font-size="14" font-weight="600" fill="#0F172A">Message sent · "Thank you for your purchase"</text>
+    <text x="358" y="476" font-size="12" fill="#71717A">Status: Delivered · Template T1</text>
+
+    <!-- Event 2: bill -->
+    <circle cx="332" cy="528" r="10" fill="#FFFFFF" stroke="#3B82F6" stroke-width="3"/>
+    <text x="358" y="516" font-size="11" fill="#A1A1AA">May 4 · 2:05 PM</text>
+    <text x="358" y="536" font-size="14" font-weight="600" fill="#0F172A">Bill <tspan font-family="JetBrains Mono, monospace">#INV-5847</tspan> · ₹2,150</text>
+    <text x="358" y="556" font-size="12" fill="#71717A">Vitamins (2), Cough syrup (1)</text>
+
+    <!-- Event 3: reminder triggered -->
+    <circle cx="332" cy="608" r="10" fill="#FFFFFF" stroke="#D97706" stroke-width="3"/>
+    <text x="358" y="596" font-size="11" fill="#A1A1AA">Apr 28 · 1:30 PM</text>
+    <text x="358" y="616" font-size="14" font-weight="600" fill="#0F172A">Reminder triggered · "Time to refill Cough syrup"</text>
+    <text x="358" y="636" font-size="12" fill="#71717A">Status: Sent · <tspan fill="#10B981" font-weight="600">Customer purchased same day ✓</tspan></text>
+
+    <!-- Event 4: bill -->
+    <circle cx="332" cy="688" r="10" fill="#FFFFFF" stroke="#3B82F6" stroke-width="3"/>
+    <text x="358" y="676" font-size="11" fill="#A1A1AA">Apr 28 · 10:30 AM</text>
+    <text x="358" y="696" font-size="14" font-weight="600" fill="#0F172A">Bill <tspan font-family="JetBrains Mono, monospace">#INV-5821</tspan> · ₹1,890</text>
+    <text x="358" y="716" font-size="12" fill="#71717A">Antibiotics (1), Cough syrup (1)</text>
+
+    <!-- Event 5: note -->
+    <circle cx="332" cy="768" r="10" fill="#FFFFFF" stroke="#71717A" stroke-width="3"/>
+    <text x="358" y="756" font-size="11" fill="#A1A1AA">Apr 20 · 3:00 PM</text>
+    <text x="358" y="776" font-size="14" font-weight="600" fill="#0F172A">Note added · "Prefers morning calls"</text>
+    <text x="358" y="796" font-size="12" fill="#71717A">By Rajesh (Owner)</text>
+  </g>
+
+  <!-- Add note inline -->
+  <rect x="296" y="824" width="700" height="48" rx="12" fill="#FAFAFA"/>
+  <text x="320" y="854" font-size="13" fill="#A1A1AA">Add a note (visible to staff only)…</text>
+  <rect x="892" y="828" width="80" height="40" rx="20" fill="#0F172A"/>
+  <text x="932" y="853" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">Add</text>
+
+  <!-- ─────── INSIGHTS (right rail) ─────── -->
+  <g id="insights">
+    <text x="1056" y="430" font-size="14" font-weight="600" fill="#0F172A">Pattern detected</text>
+    <rect x="1056" y="442" width="360" height="88" rx="12" fill="#EFF6FF"/>
+    <text x="1080" y="470" font-size="13" font-weight="600" fill="#1D4ED8">📈 Cough syrup every 17 days</text>
+    <text x="1080" y="492" font-size="12" fill="#52525B">Next refill due May 21, 2026.</text>
+    <text x="1080" y="510" font-size="12" fill="#52525B">Reminder scheduled for May 16 · 9:00 AM.</text>
+
+    <text x="1056" y="568" font-size="14" font-weight="600" fill="#0F172A">Top medicines bought</text>
+    <g font-size="13">
+      <text x="1056" y="600" fill="#0F172A">Cough syrup</text>
+      <text x="1416" y="600" fill="#71717A" text-anchor="end" font-family="JetBrains Mono, monospace">5×</text>
+      <rect x="1056" y="608" width="360" height="4" rx="2" fill="#F4F4F5"/>
+      <rect x="1056" y="608" width="270" height="4" rx="2" fill="#3B82F6"/>
+
+      <text x="1056" y="636" fill="#0F172A">Vitamins (D3 / B-complex)</text>
+      <text x="1416" y="636" fill="#71717A" text-anchor="end" font-family="JetBrains Mono, monospace">4×</text>
+      <rect x="1056" y="644" width="360" height="4" rx="2" fill="#F4F4F5"/>
+      <rect x="1056" y="644" width="216" height="4" rx="2" fill="#3B82F6"/>
+
+      <text x="1056" y="672" fill="#0F172A">Antibiotics</text>
+      <text x="1416" y="672" fill="#71717A" text-anchor="end" font-family="JetBrains Mono, monospace">2×</text>
+      <rect x="1056" y="680" width="360" height="4" rx="2" fill="#F4F4F5"/>
+      <rect x="1056" y="680" width="108" height="4" rx="2" fill="#3B82F6"/>
+
+      <text x="1056" y="708" fill="#0F172A">Pain relief</text>
+      <text x="1416" y="708" fill="#71717A" text-anchor="end" font-family="JetBrains Mono, monospace">1×</text>
+      <rect x="1056" y="716" width="360" height="4" rx="2" fill="#F4F4F5"/>
+      <rect x="1056" y="716" width="54" height="4" rx="2" fill="#3B82F6"/>
+    </g>
+
+    <text x="1056" y="752" font-size="14" font-weight="600" fill="#0F172A">Communication preferences</text>
+    <g font-size="12">
+      <text x="1056" y="776" fill="#52525B">Channel</text>
+      <text x="1416" y="776" fill="#0F172A" font-weight="600" text-anchor="end">WhatsApp</text>
+      <text x="1056" y="798" fill="#52525B">Best time</text>
+      <text x="1416" y="798" fill="#0F172A" font-weight="600" text-anchor="end">Morning · 9–11 AM</text>
+      <text x="1056" y="820" fill="#52525B">Opt-in status</text>
+      <text x="1416" y="820" fill="#10B981" font-weight="600" text-anchor="end">✓ Active</text>
+    </g>
+  </g>
+
+  <text x="296" y="876" font-family="JetBrains Mono, monospace" font-size="11" fill="#A1A1AA">03 / medcrm · Customer profile · 1440 × 900</text>
+</svg>

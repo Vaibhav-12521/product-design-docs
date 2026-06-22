@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" font-family="Inter, system-ui, sans-serif">
+  <title>medcrm — Campaigns</title>
+  <rect width="1440" height="900" fill="#FFFFFF"/>
+
+  <defs>
+    <linearGradient id="side" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FAFAFA"/>
+      <stop offset="1" stop-color="#F4F4F5"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="260" height="900" fill="url(#side)"/>
+  <line x1="260" y1="0" x2="260" y2="900" stroke="#E4E4E7"/>
+  <rect x="20" y="20" width="36" height="36" rx="9" fill="#3B82F6"/>
+  <text x="38" y="43" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">M</text>
+  <text x="68" y="36" font-size="14" font-weight="700" fill="#0F172A">Medstocksy</text>
+  <text x="68" y="51" font-size="11" fill="#71717A">Customer Relations</text>
+  <line x1="20" y1="76" x2="240" y2="76" stroke="#E4E4E7"/>
+
+  <g font-size="14" font-weight="500" fill="#52525B">
+    <text x="20" y="266" font-size="11" font-weight="600" fill="#A1A1AA" letter-spacing="1">CUSTOMER RELATIONS</text>
+    <text x="48" y="298">Dashboard</text>
+    <text x="48" y="338">Customers</text>
+    <text x="48" y="378">Segments</text>
+  </g>
+  <rect x="14" y="392" width="232" height="40" rx="10" fill="#EFF6FF"/>
+  <rect x="14" y="392" width="3" height="40" rx="2" fill="#3B82F6"/>
+  <text x="48" y="418" font-size="14" font-weight="600" fill="#1D4ED8">Campaigns</text>
+  <g font-size="14" font-weight="500" fill="#52525B">
+    <text x="48" y="458">Reminders</text>
+    <text x="48" y="488">Templates</text>
+    <text x="48" y="518">Activity</text>
+  </g>
+
+  <!-- Header -->
+  <text x="296" y="56" font-size="13" fill="#71717A">Customer Relations / Campaigns</text>
+  <text x="296" y="92" font-size="32" font-weight="700" fill="#0F172A" letter-spacing="-0.5">Campaigns</text>
+  <text x="296" y="118" font-size="14" fill="#71717A">12 campaigns sent · 1,438 messages delivered · 31% reply rate</text>
+
+  <rect x="1306" y="68" width="110" height="44" rx="22" fill="#3B82F6"/>
+  <text x="1361" y="94" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">+ Create</text>
+
+  <!-- Tabs -->
+  <g font-size="14" font-weight="500">
+    <text x="296" y="172" fill="#0F172A" font-weight="600">All (12)</text>
+    <line x1="296" y1="182" x2="356" y2="182" stroke="#3B82F6" stroke-width="2"/>
+    <text x="380" y="172" fill="#71717A">Sent (10)</text>
+    <text x="464" y="172" fill="#71717A">Scheduled (1)</text>
+    <text x="572" y="172" fill="#71717A">Drafts (1)</text>
+  </g>
+  <line x1="296" y1="182" x2="1416" y2="182" stroke="#F4F4F5"/>
+
+  <!-- Campaign cards (clean, minimal) -->
+  <g id="campaigns">
+    <!-- Scheduled (highlighted) -->
+    <rect x="296" y="208" width="1120" height="120" rx="20" fill="#FFFFFF" stroke="#3B82F6" stroke-width="1.5"/>
+    <rect x="296" y="208" width="6" height="120" rx="3" fill="#3B82F6"/>
+    <rect x="320" y="228" width="84" height="24" rx="4" fill="#DBEAFE"/>
+    <text x="362" y="245" font-size="11" font-weight="700" fill="#1D4ED8" text-anchor="middle">SCHEDULED</text>
+    <text x="416" y="245" font-size="11" fill="#71717A">In 3 days · May 10 · 10:00 AM</text>
+
+    <text x="320" y="280" font-size="20" font-weight="700" fill="#0F172A">Win-back · Inactive customers</text>
+
+    <text x="320" y="306" font-size="13" fill="#71717A">Segment:</text>
+    <text x="384" y="306" font-size="13" font-weight="600" fill="#0F172A">Inactive (47)</text>
+    <text x="500" y="306" font-size="13" fill="#71717A">·  Template:</text>
+    <text x="570" y="306" font-size="13" font-weight="600" fill="#0F172A">T3 · Special offer (vitamins, 20% off)</text>
+
+    <rect x="1308" y="252" width="92" height="40" rx="20" fill="#FFFFFF" stroke="#E4E4E7"/>
+    <text x="1354" y="277" font-size="13" font-weight="500" fill="#0F172A" text-anchor="middle">Edit</text>
+
+    <!-- Sent -->
+    <rect x="296" y="344" width="1120" height="120" rx="20" fill="#FFFFFF" stroke="#E4E4E7"/>
+    <rect x="320" y="364" width="56" height="24" rx="4" fill="#D1FAE5"/>
+    <text x="348" y="381" font-size="11" font-weight="700" fill="#047857" text-anchor="middle">SENT</text>
+    <text x="386" y="381" font-size="11" fill="#71717A">Apr 28 · 11:00 AM</text>
+
+    <text x="320" y="416" font-size="20" font-weight="700" fill="#0F172A">May discount · Vitamins 20% off</text>
+
+    <text x="320" y="442" font-size="13" fill="#71717A">High Spenders · 41 sent · </text>
+    <text x="500" y="442" font-size="13" fill="#10B981" font-weight="600">39 delivered</text>
+    <text x="588" y="442" font-size="13" fill="#71717A">·  </text>
+    <text x="608" y="442" font-size="13" fill="#3B82F6" font-weight="600">14 replied (36%)</text>
+    <text x="734" y="442" font-size="13" fill="#71717A">·  </text>
+    <text x="754" y="442" font-size="13" fill="#0F172A">₹38,200 attributed</text>
+
+    <rect x="1308" y="388" width="92" height="40" rx="20" fill="#FFFFFF" stroke="#E4E4E7"/>
+    <text x="1354" y="413" font-size="13" font-weight="500" fill="#0F172A" text-anchor="middle">Report</text>
+
+    <!-- Sent -->
+    <rect x="296" y="480" width="1120" height="120" rx="20" fill="#FFFFFF" stroke="#E4E4E7"/>
+    <rect x="320" y="500" width="56" height="24" rx="4" fill="#D1FAE5"/>
+    <text x="348" y="517" font-size="11" font-weight="700" fill="#047857" text-anchor="middle">SENT</text>
+    <text x="386" y="517" font-size="11" fill="#71717A">Apr 14 · 10:00 AM</text>
+
+    <text x="320" y="552" font-size="20" font-weight="700" fill="#0F172A">Welcome batch · New customers</text>
+
+    <text x="320" y="578" font-size="13" fill="#71717A">New (last 7d) · 28 sent · </text>
+    <text x="494" y="578" font-size="13" fill="#10B981" font-weight="600">28 delivered</text>
+    <text x="582" y="578" font-size="13" fill="#71717A">·  </text>
+    <text x="602" y="578" font-size="13" fill="#3B82F6" font-weight="600">11 replied (39%)</text>
+    <text x="730" y="578" font-size="13" fill="#71717A">·  </text>
+    <text x="750" y="578" font-size="13" fill="#0F172A">9 returned within 14 days</text>
+
+    <rect x="1308" y="524" width="92" height="40" rx="20" fill="#FFFFFF" stroke="#E4E4E7"/>
+    <text x="1354" y="549" font-size="13" font-weight="500" fill="#0F172A" text-anchor="middle">Report</text>
+
+    <!-- Sent -->
+    <rect x="296" y="616" width="1120" height="120" rx="20" fill="#FFFFFF" stroke="#E4E4E7"/>
+    <rect x="320" y="636" width="56" height="24" rx="4" fill="#D1FAE5"/>
+    <text x="348" y="653" font-size="11" font-weight="700" fill="#047857" text-anchor="middle">SENT</text>
+    <text x="386" y="653" font-size="11" fill="#71717A">Mar 30 · 9:30 AM</text>
+
+    <text x="320" y="688" font-size="20" font-weight="700" fill="#0F172A">Holi greetings · All customers</text>
+
+    <text x="320" y="714" font-size="13" fill="#71717A">All (excl. opt-outs) · 341 sent · </text>
+    <text x="540" y="714" font-size="13" fill="#10B981" font-weight="600">336 delivered (98.5%)</text>
+    <text x="724" y="714" font-size="13" fill="#71717A">·  </text>
+    <text x="744" y="714" font-size="13" fill="#3B82F6" font-weight="600">52 replied (15%)</text>
+
+    <rect x="1308" y="660" width="92" height="40" rx="20" fill="#FFFFFF" stroke="#E4E4E7"/>
+    <text x="1354" y="685" font-size="13" font-weight="500" fill="#0F172A" text-anchor="middle">Report</text>
+
+    <!-- Draft -->
+    <rect x="296" y="752" width="1120" height="80" rx="20" fill="#FAFAFA" stroke="#E4E4E7" stroke-dasharray="4,3"/>
+    <rect x="320" y="772" width="58" height="24" rx="4" fill="#FEF3C7"/>
+    <text x="349" y="789" font-size="11" font-weight="700" fill="#92400E" text-anchor="middle">DRAFT</text>
+    <text x="388" y="789" font-size="11" fill="#71717A">Last edited 2 days ago</text>
+
+    <text x="320" y="816" font-size="16" font-weight="700" fill="#52525B">Untitled · Chronic patients refill push</text>
+
+    <rect x="1308" y="772" width="92" height="40" rx="20" fill="#FFFFFF" stroke="#E4E4E7"/>
+    <text x="1354" y="797" font-size="13" font-weight="500" fill="#0F172A" text-anchor="middle">Resume</text>
+  </g>
+
+  <text x="296" y="876" font-family="JetBrains Mono, monospace" font-size="11" fill="#A1A1AA">07 / medcrm · Campaigns · 1440 × 900</text>
+</svg>

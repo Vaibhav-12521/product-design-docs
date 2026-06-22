@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" font-family="Inter, system-ui, sans-serif">
+  <title>medcrm — Activity</title>
+  <rect width="1440" height="900" fill="#FFFFFF"/>
+
+  <defs>
+    <linearGradient id="side" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FAFAFA"/>
+      <stop offset="1" stop-color="#F4F4F5"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="260" height="900" fill="url(#side)"/>
+  <line x1="260" y1="0" x2="260" y2="900" stroke="#E4E4E7"/>
+  <rect x="20" y="20" width="36" height="36" rx="9" fill="#3B82F6"/>
+  <text x="38" y="43" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">M</text>
+  <text x="68" y="36" font-size="14" font-weight="700" fill="#0F172A">Medstocksy</text>
+  <text x="68" y="51" font-size="11" fill="#71717A">Customer Relations</text>
+
+  <g font-size="14" font-weight="500" fill="#52525B">
+    <text x="20" y="266" font-size="11" font-weight="600" fill="#A1A1AA" letter-spacing="1">CUSTOMER RELATIONS</text>
+    <text x="48" y="298">Dashboard</text>
+    <text x="48" y="338">Customers</text>
+    <text x="48" y="378">Segments</text>
+    <text x="48" y="418">Campaigns</text>
+    <text x="48" y="458">Reminders</text>
+    <text x="48" y="498">Templates</text>
+  </g>
+  <rect x="14" y="512" width="232" height="40" rx="10" fill="#EFF6FF"/>
+  <rect x="14" y="512" width="3" height="40" rx="2" fill="#3B82F6"/>
+  <text x="48" y="538" font-size="14" font-weight="600" fill="#1D4ED8">Activity</text>
+
+  <!-- Header -->
+  <text x="296" y="56" font-size="13" fill="#71717A">Customer Relations / Activity</text>
+  <text x="296" y="92" font-size="32" font-weight="700" fill="#0F172A" letter-spacing="-0.5">Activity stream</text>
+  <text x="296" y="118" font-size="14" fill="#71717A">All CRM events, in one place. 90-day audit retention.</text>
+
+  <!-- Filters -->
+  <g id="filters">
+    <rect x="296" y="156" width="60" height="36" rx="18" fill="#0F172A"/>
+    <text x="326" y="179" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">All</text>
+    <rect x="364" y="156" width="92" height="36" rx="18" fill="#FFFFFF" stroke="#E4E4E7"/>
+    <text x="410" y="179" font-size="13" font-weight="500" fill="#52525B" text-anchor="middle">📤 Messages</text>
+    <rect x="464" y="156" width="98" height="36" rx="18" fill="#FFFFFF" stroke="#E4E4E7"/>
+    <text x="513" y="179" font-size="13" font-weight="500" fill="#52525B" text-anchor="middle">🔔 Reminders</text>
+    <rect x="570" y="156" width="98" height="36" rx="18" fill="#FFFFFF" stroke="#E4E4E7"/>
+    <text x="619" y="179" font-size="13" font-weight="500" fill="#52525B" text-anchor="middle">📣 Campaigns</text>
+    <rect x="676" y="156" width="76" height="36" rx="18" fill="#FFFFFF" stroke="#E4E4E7"/>
+    <text x="714" y="179" font-size="13" font-weight="500" fill="#52525B" text-anchor="middle">🛒 Bills</text>
+    <rect x="760" y="156" width="76" height="36" rx="18" fill="#FFFFFF" stroke="#E4E4E7"/>
+    <text x="798" y="179" font-size="13" font-weight="500" fill="#52525B" text-anchor="middle">📝 Notes</text>
+
+    <text x="1416" y="179" font-size="12" font-weight="500" fill="#52525B" text-anchor="end">📅 Today ▾</text>
+  </g>
+
+  <!-- Search -->
+  <rect x="296" y="208" width="1120" height="48" rx="12" fill="#FAFAFA"/>
+  <text x="316" y="238" font-size="14" fill="#A1A1AA">🔍   Search by customer, template, or content…</text>
+
+  <!-- ─────── TIMELINE FEED ─────── -->
+  <g id="timeline">
+    <!-- Today header -->
+    <text x="296" y="296" font-size="11" font-weight="700" fill="#A1A1AA" letter-spacing="1">TODAY · MAY 7</text>
+
+    <!-- Event 1 (now) -->
+    <g>
+      <circle cx="316" cy="332" r="12" fill="#FFFFFF" stroke="#0EA5E9" stroke-width="3"/>
+      <text x="356" y="328" font-size="14" font-weight="600" fill="#0F172A">Message sent · "Thank you for your purchase"</text>
+      <text x="356" y="350" font-size="12" fill="#71717A">To Priya Sharma · Template T1 · </text>
+      <text x="538" y="350" font-size="12" font-weight="600" fill="#10B981">Delivered</text>
+      <text x="1416" y="350" font-size="12" fill="#71717A" text-anchor="end" font-family="JetBrains Mono, monospace">2:15 PM · 4 min ago</text>
+    </g>
+
+    <!-- Event 2 -->
+    <g>
+      <circle cx="316" cy="396" r="12" fill="#FFFFFF" stroke="#3B82F6" stroke-width="3"/>
+      <text x="356" y="392" font-size="14" font-weight="600" fill="#0F172A">Bill created · <tspan font-family="JetBrains Mono, monospace">#INV-5847</tspan> · ₹2,150</text>
+      <text x="356" y="414" font-size="12" fill="#71717A">Priya Sharma · Vitamins (2), Cough syrup (1)</text>
+      <text x="1416" y="414" font-size="12" fill="#71717A" text-anchor="end" font-family="JetBrains Mono, monospace">2:05 PM</text>
+    </g>
+
+    <!-- Event 3 -->
+    <g>
+      <circle cx="316" cy="460" r="12" fill="#FFFFFF" stroke="#3B82F6" stroke-width="3"/>
+      <text x="356" y="456" font-size="14" font-weight="600" fill="#0F172A">Bill created · <tspan font-family="JetBrains Mono, monospace">#INV-5846</tspan> · ₹240</text>
+      <text x="356" y="478" font-size="12" fill="#71717A">Walk-in customer · 1 item</text>
+      <text x="1416" y="478" font-size="12" fill="#71717A" text-anchor="end" font-family="JetBrains Mono, monospace">1:48 PM</text>
+    </g>
+
+    <!-- Event 4 -->
+    <g>
+      <circle cx="316" cy="524" r="12" fill="#FFFFFF" stroke="#D97706" stroke-width="3"/>
+      <text x="356" y="520" font-size="14" font-weight="600" fill="#0F172A">Reminder sent · "Time to refill Amlodipine"</text>
+      <text x="356" y="542" font-size="12" fill="#71717A">Ramesh Singh · Template T2 · BP medicine reminder · </text>
+      <text x="660" y="542" font-size="12" font-weight="600" fill="#10B981">Delivered</text>
+      <text x="1416" y="542" font-size="12" fill="#71717A" text-anchor="end" font-family="JetBrains Mono, monospace">9:00 AM</text>
+    </g>
+
+    <!-- Event 5 -->
+    <g>
+      <circle cx="316" cy="588" r="12" fill="#FFFFFF" stroke="#71717A" stroke-width="3"/>
+      <text x="356" y="584" font-size="14" font-weight="600" fill="#0F172A">Tag changed · Sunita Verma marked "New" → activity-based</text>
+      <text x="356" y="606" font-size="12" fill="#71717A">Auto-rule · 1 day after first purchase</text>
+      <text x="1416" y="606" font-size="12" fill="#71717A" text-anchor="end" font-family="JetBrains Mono, monospace">8:32 AM</text>
+    </g>
+
+    <!-- Yesterday header -->
+    <line x1="296" y1="640" x2="1416" y2="640" stroke="#F4F4F5"/>
+    <text x="296" y="666" font-size="11" font-weight="700" fill="#A1A1AA" letter-spacing="1">YESTERDAY · MAY 6</text>
+
+    <!-- Event 6 -->
+    <g>
+      <circle cx="316" cy="702" r="12" fill="#FFFFFF" stroke="#5B21B6" stroke-width="3"/>
+      <text x="356" y="698" font-size="14" font-weight="600" fill="#0F172A">Campaign sent · "Welcome batch — New customers"</text>
+      <text x="356" y="720" font-size="12" fill="#71717A">Segment New (28) · Template T1 · </text>
+      <text x="544" y="720" font-size="12" font-weight="600" fill="#10B981">28/28 delivered</text>
+      <text x="664" y="720" font-size="12" fill="#71717A">·  </text>
+      <text x="684" y="720" font-size="12" font-weight="600" fill="#3B82F6">11 replies (39%)</text>
+      <text x="1416" y="720" font-size="12" fill="#71717A" text-anchor="end" font-family="JetBrains Mono, monospace">May 6 · 10:00 AM</text>
+    </g>
+
+    <!-- Event 7 -->
+    <g>
+      <circle cx="316" cy="766" r="12" fill="#FFFFFF" stroke="#EF4444" stroke-width="3"/>
+      <text x="356" y="762" font-size="14" font-weight="600" fill="#0F172A">Opt-out · Rohit Kumar</text>
+      <text x="356" y="784" font-size="12" fill="#71717A">User replied "STOP" · added to OptOut segment · excluded from all sends</text>
+      <text x="1416" y="784" font-size="12" fill="#71717A" text-anchor="end" font-family="JetBrains Mono, monospace">May 6 · 4:18 PM</text>
+    </g>
+
+    <!-- Event 8 -->
+    <g>
+      <circle cx="316" cy="830" r="12" fill="#FFFFFF" stroke="#71717A" stroke-width="3"/>
+      <text x="356" y="826" font-size="14" font-weight="600" fill="#0F172A">Note added to Priya Sharma</text>
+      <text x="356" y="848" font-size="12" fill="#71717A">"Prefers morning calls" · By Rajesh (Owner)</text>
+      <text x="1416" y="848" font-size="12" fill="#71717A" text-anchor="end" font-family="JetBrains Mono, monospace">May 6 · 11:42 AM</text>
+    </g>
+
+    <!-- vertical timeline line -->
+    <line x1="316" y1="296" x2="316" y2="855" stroke="#E4E4E7"/>
+  </g>
+
+  <text x="296" y="876" font-family="JetBrains Mono, monospace" font-size="11" fill="#A1A1AA">10 / medcrm · Activity · 1440 × 900</text>
+</svg>

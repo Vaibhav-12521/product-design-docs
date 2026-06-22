@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" font-family="Inter, system-ui, sans-serif">
+  <title>medcrm — Reminder Rules</title>
+  <rect width="1440" height="900" fill="#FFFFFF"/>
+
+  <defs>
+    <linearGradient id="side" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FAFAFA"/>
+      <stop offset="1" stop-color="#F4F4F5"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="260" height="900" fill="url(#side)"/>
+  <line x1="260" y1="0" x2="260" y2="900" stroke="#E4E4E7"/>
+  <rect x="20" y="20" width="36" height="36" rx="9" fill="#3B82F6"/>
+  <text x="38" y="43" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">M</text>
+  <text x="68" y="36" font-size="14" font-weight="700" fill="#0F172A">Medstocksy</text>
+  <text x="68" y="51" font-size="11" fill="#71717A">Customer Relations</text>
+  <line x1="20" y1="76" x2="240" y2="76" stroke="#E4E4E7"/>
+
+  <g font-size="14" font-weight="500" fill="#52525B">
+    <text x="20" y="266" font-size="11" font-weight="600" fill="#A1A1AA" letter-spacing="1">CUSTOMER RELATIONS</text>
+    <text x="48" y="298">Dashboard</text>
+    <text x="48" y="338">Customers</text>
+    <text x="48" y="378">Segments</text>
+    <text x="48" y="418">Campaigns</text>
+  </g>
+  <rect x="14" y="432" width="232" height="40" rx="10" fill="#EFF6FF"/>
+  <rect x="14" y="432" width="3" height="40" rx="2" fill="#3B82F6"/>
+  <text x="48" y="458" font-size="14" font-weight="600" fill="#1D4ED8">Reminders</text>
+  <g font-size="14" font-weight="500" fill="#52525B">
+    <text x="48" y="498">Templates</text>
+    <text x="48" y="528">Activity</text>
+  </g>
+
+  <!-- Header -->
+  <text x="296" y="56" font-size="13" fill="#71717A">Customer Relations / Reminders</text>
+  <text x="296" y="92" font-size="32" font-weight="700" fill="#0F172A" letter-spacing="-0.5">Reminder rules</text>
+  <text x="296" y="118" font-size="14" fill="#71717A">Schedule refill reminders by medicine. Sent at 9:00 AM by default. Admin only.</text>
+
+  <rect x="1306" y="68" width="110" height="44" rx="22" fill="#3B82F6"/>
+  <text x="1361" y="94" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">+ New rule</text>
+
+  <!-- ─────── LEFT: rule list ─────── -->
+  <g id="rules">
+    <text x="296" y="160" font-size="11" font-weight="600" fill="#A1A1AA" letter-spacing="1">ACTIVE RULES · 6</text>
+
+    <!-- Rule cards (clean, minimal) -->
+    <g>
+      <rect x="296" y="176" width="660" height="80" rx="14" fill="#FFFFFF" stroke="#E4E4E7"/>
+      <text x="320" y="208" font-size="16" font-weight="700" fill="#0F172A">BP medicine</text>
+      <text x="320" y="232" font-size="13" fill="#71717A">Refill cycle 30 days · Reminder 5 days before · Template T2</text>
+      <rect x="824" y="194" width="56" height="22" rx="11" fill="#D1FAE5"/>
+      <text x="852" y="209" font-size="11" font-weight="600" fill="#047857" text-anchor="middle">ACTIVE</text>
+      <text x="900" y="209" font-size="11" fill="#71717A">14 customers</text>
+      <text x="932" y="232" font-size="13" fill="#3B82F6" font-weight="600" text-anchor="end">Edit</text>
+    </g>
+
+    <!-- Selected -->
+    <g>
+      <rect x="296" y="272" width="660" height="80" rx="14" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2"/>
+      <text x="320" y="304" font-size="16" font-weight="700" fill="#0F172A">Diabetes medicine</text>
+      <text x="320" y="328" font-size="13" fill="#71717A">Refill cycle 30 days · Reminder 5 days before · Template T2</text>
+      <rect x="824" y="290" width="56" height="22" rx="11" fill="#D1FAE5"/>
+      <text x="852" y="305" font-size="11" font-weight="600" fill="#047857" text-anchor="middle">ACTIVE</text>
+      <text x="900" y="305" font-size="11" fill="#71717A">22 customers</text>
+      <text x="932" y="328" font-size="13" fill="#3B82F6" font-weight="600" text-anchor="end">Editing ●</text>
+    </g>
+
+    <g>
+      <rect x="296" y="368" width="660" height="80" rx="14" fill="#FFFFFF" stroke="#E4E4E7"/>
+      <text x="320" y="400" font-size="16" font-weight="700" fill="#0F172A">Vitamins</text>
+      <text x="320" y="424" font-size="13" fill="#71717A">Refill cycle 60 days · Reminder 5 days before · Template T2</text>
+      <rect x="824" y="386" width="56" height="22" rx="11" fill="#D1FAE5"/>
+      <text x="852" y="401" font-size="11" font-weight="600" fill="#047857" text-anchor="middle">ACTIVE</text>
+      <text x="900" y="401" font-size="11" fill="#71717A">38 customers</text>
+      <text x="932" y="424" font-size="13" fill="#3B82F6" font-weight="600" text-anchor="end">Edit</text>
+    </g>
+
+    <g>
+      <rect x="296" y="464" width="660" height="80" rx="14" fill="#FFFFFF" stroke="#E4E4E7"/>
+      <text x="320" y="496" font-size="16" font-weight="700" fill="#0F172A">Cough syrup</text>
+      <text x="320" y="520" font-size="13" fill="#71717A">Refill cycle 30 days · Reminder 5 days before · Template T2</text>
+      <rect x="824" y="482" width="56" height="22" rx="11" fill="#D1FAE5"/>
+      <text x="852" y="497" font-size="11" font-weight="600" fill="#047857" text-anchor="middle">ACTIVE</text>
+      <text x="900" y="497" font-size="11" fill="#71717A">9 customers</text>
+      <text x="932" y="520" font-size="13" fill="#3B82F6" font-weight="600" text-anchor="end">Edit</text>
+    </g>
+
+    <g>
+      <rect x="296" y="560" width="660" height="80" rx="14" fill="#FAFAFA"/>
+      <text x="320" y="592" font-size="16" font-weight="700" fill="#52525B">Antibiotics</text>
+      <text x="320" y="616" font-size="13" fill="#71717A">No reminder — courses are time-bound.</text>
+      <rect x="816" y="578" width="56" height="22" rx="11" fill="#F4F4F5"/>
+      <text x="844" y="593" font-size="11" font-weight="600" fill="#71717A" text-anchor="middle">OFF</text>
+      <text x="932" y="616" font-size="13" fill="#3B82F6" font-weight="600" text-anchor="end">Edit</text>
+    </g>
+
+    <g>
+      <rect x="296" y="656" width="660" height="80" rx="14" fill="#FAFAFA"/>
+      <text x="320" y="688" font-size="16" font-weight="700" fill="#52525B">Pain relief (as-needed)</text>
+      <text x="320" y="712" font-size="13" fill="#71717A">No reminder — purchased on demand.</text>
+      <rect x="816" y="674" width="56" height="22" rx="11" fill="#F4F4F5"/>
+      <text x="844" y="689" font-size="11" font-weight="600" fill="#71717A" text-anchor="middle">OFF</text>
+      <text x="932" y="712" font-size="13" fill="#3B82F6" font-weight="600" text-anchor="end">Edit</text>
+    </g>
+  </g>
+
+  <!-- ─────── RIGHT: edit panel ─────── -->
+  <g id="edit">
+    <text x="996" y="160" font-size="11" font-weight="600" fill="#A1A1AA" letter-spacing="1">EDIT · DIABETES MEDICINE</text>
+
+    <rect x="996" y="176" width="420" height="608" rx="20" fill="#0F172A"/>
+
+    <!-- Medicine -->
+    <text x="1020" y="216" font-size="13" font-weight="500" fill="#FFFFFF">Medicine type</text>
+    <rect x="1020" y="226" width="372" height="48" rx="12" fill="#1E293B"/>
+    <text x="1040" y="255" font-size="14" fill="#FFFFFF">Diabetes medicine</text>
+    <text x="1378" y="255" font-size="14" fill="#71717A" text-anchor="end">▾</text>
+
+    <!-- Cycle + Offset -->
+    <text x="1020" y="304" font-size="13" font-weight="500" fill="#FFFFFF">Refill cycle (days)</text>
+    <rect x="1020" y="314" width="180" height="48" rx="12" fill="#1E293B"/>
+    <text x="1040" y="343" font-size="16" font-family="JetBrains Mono, monospace" fill="#FFFFFF" font-weight="600">30</text>
+    <text x="1180" y="343" font-size="14" fill="#71717A" text-anchor="end">days</text>
+
+    <text x="1212" y="304" font-size="13" font-weight="500" fill="#FFFFFF">Reminder offset</text>
+    <rect x="1212" y="314" width="180" height="48" rx="12" fill="#1E293B"/>
+    <text x="1232" y="343" font-size="16" font-family="JetBrains Mono, monospace" fill="#FFFFFF" font-weight="600">5</text>
+    <text x="1372" y="343" font-size="14" fill="#71717A" text-anchor="end">days before</text>
+
+    <text x="1020" y="380" font-size="11" fill="#71717A">Reminder will be sent 25 days after each purchase.</text>
+
+    <!-- Template -->
+    <text x="1020" y="416" font-size="13" font-weight="500" fill="#FFFFFF">Message template</text>
+    <rect x="1020" y="426" width="372" height="48" rx="12" fill="#1E293B"/>
+    <text x="1040" y="455" font-size="14" fill="#FFFFFF">T2 · Refill reminder</text>
+    <text x="1378" y="455" font-size="14" fill="#71717A" text-anchor="end">▾</text>
+
+    <!-- Time -->
+    <text x="1020" y="504" font-size="13" font-weight="500" fill="#FFFFFF">Send time</text>
+    <rect x="1020" y="514" width="372" height="48" rx="12" fill="#1E293B"/>
+    <text x="1040" y="543" font-size="14" fill="#FFFFFF">9:00 AM</text>
+    <rect x="1320" y="524" width="64" height="28" rx="14" fill="#3B82F6"/>
+    <text x="1352" y="543" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">DEFAULT</text>
+
+    <text x="1020" y="580" font-size="11" fill="#71717A">Send window 9 AM – 8 PM IST is enforced.</text>
+
+    <!-- Active toggle -->
+    <line x1="1020" y1="608" x2="1392" y2="608" stroke="#1E293B"/>
+    <text x="1020" y="640" font-size="14" font-weight="600" fill="#FFFFFF">Rule status</text>
+    <text x="1020" y="660" font-size="11" fill="#71717A">22 customers currently scheduled</text>
+    <rect x="1340" y="630" width="52" height="28" rx="14" fill="#10B981"/>
+    <circle cx="1378" cy="644" r="10" fill="#FFFFFF"/>
+
+    <!-- Footer -->
+    <line x1="1020" y1="688" x2="1392" y2="688" stroke="#1E293B"/>
+
+    <text x="1020" y="724" font-size="13" font-weight="500" fill="#EF4444">Disable rule</text>
+
+    <rect x="1212" y="704" width="86" height="44" rx="22" fill="#1E293B"/>
+    <text x="1255" y="731" font-size="13" font-weight="500" fill="#FFFFFF" text-anchor="middle">Cancel</text>
+
+    <rect x="1306" y="704" width="86" height="44" rx="22" fill="#3B82F6"/>
+    <text x="1349" y="731" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">Save</text>
+  </g>
+
+  <text x="296" y="876" font-family="JetBrains Mono, monospace" font-size="11" fill="#A1A1AA">06 / medcrm · Reminder rules · 1440 × 900</text>
+</svg>
