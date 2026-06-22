@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medstocksy — Product Research & Review Report</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #0F6E56;
+    --green-light: #E1F5EE;
+    --green-mid: #1D9E75;
+    --amber: #BA7517;
+    --amber-light: #FAEEDA;
+    --blue: #185FA5;
+    --blue-light: #E6F1FB;
+    --red: #A32D2D;
+    --red-light: #FCEBEB;
+    --gray: #5F5E5A;
+    --gray-light: #F1EFE8;
+    --text: #1a1a18;
+    --text-muted: #6b6b66;
+    --border: #e0ddd5;
+    --bg: #fafaf8;
+    --surface: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .no-print { display: none; }
+    .page-break { page-break-before: always; }
+  }
+
+  /* ── HEADER ── */
+  .report-header {
+    background: var(--green);
+    color: #fff;
+    padding: 3rem 4rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .report-header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+  .report-header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 200px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 2rem;
+  }
+  .logo-mark {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: #fff;
+  }
+  .header-brand { flex: 1; }
+  .header-brand h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+  .header-brand p { font-size: 12px; opacity: 0.7; margin-top: 2px; }
+  .header-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 99px;
+    padding: 5px 14px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .header-badge span { width: 6px; height: 6px; border-radius: 50%; background: #9FE1CB; display: inline-block; }
+
+  .header-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .header-sub { font-size: 15px; opacity: 0.75; margin-bottom: 1.5rem; }
+  .header-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .htag {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 99px;
+    padding: 4px 12px;
+    font-size: 11px;
+  }
+  .header-meta {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    gap: 2rem;
+    font-size: 12px;
+    opacity: 0.65;
+  }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 900px; margin: 0 auto; padding: 2.5rem 2rem; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 2.5rem; }
+  .sec-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sec-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+  }
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── METRIC GRID ── */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .metric-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.1rem 1.2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--green);
+    border-radius: 3px 0 0 3px;
+  }
+  .metric-label { font-size: 11px; color: var(--text-muted); font-weight: 500; margin-bottom: 6px; }
+  .metric-val { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--text); line-height: 1.1; }
+  .metric-sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+  /* ── INFO TABLE ── */
+  .info-table { width: 100%; border-collapse: collapse; }
+  .info-table tr { border-bottom: 1px solid var(--border); }
+  .info-table tr:last-child { border-bottom: none; }
+  .info-table td { padding: 9px 0; font-size: 13px; vertical-align: top; }
+  .info-table .key { color: var(--text-muted); width: 40%; }
+  .info-table .val { color: var(--text); font-weight: 500; text-align: right; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 99px;
+  }
+  .badge-green { background: var(--green-light); color: var(--green); }
+  .badge-amber { background: var(--amber-light); color: var(--amber); }
+  .badge-blue { background: var(--blue-light); color: var(--blue); }
+  .badge-red { background: var(--red-light); color: var(--red); }
+  .badge-gray { background: var(--gray-light); color: var(--gray); }
+
+  /* ── TWO / THREE COL ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+  /* ── FEATURE LIST ── */
+  .feat-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .feat-item:last-child { border-bottom: none; }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+  .dot-ok { background: var(--green-mid); }
+  .dot-warn { background: var(--amber); }
+  .dot-off { background: #ccc; }
+  .feat-name { font-size: 13px; font-weight: 500; color: var(--text); }
+  .feat-note { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+  /* ── SCORE BAR ── */
+  .score-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .score-item:last-child { border-bottom: none; }
+  .score-name { font-size: 13px; color: var(--text); flex: 1.5; }
+  .score-track {
+    flex: 3;
+    height: 7px;
+    background: var(--gray-light);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .score-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: var(--green-mid);
+  }
+  .score-num {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--green);
+    min-width: 44px;
+    text-align: right;
+  }
+
+  /* ── PLAN CARDS ── */
+  .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .plan-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.25rem;
+  }
+  .plan-card.featured {
+    border: 2px solid var(--green);
+    position: relative;
+  }
+  .plan-card.featured::before {
+    content: 'Most Popular';
+    position: absolute;
+    top: -12px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--green);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 12px;
+    border-radius: 99px;
+    white-space: nowrap;
+  }
+  .plan-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .plan-price { font-family: 'DM Serif Display', serif; font-size: 30px; color: var(--text); margin-bottom: 12px; }
+  .plan-price small { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 400; color: var(--text-muted); }
+  .plan-features { list-style: none; font-size: 12px; line-height: 2; }
+  .plan-features li { display: flex; align-items: center; gap: 6px; color: var(--text-muted); }
+  .plan-features li.yes { color: var(--text); }
+  .plan-features li .icon { font-size: 13px; }
+  .plan-features li.yes .icon { color: var(--green-mid); }
+  .plan-features li.no .icon { color: #ccc; }
+
+  /* ── SWOT ── */
+  .swot-card {
+    border-radius: 14px;
+    padding: 1.25rem;
+    border-left: 4px solid;
+  }
+  .swot-card.strength { background: var(--green-light); border-color: var(--green-mid); }
+  .swot-card.weakness { background: var(--amber-light); border-color: var(--amber); }
+  .swot-card.opportunity { background: var(--blue-light); border-color: var(--blue); }
+  .swot-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .swot-card.strength .swot-title { color: var(--green); }
+  .swot-card.weakness .swot-title { color: var(--amber); }
+  .swot-card.opportunity .swot-title { color: var(--blue); }
+  .swot-list { list-style: none; font-size: 12px; line-height: 2; }
+  .swot-list li::before { content: '→ '; opacity: 0.5; }
+
+  /* ── TESTIMONIAL ── */
+  .testimonial {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .t-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--green-light);
+    color: var(--green);
+    font-weight: 600;
+    font-size: 15px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .t-name { font-size: 13px; font-weight: 600; }
+  .t-org { font-size: 11px; color: var(--text-muted); }
+  .t-stars { color: var(--amber); font-size: 13px; margin: 4px 0; }
+  .t-text { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+
+  /* ── VERDICT ── */
+  .verdict-box {
+    background: var(--green-light);
+    border: 1px solid #9FE1CB;
+    border-radius: 16px;
+    padding: 1.75rem 2rem;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  .verdict-score {
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .big-score {
+    font-family: 'DM Serif Display', serif;
+    font-size: 64px;
+    color: var(--green);
+    line-height: 1;
+  }
+  .big-score-label { font-size: 11px; color: var(--green); font-weight: 600; letter-spacing: 0.05em; }
+  .verdict-stars { color: var(--amber); font-size: 22px; margin: 6px 0; letter-spacing: 3px; }
+  .verdict-content { flex: 1; }
+  .verdict-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--green);
+    margin-bottom: 10px;
+  }
+  .verdict-text { font-size: 13px; color: var(--text); line-height: 1.8; }
+
+  /* ── FOOTER ── */
+  .report-footer {
+    background: var(--text);
+    color: rgba(255,255,255,0.6);
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+  }
+  .footer-brand { color: #fff; font-weight: 500; }
+
+  /* ── PRINT BTN ── */
+  .print-btn {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    background: var(--green);
+    color: #fff;
+    border: none;
+    border-radius: 99px;
+    padding: 12px 22px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(15,110,86,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .print-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(15,110,86,0.4); }
+
+  @media (max-width: 640px) {
+    .report-header { padding: 2rem 1.5rem; }
+    .header-title { font-size: 26px; }
+    .metric-grid, .plan-grid { grid-template-columns: repeat(2, 1fr); }
+    .two-col, .three-col { grid-template-columns: 1fr; }
+    .verdict-box { flex-direction: column; gap: 1rem; }
+    .report-footer { flex-direction: column; gap: 6px; text-align: center; }
+    .container { padding: 1.5rem 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="report-header">
+  <div class="header-top">
+    <div class="logo-mark">M</div>
+    <div class="header-brand">
+      <h1>Medstocksy</h1>
+      <p>medstocksy.in &nbsp;·&nbsp; Medstocksy Private Limited</p>
+    </div>
+    <div class="header-badge"><span></span> Active — 2026</div>
+  </div>
+  <div class="header-title">Product Research<br>&amp; Review Report</div>
+  <div class="header-sub">Pharmacy Management Software — Indian Market Analysis</div>
+  <div class="header-tags">
+    <span class="htag">Inventory Management</span>
+    <span class="htag">WhatsApp CRM</span>
+    <span class="htag">GST Billing</span>
+    <span class="htag">B2B SaaS</span>
+    <span class="htag">Indian Market</span>
+    <span class="htag">Pharmacy Tech</span>
+  </div>
+  <div class="header-meta">
+    <span>Report Date: April 2026</span>
+    <span>Source: medstocksy.in</span>
+    <span>Category: Healthcare SaaS</span>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+  <!-- KEY METRICS -->
+  <div class="section">
+    <div class="sec-label">Key Metrics at a Glance</div>
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-label">Pro Plan Price</div>
+        <div class="metric-val">₹399</div>
+        <div class="metric-sub">per month</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Free Trial</div>
+        <div class="metric-val">7 days</div>
+        <div class="metric-sub">no card required</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Products (Pro)</div>
+        <div class="metric-val">∞</div>
+        <div class="metric-sub">unlimited catalog</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Annual Savings</div>
+        <div class="metric-val">20%</div>
+        <div class="metric-sub">on annual billing</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPANY PROFILE -->
+  <div class="section">
+    <div class="sec-label">Company Profile</div>
+    <div class="card">
+      <table class="info-table">
+        <tr><td class="key">Company Name</td><td class="val">Medstocksy Private Limited</td></tr>
+        <tr><td class="key">Headquarters</td><td class="val">Lucknow, Uttar Pradesh, India</td></tr>
+        <tr><td class="key">Product Type</td><td class="val">Web-based SaaS Platform</td></tr>
+        <tr><td class="key">Target Market</td><td class="val">Indian Pharmacies &amp; Medical Stores</td></tr>
+        <tr><td class="key">Payment Gateway</td><td class="val">Razorpay</td></tr>
+        <tr><td class="key">Phone Support</td><td class="val">+91 88818 65349</td></tr>
+        <tr><td class="key">Email</td><td class="val">contact@medstocksy.in</td></tr>
+        <tr><td class="key">Website</td><td class="val"><a href="https://medstocksy.in" style="color:var(--green);">medstocksy.in</a></td></tr>
+        <tr><td class="key">Governing Law</td><td class="val">Indian Law — Lucknow, UP Courts</td></tr>
+        <tr><td class="key">Founded / Active</td><td class="val">2026 (copyright)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="section">
+    <div class="sec-label">Product Features Overview</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Core Features</div>
+        <div class="feat-item">
+          <div class="dot dot-ok"></div>
+          <div><div class="feat-name">Real-Time Inventory Tracking</div><div class="feat-note">Low stock alerts + multi-warehouse support</div></div>
+        </div>
+        <div class="feat-item">
+          <div class="dot dot-ok"></div>
+          <div><div class="feat-name">WhatsApp Refill Alerts (CRM)</div><div class="feat-note">Automated reminders, patient profiles</div></div>
+        </div>
+        <div class="feat-item">
+          <div class="dot dot-ok"></div>
+          <div><div class="feat-name">GST-Enabled Billing</div><div class="feat-note">Tax-compliant, fast invoicing</div></div>
+        </div>
+        <div class="feat-item">
+          <div class="dot dot-ok"></div>
+          <div><div class="feat-name">Expiry Management</div><div class="feat-note">Alerts months before expiry date</div></div>
+        </div>
+        <div class="feat-item">
+          <div class="dot dot-ok"></div>
+          <div><div class="feat-name">Sales Analytics &amp; Reports</div><div class="feat-note">Trends, margins, product performance</div></div>
+        </div>
+        <div class="feat-item">
+          <div class="dot dot-ok"></div>
+          <div><div class="feat-name">Prescription Tracking</div><div class="feat-note">Customer purchase history &amp; preferences</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Advanced / Enterprise</div>
+        <div class="feat-item">
+          <div class="dot dot-ok"></div>
+          <div><div class="feat-name">Inventory Forecasting</div><div class="feat-note">Pro plan and above</div></div>
+        </div>
+        <div class="feat-item">
+          <div class="dot dot-ok"></div>
+          <div><div class="feat-name">Multi-Store Support (up to 5)</div><div class="feat-note">Enterprise plan only</div></div>
+        </div>
+        <div class="feat-item">
+          <div class="dot dot-ok"></div>
+          <div><div class="feat-name">API &amp; System Integration</div><div class="feat-note">POS &amp; billing software support</div></div>
+        </div>
+        <div class="feat-item">
+          <div class="dot dot-ok"></div>
+          <div><div class="feat-name">Mobile Dashboard</div><div class="feat-note">Available in all plans</div></div>
+        </div>
+        <div class="feat-item">
+          <div class="dot dot-ok"></div>
+          <div><div class="feat-name">Unlimited Device Access</div><div class="feat-note">Pro plan — no device limit</div></div>
+        </div>
+        <div class="feat-item">
+          <div class="dot dot-warn"></div>
+          <div><div class="feat-name">WhatsApp Alerts — Starter Plan</div><div class="feat-note">Not available in Starter tier</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="section">
+    <div class="sec-label">Pricing Plans</div>
+    <div class="plan-grid">
+      <div class="plan-card">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">Free <small>/month</small></div>
+        <ul class="plan-features">
+          <li class="yes"><span class="icon">✓</span> Up to 500 products</li>
+          <li class="yes"><span class="icon">✓</span> Basic billing</li>
+          <li class="yes"><span class="icon">✓</span> Mobile dashboard</li>
+          <li class="no"><span class="icon">✗</span> WhatsApp alerts</li>
+        </ul>
+        <div style="margin-top: 14px;"><span class="badge badge-gray">New pharmacies</span></div>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-name">Professional</div>
+        <div class="plan-price">₹399 <small>/month</small></div>
+        <ul class="plan-features">
+          <li class="yes"><span class="icon">✓</span> Unlimited products</li>
+          <li class="yes"><span class="icon">✓</span> WhatsApp CRM</li>
+          <li class="yes"><span class="icon">✓</span> Inventory forecasting</li>
+          <li class="yes"><span class="icon">✓</span> No device limit</li>
+        </ul>
+        <div style="margin-top: 14px;"><span class="badge badge-green">Best Value</span></div>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-price" style="font-size:22px;">Custom <small>pricing</small></div>
+        <ul class="plan-features">
+          <li class="yes"><span class="icon">✓</span> Up to 5 stores</li>
+          <li class="yes"><span class="icon">✓</span> Centralized inventory</li>
+          <li class="yes"><span class="icon">✓</span> Advanced analytics</li>
+          <li class="yes"><span class="icon">✓</span> Priority support</li>
+        </ul>
+        <div style="margin-top: 14px;"><span class="badge badge-blue">Multi-store chains</span></div>
+      </div>
+    </div>
+    <div style="margin-top: 10px; font-size: 12px; color: var(--text-muted); padding-left: 4px;">
+      ✦ Annual billing par 20% discount &nbsp;·&nbsp; 15-din refund policy (pehli subscription ke liye) &nbsp;·&nbsp; No credit card for trial
+    </div>
+  </div>
+
+  <!-- SCORECARD -->
+  <div class="section">
+    <div class="sec-label">Performance Scorecard</div>
+    <div class="card">
+      <div class="score-item">
+        <div class="score-name">Feature Richness</div>
+        <div class="score-track"><div class="score-fill" style="width:88%;"></div></div>
+        <div class="score-num">8.8</div>
+      </div>
+      <div class="score-item">
+        <div class="score-name">Pricing Value</div>
+        <div class="score-track"><div class="score-fill" style="width:90%;"></div></div>
+        <div class="score-num">9.0</div>
+      </div>
+      <div class="score-item">
+        <div class="score-name">Ease of Use</div>
+        <div class="score-track"><div class="score-fill" style="width:85%;"></div></div>
+        <div class="score-num">8.5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-name">India-Specific Fit</div>
+        <div class="score-track"><div class="score-fill" style="width:92%;"></div></div>
+        <div class="score-num">9.2</div>
+      </div>
+      <div class="score-item">
+        <div class="score-name">Support Quality</div>
+        <div class="score-track"><div class="score-fill" style="width:80%;"></div></div>
+        <div class="score-num">8.0</div>
+      </div>
+      <div class="score-item">
+        <div class="score-name">Data Security &amp; Compliance</div>
+        <div class="score-track"><div class="score-fill" style="width:83%;"></div></div>
+        <div class="score-num">8.3</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SWOT -->
+  <div class="section">
+    <div class="sec-label">Strengths, Weaknesses &amp; Opportunities</div>
+    <div class="three-col">
+      <div class="swot-card strength">
+        <div class="swot-title">Strengths</div>
+        <ul class="swot-list">
+          <li>India-first pharmacy focus</li>
+          <li>WhatsApp CRM — unique USP</li>
+          <li>Very affordable (₹399/mo)</li>
+          <li>GST compliant billing</li>
+          <li>7-day free trial</li>
+          <li>Multi-device access</li>
+          <li>Real user testimonials</li>
+        </ul>
+      </div>
+      <div class="swot-card weakness">
+        <div class="swot-title">Weaknesses</div>
+        <ul class="swot-list">
+          <li>Starter mein WhatsApp nahi</li>
+          <li>Enterprise pricing unclear</li>
+          <li>Limited online reviews</li>
+          <li>Brand awareness kam hai</li>
+          <li>Offline mode unclear</li>
+        </ul>
+      </div>
+      <div class="swot-card opportunity">
+        <div class="swot-title">Opportunities</div>
+        <ul class="swot-list">
+          <li>India mein 9+ lakh pharmacies</li>
+          <li>Digital billing regulation push</li>
+          <li>Ayushman Bharat digitization</li>
+          <li>Jan Aushadhi expansion</li>
+          <li>Tier 2–3 cities market</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECURITY -->
+  <div class="section">
+    <div class="sec-label">Security &amp; Legal Compliance</div>
+    <div class="card">
+      <table class="info-table">
+        <tr><td class="key">Data Encryption</td><td class="val"><span class="badge badge-green">SSL / Industry Standard</span></td></tr>
+        <tr><td class="key">IT Act 2000</td><td class="val"><span class="badge badge-green">Compliant</span></td></tr>
+        <tr><td class="key">DPDPA 2023</td><td class="val"><span class="badge badge-green">Compliant</span></td></tr>
+        <tr><td class="key">Third-party Data Sharing</td><td class="val"><span class="badge badge-green">No sharing</span></td></tr>
+        <tr><td class="key">Regular Backups</td><td class="val"><span class="badge badge-green">Yes — Automated</span></td></tr>
+        <tr><td class="key">Refund Policy</td><td class="val">15 days — pehli subscription</td></tr>
+        <tr><td class="key">Jurisdiction</td><td class="val">Lucknow, UP — Indian Courts</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div class="section">
+    <div class="sec-label">User Testimonials</div>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div class="testimonial">
+        <div class="t-avatar">VK</div>
+        <div>
+          <div class="t-name">Vishal</div>
+          <div class="t-org">Owner — Shree Shyam Medical</div>
+          <div class="t-stars">★★★★★</div>
+          <div class="t-text">Inventory tracking, billing, aur expiry management ab bahut organized aur accurate ho gayi hai. Time bachta hai aur operational mistakes bhi kam ho gayi hain.</div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="t-avatar">KS</div>
+        <div>
+          <div class="t-name">Kuldeep</div>
+          <div class="t-org">Manager — Jan Suvidha Kendra</div>
+          <div class="t-stars">★★★★★</div>
+          <div class="t-text">Stock track karna, expiry monitor karna, aur billing — sab ek hi platform par. Valuable time bachta hai aur manual errors kafi kam ho gayi hain.</div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="t-avatar">SJ</div>
+        <div>
+          <div class="t-name">Surendra Jaiswal</div>
+          <div class="t-org">Founder — Aaradhay Pharmacy</div>
+          <div class="t-stars">★★★★★</div>
+          <div class="t-text">Aaradhay Pharmacy ke operations ab streamlined aur easy to manage hain. Intuitive, reliable, aur efficiency improve karta hai. Highly recommended.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL VERDICT -->
+  <div class="section">
+    <div class="sec-label">Overall Verdict</div>
+    <div class="verdict-box">
+      <div class="verdict-score">
+        <div class="big-score">8.6</div>
+        <div class="verdict-stars">★★★★☆</div>
+        <div class="big-score-label">OUT OF 10</div>
+      </div>
+      <div class="verdict-content">
+        <div class="verdict-title">Recommended — Small &amp; Mid-size Pharmacies ke liye</div>
+        <div class="verdict-text">
+          Medstocksy ek focused, India-centric pharmacy management SaaS hai jo realistic pricing (₹399/month) par strong features deliver karta hai. WhatsApp CRM integration is segment mein iska sabse bada USP hai — jo competitors mein commonly nahi milta. Lucknow-based hone ke karan local market ki understanding bhi excellent hai.<br><br>
+          Choti aur medium pharmacies ke liye yeh ek bahut cost-effective aur practical solution hai. GST compliance, expiry alerts, aur multi-device access sab included hain. Enterprise plan ke liye pricing transparency aur third-party integrations ko aur behtar karna hoga.
+        </div>
+        <div style="display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap;">
+          <span class="badge badge-green">Value for Money</span>
+          <span class="badge badge-green">India-Ready</span>
+          <span class="badge badge-green">WhatsApp CRM</span>
+          <span class="badge badge-amber">Enterprise Pricing Unclear</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="report-footer">
+  <div>
+    <div class="footer-brand">Medstocksy PRT Report</div>
+    <div>Generated: April 2026 &nbsp;·&nbsp; Source: medstocksy.in</div>
+  </div>
+  <div style="text-align: right;">
+    <div>medstocksy.in &nbsp;|&nbsp; contact@medstocksy.in</div>
+    <div>+91 88818 65349 &nbsp;|&nbsp; Lucknow, UP</div>
+  </div>
+</div>
+
+<!-- PRINT BUTTON -->
+<button class="print-btn no-print" onclick="window.print()">⬇ Print / Save PDF</button>
+
+</body>
+</html>
