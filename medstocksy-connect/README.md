@@ -1,4 +1,4 @@
-# Medstocksy Connect — Design System & Wireframes
+# Medstocksy Connect Design System & Wireframes
 
 > A WhatsApp-driven CRM module for [Medstocksy](https://medstocksy.in) (pharmacy SaaS).
 > This repository is the **design package** — PRD, design rules, theme spec, and interactive wireframes.
