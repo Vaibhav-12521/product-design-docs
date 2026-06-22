@@ -1,4 +1,4 @@
-# Medstocksy Connect – Pharmacy CRM PRD
+# Medstocksy Connect Pharmacy CRM PRD
 
 ## 1. Product Overview
 
@@ -683,7 +683,7 @@ Because: Pharmacies have 100+ customers, need simple
 ### Elevator Pitch:
 ```
 "Every pharmacy customer should come back.
-Medstocksy Connect reminds them automatically—
+Medstocksy Connect reminds them automatically
 no manual follow-up, no CRM learning curve.
 One bill, one message, repeat customer."
 ```
