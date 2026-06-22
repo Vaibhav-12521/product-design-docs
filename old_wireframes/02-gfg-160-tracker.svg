@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1100" width="1280" height="1100" font-family="Inter, sans-serif">
+  <title>GFG 160 Days DSA Tracker — Redesign Wireframe</title>
+
+  <rect width="1280" height="1100" fill="#F8FAFC"/>
+
+  <!-- ─────── SIDEBAR ─────── -->
+  <g id="sidebar">
+    <rect x="0" y="0" width="240" height="1100" fill="#FFFFFF"/>
+    <line x1="240" y1="0" x2="240" y2="1100" stroke="#E2E8F0"/>
+    <rect x="20" y="20" width="32" height="32" rx="8" fill="#10B981"/>
+    <text x="36" y="42" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">G</text>
+    <text x="64" y="42" font-size="14" font-weight="600" fill="#0F172A">GFG-160</text>
+
+    <g font-size="14" font-weight="500">
+      <rect x="14" y="84" width="212" height="40" rx="10" fill="#EFF6FF"/>
+      <text x="34" y="109" fill="#1E40AF">📊 &#160;Dashboard</text>
+      <text x="34" y="159" fill="#475569">📅 &#160;Calendar</text>
+      <text x="34" y="199" fill="#475569">📚 &#160;Topics</text>
+      <text x="34" y="239" fill="#475569">⭐ &#160;Bookmarks</text>
+      <text x="34" y="279" fill="#475569">📈 &#160;Stats</text>
+    </g>
+
+    <line x1="14" y1="320" x2="226" y2="320" stroke="#E2E8F0"/>
+
+    <text x="34" y="354" font-size="11" font-weight="600" fill="#94A3B8" letter-spacing="1">PROGRESS</text>
+    <text x="34" y="384" font-size="13" fill="#475569">Day</text>
+    <text x="200" y="384" font-size="13" font-weight="600" fill="#0F172A" text-anchor="end">147 / 160</text>
+    <rect x="34" y="396" width="192" height="6" rx="3" fill="#E2E8F0"/>
+    <rect x="34" y="396" width="176" height="6" rx="3" fill="#10B981"/>
+
+    <text x="34" y="436" font-size="13" fill="#475569">Streak</text>
+    <text x="200" y="436" font-size="13" font-weight="600" fill="#10B981" text-anchor="end">🔥 23 days</text>
+
+    <rect x="14" y="1020" width="212" height="56" rx="10" fill="#F1F5F9"/>
+    <circle cx="36" cy="1048" r="14" fill="#DBEAFE"/>
+    <text x="36" y="1052" font-size="11" font-weight="600" fill="#1E40AF" text-anchor="middle">VS</text>
+    <text x="60" y="1044" font-size="13" font-weight="500" fill="#0F172A">Vaibhav S.</text>
+    <text x="60" y="1062" font-size="11" fill="#475569">Tier · Diamond</text>
+  </g>
+
+  <!-- ─────── HEADER ─────── -->
+  <g id="header">
+    <text x="280" y="60" font-size="13" fill="#94A3B8">Dashboard</text>
+    <text x="280" y="92" font-size="28" font-weight="600" fill="#0F172A">Welcome back, Vaibhav 👋</text>
+    <text x="280" y="124" font-size="14" fill="#475569">You're 13 days from completing the 160-day challenge.</text>
+
+    <rect x="980" y="74" width="40" height="40" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="1000" y="100" font-size="16" text-anchor="middle">🔍</text>
+    <rect x="1030" y="74" width="40" height="40" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="1050" y="100" font-size="16" text-anchor="middle">🔔</text>
+    <rect x="1080" y="74" width="160" height="40" rx="10" fill="#10B981"/>
+    <text x="1160" y="100" font-size="14" font-weight="500" fill="#FFFFFF" text-anchor="middle">+ Today's problem</text>
+  </g>
+
+  <!-- ─────── KPI CARDS ─────── -->
+  <g id="kpi" font-family="Inter">
+    <!-- Card 1 -->
+    <g>
+      <rect x="280" y="160" width="232" height="120" rx="14" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <text x="300" y="190" font-size="11" font-weight="600" fill="#475569" letter-spacing="1">PROBLEMS SOLVED</text>
+      <text x="300" y="232" font-size="32" font-weight="600" fill="#0F172A">147</text>
+      <text x="300" y="258" font-size="12" fill="#10B981">↑ +6 this week</text>
+    </g>
+    <!-- Card 2 -->
+    <g>
+      <rect x="528" y="160" width="232" height="120" rx="14" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <text x="548" y="190" font-size="11" font-weight="600" fill="#475569" letter-spacing="1">CURRENT STREAK</text>
+      <text x="548" y="232" font-size="32" font-weight="600" fill="#0F172A">23 <tspan font-size="16" fill="#475569">days</tspan></text>
+      <text x="548" y="258" font-size="12" fill="#10B981">🔥 Personal best</text>
+    </g>
+    <!-- Card 3 -->
+    <g>
+      <rect x="776" y="160" width="232" height="120" rx="14" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <text x="796" y="190" font-size="11" font-weight="600" fill="#475569" letter-spacing="1">TOPICS COVERED</text>
+      <text x="796" y="232" font-size="32" font-weight="600" fill="#0F172A">12 <tspan font-size="16" fill="#475569">/ 14</tspan></text>
+      <text x="796" y="258" font-size="12" fill="#475569">Trees + Graphs left</text>
+    </g>
+    <!-- Card 4 -->
+    <g>
+      <rect x="1024" y="160" width="216" height="120" rx="14" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <text x="1044" y="190" font-size="11" font-weight="600" fill="#475569" letter-spacing="1">EASY · MED · HARD</text>
+      <text x="1044" y="232" font-size="20" font-weight="600" fill="#10B981">62 <tspan fill="#F59E0B">68</tspan> <tspan fill="#EF4444">17</tspan></text>
+      <text x="1044" y="258" font-size="12" fill="#475569">Mix balanced</text>
+    </g>
+  </g>
+
+  <!-- ─────── 160-DAY CALENDAR ─────── -->
+  <g id="calendar">
+    <rect x="280" y="312" width="728" height="320" rx="14" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="300" y="346" font-size="16" font-weight="600" fill="#0F172A">160-day grid</text>
+    <text x="300" y="368" font-size="12" fill="#475569">Each cell = 1 day. Hover for problem details.</text>
+
+    <!-- Legend -->
+    <g font-size="11" fill="#475569">
+      <rect x="828" y="338" width="12" height="12" rx="2" fill="#E2E8F0"/><text x="844" y="349">Skipped</text>
+      <rect x="900" y="338" width="12" height="12" rx="2" fill="#A7F3D0"/><text x="916" y="349">1 problem</text>
+      <rect x="976" y="338" width="12" height="12" rx="2" fill="#10B981"/><text x="992" y="349">2+ problems</text>
+    </g>
+
+    <!-- Generate 160 cells (16 cols × 10 rows) -->
+    <g id="grid"></g>
+    <!-- We'll inline the dots using a script-free fixed grid: 16x10, 30px cells, 4px gap, starting at 300,396 -->
+    <g>
+      <!-- Row generation (compact: pre-rendered cells) -->
+      <!-- Row 1 -->
+      <rect x="300" y="396" width="30" height="20" rx="4" fill="#10B981"/><rect x="334" y="396" width="30" height="20" rx="4" fill="#10B981"/><rect x="368" y="396" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="402" y="396" width="30" height="20" rx="4" fill="#10B981"/><rect x="436" y="396" width="30" height="20" rx="4" fill="#10B981"/><rect x="470" y="396" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="504" y="396" width="30" height="20" rx="4" fill="#10B981"/><rect x="538" y="396" width="30" height="20" rx="4" fill="#10B981"/><rect x="572" y="396" width="30" height="20" rx="4" fill="#10B981"/><rect x="606" y="396" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="640" y="396" width="30" height="20" rx="4" fill="#10B981"/><rect x="674" y="396" width="30" height="20" rx="4" fill="#10B981"/><rect x="708" y="396" width="30" height="20" rx="4" fill="#10B981"/><rect x="742" y="396" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="776" y="396" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="810" y="396" width="30" height="20" rx="4" fill="#10B981"/>
+      <!-- Row 2 -->
+      <rect x="300" y="420" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="334" y="420" width="30" height="20" rx="4" fill="#10B981"/><rect x="368" y="420" width="30" height="20" rx="4" fill="#10B981"/><rect x="402" y="420" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="436" y="420" width="30" height="20" rx="4" fill="#E2E8F0"/><rect x="470" y="420" width="30" height="20" rx="4" fill="#10B981"/><rect x="504" y="420" width="30" height="20" rx="4" fill="#10B981"/><rect x="538" y="420" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="572" y="420" width="30" height="20" rx="4" fill="#10B981"/><rect x="606" y="420" width="30" height="20" rx="4" fill="#10B981"/><rect x="640" y="420" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="674" y="420" width="30" height="20" rx="4" fill="#10B981"/><rect x="708" y="420" width="30" height="20" rx="4" fill="#10B981"/><rect x="742" y="420" width="30" height="20" rx="4" fill="#10B981"/><rect x="776" y="420" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="810" y="420" width="30" height="20" rx="4" fill="#10B981"/>
+      <!-- Row 3 -->
+      <rect x="300" y="444" width="30" height="20" rx="4" fill="#10B981"/><rect x="334" y="444" width="30" height="20" rx="4" fill="#10B981"/><rect x="368" y="444" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="402" y="444" width="30" height="20" rx="4" fill="#10B981"/><rect x="436" y="444" width="30" height="20" rx="4" fill="#10B981"/><rect x="470" y="444" width="30" height="20" rx="4" fill="#10B981"/><rect x="504" y="444" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="538" y="444" width="30" height="20" rx="4" fill="#10B981"/><rect x="572" y="444" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="606" y="444" width="30" height="20" rx="4" fill="#10B981"/><rect x="640" y="444" width="30" height="20" rx="4" fill="#10B981"/><rect x="674" y="444" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="708" y="444" width="30" height="20" rx="4" fill="#E2E8F0"/><rect x="742" y="444" width="30" height="20" rx="4" fill="#10B981"/><rect x="776" y="444" width="30" height="20" rx="4" fill="#10B981"/><rect x="810" y="444" width="30" height="20" rx="4" fill="#A7F3D0"/>
+      <!-- Row 4 -->
+      <rect x="300" y="468" width="30" height="20" rx="4" fill="#10B981"/><rect x="334" y="468" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="368" y="468" width="30" height="20" rx="4" fill="#10B981"/><rect x="402" y="468" width="30" height="20" rx="4" fill="#10B981"/><rect x="436" y="468" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="470" y="468" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="504" y="468" width="30" height="20" rx="4" fill="#10B981"/><rect x="538" y="468" width="30" height="20" rx="4" fill="#10B981"/><rect x="572" y="468" width="30" height="20" rx="4" fill="#10B981"/><rect x="606" y="468" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="640" y="468" width="30" height="20" rx="4" fill="#10B981"/><rect x="674" y="468" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="708" y="468" width="30" height="20" rx="4" fill="#10B981"/><rect x="742" y="468" width="30" height="20" rx="4" fill="#10B981"/><rect x="776" y="468" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="810" y="468" width="30" height="20" rx="4" fill="#10B981"/>
+      <!-- Row 5 -->
+      <rect x="300" y="492" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="334" y="492" width="30" height="20" rx="4" fill="#10B981"/><rect x="368" y="492" width="30" height="20" rx="4" fill="#10B981"/><rect x="402" y="492" width="30" height="20" rx="4" fill="#10B981"/><rect x="436" y="492" width="30" height="20" rx="4" fill="#10B981"/><rect x="470" y="492" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="504" y="492" width="30" height="20" rx="4" fill="#10B981"/><rect x="538" y="492" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="572" y="492" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="606" y="492" width="30" height="20" rx="4" fill="#10B981"/><rect x="640" y="492" width="30" height="20" rx="4" fill="#10B981"/><rect x="674" y="492" width="30" height="20" rx="4" fill="#10B981"/><rect x="708" y="492" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="742" y="492" width="30" height="20" rx="4" fill="#10B981"/><rect x="776" y="492" width="30" height="20" rx="4" fill="#10B981"/><rect x="810" y="492" width="30" height="20" rx="4" fill="#A7F3D0"/>
+      <!-- Row 6 -->
+      <rect x="300" y="516" width="30" height="20" rx="4" fill="#10B981"/><rect x="334" y="516" width="30" height="20" rx="4" fill="#10B981"/><rect x="368" y="516" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="402" y="516" width="30" height="20" rx="4" fill="#10B981"/><rect x="436" y="516" width="30" height="20" rx="4" fill="#10B981"/><rect x="470" y="516" width="30" height="20" rx="4" fill="#10B981"/><rect x="504" y="516" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="538" y="516" width="30" height="20" rx="4" fill="#10B981"/><rect x="572" y="516" width="30" height="20" rx="4" fill="#10B981"/><rect x="606" y="516" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="640" y="516" width="30" height="20" rx="4" fill="#10B981"/><rect x="674" y="516" width="30" height="20" rx="4" fill="#10B981"/><rect x="708" y="516" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="742" y="516" width="30" height="20" rx="4" fill="#10B981"/><rect x="776" y="516" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="810" y="516" width="30" height="20" rx="4" fill="#10B981"/>
+      <!-- Row 7 -->
+      <rect x="300" y="540" width="30" height="20" rx="4" fill="#10B981"/><rect x="334" y="540" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="368" y="540" width="30" height="20" rx="4" fill="#10B981"/><rect x="402" y="540" width="30" height="20" rx="4" fill="#10B981"/><rect x="436" y="540" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="470" y="540" width="30" height="20" rx="4" fill="#10B981"/><rect x="504" y="540" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="538" y="540" width="30" height="20" rx="4" fill="#10B981"/><rect x="572" y="540" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="606" y="540" width="30" height="20" rx="4" fill="#10B981"/><rect x="640" y="540" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="674" y="540" width="30" height="20" rx="4" fill="#10B981"/><rect x="708" y="540" width="30" height="20" rx="4" fill="#10B981"/><rect x="742" y="540" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="776" y="540" width="30" height="20" rx="4" fill="#10B981"/><rect x="810" y="540" width="30" height="20" rx="4" fill="#A7F3D0"/>
+      <!-- Row 8 -->
+      <rect x="300" y="564" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="334" y="564" width="30" height="20" rx="4" fill="#10B981"/><rect x="368" y="564" width="30" height="20" rx="4" fill="#10B981"/><rect x="402" y="564" width="30" height="20" rx="4" fill="#10B981"/><rect x="436" y="564" width="30" height="20" rx="4" fill="#10B981"/><rect x="470" y="564" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="504" y="564" width="30" height="20" rx="4" fill="#10B981"/><rect x="538" y="564" width="30" height="20" rx="4" fill="#10B981"/><rect x="572" y="564" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="606" y="564" width="30" height="20" rx="4" fill="#10B981"/><rect x="640" y="564" width="30" height="20" rx="4" fill="#10B981"/><rect x="674" y="564" width="30" height="20" rx="4" fill="#10B981"/><rect x="708" y="564" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="742" y="564" width="30" height="20" rx="4" fill="#10B981"/><rect x="776" y="564" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="810" y="564" width="30" height="20" rx="4" fill="#10B981"/>
+      <!-- Row 9 (current week — partial) -->
+      <rect x="300" y="588" width="30" height="20" rx="4" fill="#10B981"/><rect x="334" y="588" width="30" height="20" rx="4" fill="#10B981"/><rect x="368" y="588" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="402" y="588" width="30" height="20" rx="4" fill="#10B981"/><rect x="436" y="588" width="30" height="20" rx="4" fill="#10B981"/><rect x="470" y="588" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="504" y="588" width="30" height="20" rx="4" fill="#10B981"/><rect x="538" y="588" width="30" height="20" rx="4" fill="#10B981"/><rect x="572" y="588" width="30" height="20" rx="4" fill="#A7F3D0"/><rect x="606" y="588" width="30" height="20" rx="4" fill="#10B981"/><rect x="640" y="588" width="30" height="20" rx="4" fill="#10B981"/>
+      <!-- Today indicator -->
+      <rect x="673" y="587" width="32" height="22" rx="5" fill="none" stroke="#2563EB" stroke-width="2"/>
+      <text x="689" y="618" font-size="10" font-weight="600" fill="#2563EB" text-anchor="middle">today</text>
+      <!-- Future cells -->
+      <rect x="708" y="588" width="30" height="20" rx="4" fill="#F1F5F9"/><rect x="742" y="588" width="30" height="20" rx="4" fill="#F1F5F9"/><rect x="776" y="588" width="30" height="20" rx="4" fill="#F1F5F9"/><rect x="810" y="588" width="30" height="20" rx="4" fill="#F1F5F9"/>
+      <!-- Row 10 -->
+      <rect x="300" y="612" width="30" height="20" rx="4" fill="#F1F5F9"/><rect x="334" y="612" width="30" height="20" rx="4" fill="#F1F5F9"/><rect x="368" y="612" width="30" height="20" rx="4" fill="#F1F5F9"/><rect x="402" y="612" width="30" height="20" rx="4" fill="#F1F5F9"/><rect x="436" y="612" width="30" height="20" rx="4" fill="#F1F5F9"/><rect x="470" y="612" width="30" height="20" rx="4" fill="#F1F5F9"/><rect x="504" y="612" width="30" height="20" rx="4" fill="#F1F5F9"/><rect x="538" y="612" width="30" height="20" rx="4" fill="#F1F5F9"/>
+    </g>
+  </g>
+
+  <!-- ─────── TOPIC BREAKDOWN ─────── -->
+  <g id="topics">
+    <rect x="1024" y="312" width="216" height="320" rx="14" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="1044" y="346" font-size="16" font-weight="600" fill="#0F172A">Topics</text>
+    <text x="1044" y="366" font-size="12" fill="#475569">Solved by category</text>
+
+    <g font-size="12" font-family="Inter">
+      <text x="1044" y="402" fill="#0F172A">Arrays</text>
+      <text x="1224" y="402" fill="#475569" text-anchor="end">28</text>
+      <rect x="1044" y="408" width="180" height="4" rx="2" fill="#E2E8F0"/>
+      <rect x="1044" y="408" width="170" height="4" rx="2" fill="#10B981"/>
+
+      <text x="1044" y="438" fill="#0F172A">Strings</text>
+      <text x="1224" y="438" fill="#475569" text-anchor="end">22</text>
+      <rect x="1044" y="444" width="180" height="4" rx="2" fill="#E2E8F0"/>
+      <rect x="1044" y="444" width="140" height="4" rx="2" fill="#10B981"/>
+
+      <text x="1044" y="474" fill="#0F172A">Linked Lists</text>
+      <text x="1224" y="474" fill="#475569" text-anchor="end">18</text>
+      <rect x="1044" y="480" width="180" height="4" rx="2" fill="#E2E8F0"/>
+      <rect x="1044" y="480" width="116" height="4" rx="2" fill="#10B981"/>
+
+      <text x="1044" y="510" fill="#0F172A">Stack &amp; Queue</text>
+      <text x="1224" y="510" fill="#475569" text-anchor="end">15</text>
+      <rect x="1044" y="516" width="180" height="4" rx="2" fill="#E2E8F0"/>
+      <rect x="1044" y="516" width="92" height="4" rx="2" fill="#10B981"/>
+
+      <text x="1044" y="546" fill="#0F172A">Recursion / DP</text>
+      <text x="1224" y="546" fill="#475569" text-anchor="end">24</text>
+      <rect x="1044" y="552" width="180" height="4" rx="2" fill="#E2E8F0"/>
+      <rect x="1044" y="552" width="148" height="4" rx="2" fill="#10B981"/>
+
+      <text x="1044" y="582" fill="#0F172A">Trees</text>
+      <text x="1224" y="582" fill="#475569" text-anchor="end">12</text>
+      <rect x="1044" y="588" width="180" height="4" rx="2" fill="#E2E8F0"/>
+      <rect x="1044" y="588" width="74" height="4" rx="2" fill="#F59E0B"/>
+
+      <text x="1044" y="618" fill="#0F172A">Graphs</text>
+      <text x="1224" y="618" fill="#475569" text-anchor="end">8</text>
+      <rect x="1044" y="624" width="180" height="4" rx="2" fill="#E2E8F0"/>
+      <rect x="1044" y="624" width="48" height="4" rx="2" fill="#F59E0B"/>
+    </g>
+  </g>
+
+  <!-- ─────── RECENT SUBMISSIONS ─────── -->
+  <g id="recent">
+    <rect x="280" y="664" width="960" height="380" rx="14" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="300" y="698" font-size="16" font-weight="600" fill="#0F172A">Recent submissions</text>
+    <text x="1220" y="698" font-size="13" font-weight="500" fill="#2563EB" text-anchor="end">View all →</text>
+
+    <line x1="300" y1="722" x2="1220" y2="722" stroke="#E2E8F0"/>
+
+    <!-- Headers -->
+    <g font-size="11" font-weight="600" fill="#94A3B8" letter-spacing="1">
+      <text x="300" y="744">PROBLEM</text>
+      <text x="700" y="744">TOPIC</text>
+      <text x="880" y="744">DIFFICULTY</text>
+      <text x="1020" y="744">RUNTIME</text>
+      <text x="1140" y="744">STATUS</text>
+    </g>
+    <line x1="300" y1="758" x2="1220" y2="758" stroke="#E2E8F0"/>
+
+    <!-- Rows -->
+    <g font-size="13" fill="#0F172A">
+      <text x="300" y="788" font-weight="500">Two Sum</text>
+      <text x="700" y="788" fill="#475569">Arrays</text>
+      <rect x="876" y="775" width="64" height="22" rx="4" fill="#D1FAE5"/><text x="908" y="790" font-size="11" font-weight="500" fill="#047857" text-anchor="middle">Easy</text>
+      <text x="1020" y="788" font-family="JetBrains Mono, monospace" fill="#475569">12 ms</text>
+      <text x="1140" y="788" fill="#10B981" font-weight="500">✓ Accepted</text>
+    </g>
+    <line x1="300" y1="804" x2="1220" y2="804" stroke="#E2E8F0"/>
+
+    <g font-size="13" fill="#0F172A">
+      <text x="300" y="834" font-weight="500">Longest Substring Without Repeating</text>
+      <text x="700" y="834" fill="#475569">Strings</text>
+      <rect x="876" y="821" width="78" height="22" rx="4" fill="#FEF3C7"/><text x="915" y="836" font-size="11" font-weight="500" fill="#92400E" text-anchor="middle">Medium</text>
+      <text x="1020" y="834" font-family="JetBrains Mono, monospace" fill="#475569">28 ms</text>
+      <text x="1140" y="834" fill="#10B981" font-weight="500">✓ Accepted</text>
+    </g>
+    <line x1="300" y1="850" x2="1220" y2="850" stroke="#E2E8F0"/>
+
+    <g font-size="13" fill="#0F172A">
+      <text x="300" y="880" font-weight="500">Reverse Linked List</text>
+      <text x="700" y="880" fill="#475569">Linked Lists</text>
+      <rect x="876" y="867" width="64" height="22" rx="4" fill="#D1FAE5"/><text x="908" y="882" font-size="11" font-weight="500" fill="#047857" text-anchor="middle">Easy</text>
+      <text x="1020" y="880" font-family="JetBrains Mono, monospace" fill="#475569">8 ms</text>
+      <text x="1140" y="880" fill="#10B981" font-weight="500">✓ Accepted</text>
+    </g>
+    <line x1="300" y1="896" x2="1220" y2="896" stroke="#E2E8F0"/>
+
+    <g font-size="13" fill="#0F172A">
+      <text x="300" y="926" font-weight="500">Coin Change</text>
+      <text x="700" y="926" fill="#475569">DP</text>
+      <rect x="876" y="913" width="78" height="22" rx="4" fill="#FEF3C7"/><text x="915" y="928" font-size="11" font-weight="500" fill="#92400E" text-anchor="middle">Medium</text>
+      <text x="1020" y="926" font-family="JetBrains Mono, monospace" fill="#475569">42 ms</text>
+      <text x="1140" y="926" fill="#10B981" font-weight="500">✓ Accepted</text>
+    </g>
+    <line x1="300" y1="942" x2="1220" y2="942" stroke="#E2E8F0"/>
+
+    <g font-size="13" fill="#0F172A">
+      <text x="300" y="972" font-weight="500">Word Ladder</text>
+      <text x="700" y="972" fill="#475569">Graphs / BFS</text>
+      <rect x="876" y="959" width="64" height="22" rx="4" fill="#FEE2E2"/><text x="908" y="974" font-size="11" font-weight="500" fill="#991B1B" text-anchor="middle">Hard</text>
+      <text x="1020" y="972" font-family="JetBrains Mono, monospace" fill="#475569">156 ms</text>
+      <text x="1140" y="972" fill="#F59E0B" font-weight="500">↻ Optimising</text>
+    </g>
+  </g>
+
+  <!-- Annotation -->
+  <text x="280" y="1080" font-family="JetBrains Mono, monospace" font-size="11" fill="#94A3B8">02 / GFG-160-Days-Tracker · DSA tracker dashboard · 1280 × 1100</text>
+</svg>

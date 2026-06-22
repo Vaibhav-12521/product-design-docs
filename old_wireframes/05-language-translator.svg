@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 820" width="1280" height="820" font-family="Inter, sans-serif">
+  <title>CodeAlpha Language Translation Tool — Redesign Wireframe</title>
+  <rect width="1280" height="820" fill="#FFFFFF"/>
+
+  <!-- TOP NAV -->
+  <g id="nav">
+    <rect x="0" y="0" width="1280" height="64" fill="#FFFFFF"/>
+    <line x1="0" y1="64" x2="1280" y2="64" stroke="#E2E8F0"/>
+    <rect x="32" y="18" width="32" height="28" rx="6" fill="#5B21B6"/>
+    <text x="48" y="37" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">T</text>
+    <text x="76" y="38" font-size="14" font-weight="600" fill="#0F172A">Translate</text>
+    <text x="148" y="38" font-size="12" fill="#94A3B8">by CodeAlpha · Vaibhav Singh</text>
+
+    <g font-size="13" font-weight="500" fill="#475569">
+      <text x="950" y="38">History</text>
+      <text x="1018" y="38">Phrasebook</text>
+      <text x="1106" y="38">About</text>
+    </g>
+    <rect x="1180" y="14" width="68" height="36" rx="8" fill="#F8FAFC" stroke="#CBD5E1"/>
+    <text x="1214" y="38" font-size="13" fill="#0F172A" text-anchor="middle">🌙</text>
+  </g>
+
+  <!-- HEADLINE -->
+  <text x="640" y="120" font-size="28" font-weight="600" fill="#0F172A" text-anchor="middle">Translate anything, instantly.</text>
+  <text x="640" y="146" font-size="13" fill="#475569" text-anchor="middle">Auto-detect 100+ languages · 5,000 chars per request · Save your favourites.</text>
+
+  <!-- TRANSLATION CARD -->
+  <g id="translator">
+    <rect x="60" y="180" width="1160" height="380" rx="16" fill="#F8FAFC" stroke="#E2E8F0"/>
+
+    <!-- Language pickers row -->
+    <g>
+      <!-- source -->
+      <rect x="80" y="200" width="540" height="44" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <rect x="92" y="210" width="64" height="24" rx="4" fill="#EDE9FE"/>
+      <text x="124" y="227" font-size="11" font-weight="600" fill="#5B21B6" text-anchor="middle">AUTO</text>
+      <text x="168" y="228" font-size="13" font-weight="500" fill="#0F172A">Detected: English</text>
+      <text x="600" y="228" font-size="13" fill="#475569" text-anchor="end">▾</text>
+
+      <!-- swap -->
+      <rect x="624" y="206" width="32" height="32" rx="16" fill="#F8FAFC" stroke="#CBD5E1"/>
+      <text x="640" y="227" font-size="13" fill="#475569" text-anchor="middle">⇆</text>
+
+      <!-- target -->
+      <rect x="660" y="200" width="540" height="44" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <text x="684" y="228" font-size="13" font-weight="500" fill="#0F172A">हिन्दी (Hindi)</text>
+      <text x="1180" y="228" font-size="13" fill="#475569" text-anchor="end">▾</text>
+    </g>
+
+    <!-- Side-by-side textareas -->
+    <!-- Source -->
+    <rect x="80" y="264" width="540" height="244" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="100" y="296" font-size="15" line-height="1.6" fill="#0F172A">Hello, how are you doing today?</text>
+    <text x="100" y="322" font-size="15" fill="#0F172A">I'm working on a translation tool</text>
+    <text x="100" y="348" font-size="15" fill="#0F172A">for my CodeAlpha internship project.</text>
+    <text x="100" y="380" font-size="15" fill="#94A3B8" font-style="italic">|</text>
+
+    <!-- Source footer -->
+    <line x1="80" y1="464" x2="620" y2="464" stroke="#E2E8F0"/>
+    <g font-size="12" fill="#475569">
+      <rect x="92" y="476" width="32" height="24" rx="4" fill="#F1F5F9"/>
+      <text x="108" y="492" font-size="11" text-anchor="middle">🎤</text>
+      <rect x="132" y="476" width="32" height="24" rx="4" fill="#F1F5F9"/>
+      <text x="148" y="492" font-size="11" text-anchor="middle">📋</text>
+    </g>
+    <text x="608" y="492" font-size="11" fill="#94A3B8" text-anchor="end" font-family="JetBrains Mono, monospace">102 / 5,000</text>
+
+    <!-- Target -->
+    <rect x="660" y="264" width="540" height="244" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="680" y="296" font-size="15" fill="#0F172A">नमस्ते, आज आप कैसे हैं?</text>
+    <text x="680" y="322" font-size="15" fill="#0F172A">मैं अपने CodeAlpha</text>
+    <text x="680" y="348" font-size="15" fill="#0F172A">इंटर्नशिप प्रोजेक्ट के लिए एक अनुवाद</text>
+    <text x="680" y="374" font-size="15" fill="#0F172A">टूल पर काम कर रहा हूँ।</text>
+
+    <!-- Target footer -->
+    <line x1="660" y1="464" x2="1200" y2="464" stroke="#E2E8F0"/>
+    <g font-size="12" fill="#475569">
+      <rect x="672" y="476" width="32" height="24" rx="4" fill="#F1F5F9"/>
+      <text x="688" y="492" font-size="11" text-anchor="middle">🔊</text>
+      <rect x="712" y="476" width="32" height="24" rx="4" fill="#F1F5F9"/>
+      <text x="728" y="492" font-size="11" text-anchor="middle">📋</text>
+      <rect x="752" y="476" width="32" height="24" rx="4" fill="#F1F5F9"/>
+      <text x="768" y="492" font-size="11" text-anchor="middle">⭐</text>
+    </g>
+    <text x="1188" y="492" font-size="11" fill="#10B981" text-anchor="end" font-weight="500">✓ Translated · 0.4s</text>
+  </g>
+
+  <!-- ALTERNATIVE TRANSLATIONS / SUGGESTIONS -->
+  <g id="alternatives">
+    <text x="60" y="600" font-size="13" font-weight="600" fill="#475569" letter-spacing="1">ALTERNATIVE PHRASINGS</text>
+
+    <!-- Suggestion chips -->
+    <rect x="60" y="618" width="280" height="64" rx="12" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="76" y="642" font-size="13" font-weight="500" fill="#0F172A">नमस्कार, आज आप कैसे हैं?</text>
+    <text x="76" y="664" font-size="11" fill="#94A3B8">More formal · "Namaskar"</text>
+
+    <rect x="356" y="618" width="280" height="64" rx="12" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="372" y="642" font-size="13" font-weight="500" fill="#0F172A">हाय, कैसे हो आज?</text>
+    <text x="372" y="664" font-size="11" fill="#94A3B8">Casual · friend-to-friend</text>
+
+    <rect x="652" y="618" width="280" height="64" rx="12" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="668" y="642" font-size="13" font-weight="500" fill="#0F172A">हेलो, कैसे हैं आप आज?</text>
+    <text x="668" y="664" font-size="11" fill="#94A3B8">Hinglish blend · most common</text>
+  </g>
+
+  <!-- HISTORY -->
+  <g id="history">
+    <text x="60" y="722" font-size="13" font-weight="600" fill="#475569" letter-spacing="1">RECENT</text>
+
+    <g font-size="13">
+      <text x="60" y="752" fill="#0F172A">"Where is the nearest pharmacy?"</text>
+      <text x="60" y="770" fill="#94A3B8" font-size="11">EN → HI · 2 min ago</text>
+      <text x="450" y="752" fill="#0F172A">"Schedule a meeting tomorrow at 10."</text>
+      <text x="450" y="770" fill="#94A3B8" font-size="11">EN → ES · 14 min ago</text>
+      <text x="900" y="752" fill="#0F172A">"मुझे एक कप चाय चाहिए"</text>
+      <text x="900" y="770" fill="#94A3B8" font-size="11">HI → EN · 1 hour ago</text>
+    </g>
+  </g>
+
+  <text x="60" y="804" font-family="JetBrains Mono, monospace" font-size="11" fill="#94A3B8">05 / CodeAlpha Language-Translation-Tool · Side-by-side translator · 1280 × 820</text>
+</svg>

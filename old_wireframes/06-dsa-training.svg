@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 900" width="1280" height="900" font-family="Inter, sans-serif">
+  <title>DSA-Training-SRDT — Learning Portal Wireframe</title>
+  <rect width="1280" height="900" fill="#F8FAFC"/>
+
+  <!-- TOP NAV -->
+  <g id="nav">
+    <rect x="0" y="0" width="1280" height="56" fill="#0F172A"/>
+    <rect x="32" y="14" width="32" height="28" rx="6" fill="#2563EB"/>
+    <text x="48" y="33" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">{ }</text>
+    <text x="76" y="34" font-size="14" font-weight="600" fill="#FFFFFF">DSA · SRDT Track</text>
+
+    <g font-size="13" fill="#CBD5E1">
+      <text x="940" y="34">Topics</text>
+      <text x="1004" y="34">Practice</text>
+      <text x="1078" y="34">Bookmarks</text>
+    </g>
+    <circle cx="1218" cy="28" r="14" fill="#DBEAFE"/>
+    <text x="1218" y="32" font-size="11" font-weight="600" fill="#1E40AF" text-anchor="middle">VS</text>
+  </g>
+
+  <!-- TWO-COL: sidebar (topics) + main (lesson) -->
+  <!-- SIDEBAR -->
+  <g id="sidebar">
+    <rect x="0" y="56" width="280" height="844" fill="#FFFFFF"/>
+    <line x1="280" y1="56" x2="280" y2="900" stroke="#E2E8F0"/>
+
+    <text x="24" y="92" font-size="11" font-weight="600" fill="#94A3B8" letter-spacing="1">CURRICULUM</text>
+
+    <!-- Section 1 done -->
+    <g>
+      <text x="24" y="124" font-size="13" font-weight="600" fill="#0F172A">1. Foundations ✓</text>
+      <text x="40" y="148" font-size="12" fill="#475569">Big-O notation</text>
+      <text x="40" y="170" font-size="12" fill="#475569">Time vs space</text>
+      <text x="40" y="192" font-size="12" fill="#475569">Pseudocode patterns</text>
+    </g>
+
+    <!-- Section 2 in progress -->
+    <g>
+      <text x="24" y="226" font-size="13" font-weight="600" fill="#0F172A">2. Arrays &amp; Strings</text>
+      <text x="40" y="250" font-size="12" fill="#10B981">✓ Two pointers</text>
+      <text x="40" y="272" font-size="12" fill="#10B981">✓ Sliding window</text>
+      <rect x="36" y="282" width="208" height="32" rx="6" fill="#EFF6FF"/>
+      <text x="40" y="304" font-size="12" font-weight="600" fill="#1E40AF">▸ Prefix sums (current)</text>
+      <text x="40" y="332" font-size="12" fill="#94A3B8">○ String matching</text>
+    </g>
+
+    <!-- Section 3 -->
+    <g>
+      <text x="24" y="370" font-size="13" font-weight="600" fill="#0F172A">3. Linked Lists</text>
+      <text x="40" y="394" font-size="12" fill="#94A3B8">○ Singly linked</text>
+      <text x="40" y="416" font-size="12" fill="#94A3B8">○ Doubly linked</text>
+      <text x="40" y="438" font-size="12" fill="#94A3B8">○ Cycle detection</text>
+    </g>
+
+    <!-- Section 4 -->
+    <g>
+      <text x="24" y="476" font-size="13" font-weight="600" fill="#0F172A">4. Stacks &amp; Queues</text>
+      <text x="40" y="500" font-size="12" fill="#94A3B8">○ Stack ADT</text>
+      <text x="40" y="522" font-size="12" fill="#94A3B8">○ Monotonic stack</text>
+      <text x="40" y="544" font-size="12" fill="#94A3B8">○ Queue + Deque</text>
+    </g>
+
+    <!-- Section 5 -->
+    <g>
+      <text x="24" y="582" font-size="13" font-weight="600" fill="#0F172A">5. Trees &amp; Graphs</text>
+      <text x="40" y="606" font-size="12" fill="#94A3B8">○ Binary tree traversal</text>
+      <text x="40" y="628" font-size="12" fill="#94A3B8">○ BST</text>
+      <text x="40" y="650" font-size="12" fill="#94A3B8">○ DFS, BFS, Dijkstra</text>
+    </g>
+
+    <!-- Progress -->
+    <line x1="24" y1="700" x2="256" y2="700" stroke="#E2E8F0"/>
+    <text x="24" y="724" font-size="11" font-weight="600" fill="#94A3B8" letter-spacing="1">PROGRESS</text>
+    <rect x="24" y="734" width="232" height="6" rx="3" fill="#E2E8F0"/>
+    <rect x="24" y="734" width="92" height="6" rx="3" fill="#10B981"/>
+    <text x="24" y="760" font-size="12" fill="#475569">5 / 14 sections complete</text>
+  </g>
+
+  <!-- MAIN CONTENT -->
+  <g id="main">
+    <!-- Breadcrumb -->
+    <text x="320" y="92" font-size="12" fill="#94A3B8">Arrays &amp; Strings</text>
+    <text x="416" y="92" font-size="12" fill="#94A3B8">›</text>
+    <text x="430" y="92" font-size="12" fill="#0F172A">Prefix sums</text>
+
+    <!-- Topic title -->
+    <text x="320" y="132" font-size="28" font-weight="600" fill="#0F172A">Prefix sums</text>
+    <text x="320" y="158" font-size="14" fill="#475569">Pre-compute cumulative sums to answer range queries in O(1).</text>
+
+    <!-- Pills -->
+    <g font-size="11" font-weight="500">
+      <rect x="320" y="178" width="68" height="24" rx="4" fill="#FEF3C7"/><text x="354" y="194" fill="#92400E" text-anchor="middle">Medium</text>
+      <rect x="396" y="178" width="64" height="24" rx="4" fill="#DBEAFE"/><text x="428" y="194" fill="#1E40AF" text-anchor="middle">15 min</text>
+      <rect x="468" y="178" width="84" height="24" rx="4" fill="#D1FAE5"/><text x="510" y="194" fill="#047857" text-anchor="middle">12 problems</text>
+    </g>
+
+    <!-- THEORY CARD -->
+    <rect x="320" y="226" width="600" height="290" rx="14" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="344" y="262" font-size="11" font-weight="600" fill="#475569" letter-spacing="1">CONCEPT</text>
+    <text x="344" y="294" font-size="14" fill="#0F172A">Given an array A of length n, the prefix sum array P satisfies:</text>
+    <rect x="344" y="312" width="552" height="36" rx="6" fill="#F8FAFC"/>
+    <text x="360" y="335" font-size="13" font-family="JetBrains Mono, monospace" fill="#0F172A">P[i] = A[0] + A[1] + ... + A[i]</text>
+
+    <text x="344" y="376" font-size="14" fill="#0F172A">A range sum from index l to r becomes:</text>
+    <rect x="344" y="392" width="552" height="36" rx="6" fill="#F8FAFC"/>
+    <text x="360" y="415" font-size="13" font-family="JetBrains Mono, monospace" fill="#0F172A">sum(l, r) = P[r] − P[l−1]</text>
+
+    <text x="344" y="456" font-size="14" fill="#0F172A">→ Each query answered in <tspan font-weight="600" fill="#10B981">O(1)</tspan> after O(n) preprocessing.</text>
+
+    <text x="344" y="492" font-size="13" fill="#475569">Read full theory →</text>
+
+    <!-- VISUAL CARD -->
+    <rect x="936" y="226" width="312" height="290" rx="14" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="956" y="262" font-size="11" font-weight="600" fill="#475569" letter-spacing="1">VISUAL</text>
+
+    <!-- Array A -->
+    <text x="956" y="294" font-size="12" fill="#475569">A:</text>
+    <g font-family="JetBrains Mono, monospace" font-size="13">
+      <rect x="976" y="278" width="36" height="32" rx="4" fill="#F8FAFC" stroke="#CBD5E1"/><text x="994" y="299" text-anchor="middle">3</text>
+      <rect x="1014" y="278" width="36" height="32" rx="4" fill="#F8FAFC" stroke="#CBD5E1"/><text x="1032" y="299" text-anchor="middle">1</text>
+      <rect x="1052" y="278" width="36" height="32" rx="4" fill="#F8FAFC" stroke="#CBD5E1"/><text x="1070" y="299" text-anchor="middle">4</text>
+      <rect x="1090" y="278" width="36" height="32" rx="4" fill="#F8FAFC" stroke="#CBD5E1"/><text x="1108" y="299" text-anchor="middle">1</text>
+      <rect x="1128" y="278" width="36" height="32" rx="4" fill="#F8FAFC" stroke="#CBD5E1"/><text x="1146" y="299" text-anchor="middle">5</text>
+      <rect x="1166" y="278" width="36" height="32" rx="4" fill="#F8FAFC" stroke="#CBD5E1"/><text x="1184" y="299" text-anchor="middle">9</text>
+    </g>
+
+    <!-- Array P -->
+    <text x="956" y="346" font-size="12" fill="#475569">P:</text>
+    <g font-family="JetBrains Mono, monospace" font-size="13">
+      <rect x="976" y="330" width="36" height="32" rx="4" fill="#DBEAFE" stroke="#2563EB"/><text x="994" y="351" text-anchor="middle" fill="#1E40AF" font-weight="600">3</text>
+      <rect x="1014" y="330" width="36" height="32" rx="4" fill="#DBEAFE" stroke="#2563EB"/><text x="1032" y="351" text-anchor="middle" fill="#1E40AF" font-weight="600">4</text>
+      <rect x="1052" y="330" width="36" height="32" rx="4" fill="#DBEAFE" stroke="#2563EB"/><text x="1070" y="351" text-anchor="middle" fill="#1E40AF" font-weight="600">8</text>
+      <rect x="1090" y="330" width="36" height="32" rx="4" fill="#DBEAFE" stroke="#2563EB"/><text x="1108" y="351" text-anchor="middle" fill="#1E40AF" font-weight="600">9</text>
+      <rect x="1128" y="330" width="36" height="32" rx="4" fill="#DBEAFE" stroke="#2563EB"/><text x="1146" y="351" text-anchor="middle" fill="#1E40AF" font-weight="600">14</text>
+      <rect x="1166" y="330" width="36" height="32" rx="4" fill="#DBEAFE" stroke="#2563EB"/><text x="1184" y="351" text-anchor="middle" fill="#1E40AF" font-weight="600">23</text>
+    </g>
+
+    <text x="956" y="394" font-size="11" fill="#94A3B8">Query sum(2, 4):</text>
+    <text x="956" y="416" font-size="13" font-family="JetBrains Mono, monospace" fill="#0F172A">P[4] - P[1] = 14 - 4 = <tspan fill="#10B981" font-weight="600">10</tspan></text>
+
+    <line x1="956" y1="446" x2="1228" y2="446" stroke="#E2E8F0"/>
+    <text x="956" y="476" font-size="12" fill="#475569">Try it interactive →</text>
+
+    <!-- CODE CARD -->
+    <rect x="320" y="540" width="928" height="240" rx="14" fill="#0F172A"/>
+    <rect x="320" y="540" width="928" height="40" rx="14" fill="#1E293B"/>
+    <text x="344" y="566" font-size="12" font-weight="500" fill="#94A3B8">prefix_sum.py</text>
+    <g font-size="11" fill="#475569" font-weight="500">
+      <text x="1100" y="566">Python</text>
+      <text x="1158" y="566">C++</text>
+      <text x="1200" y="566">Java</text>
+    </g>
+
+    <g font-family="JetBrains Mono, monospace" font-size="13" fill="#E2E8F0">
+      <text x="344" y="608"><tspan fill="#94A3B8">def</tspan> <tspan fill="#60A5FA">build_prefix</tspan>(arr):</text>
+      <text x="344" y="632">    P = [<tspan fill="#FBBF24">0</tspan>] * <tspan fill="#FBBF24">len</tspan>(arr)</text>
+      <text x="344" y="656">    P[<tspan fill="#FBBF24">0</tspan>] = arr[<tspan fill="#FBBF24">0</tspan>]</text>
+      <text x="344" y="680">    <tspan fill="#94A3B8">for</tspan> i <tspan fill="#94A3B8">in</tspan> <tspan fill="#FBBF24">range</tspan>(<tspan fill="#FBBF24">1</tspan>, <tspan fill="#FBBF24">len</tspan>(arr)):</text>
+      <text x="344" y="704">        P[i] = P[i-<tspan fill="#FBBF24">1</tspan>] + arr[i]</text>
+      <text x="344" y="728">    <tspan fill="#94A3B8">return</tspan> P</text>
+      <text x="344" y="752"></text>
+      <text x="344" y="752" fill="#475569"># Range sum: P[r] − (P[l-1] if l &gt; 0 else 0)</text>
+    </g>
+
+    <!-- Action bar -->
+    <g>
+      <rect x="320" y="804" width="928" height="60" rx="14" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <text x="344" y="830" font-size="13" font-weight="500" fill="#0F172A">Ready to practice?</text>
+      <text x="344" y="848" font-size="12" fill="#475569">12 problems on prefix sums · ~90 min total</text>
+
+      <rect x="1056" y="822" width="80" height="36" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <text x="1096" y="844" font-size="13" font-weight="500" fill="#0F172A" text-anchor="middle">⭐ Save</text>
+      <rect x="1144" y="822" width="92" height="36" rx="8" fill="#2563EB"/>
+      <text x="1190" y="844" font-size="13" font-weight="500" fill="#FFFFFF" text-anchor="middle">Start →</text>
+    </g>
+  </g>
+
+  <text x="32" y="888" font-family="JetBrains Mono, monospace" font-size="11" fill="#94A3B8">06 / DSA-Training-SRDT · Learning portal · 1280 × 900</text>
+</svg>

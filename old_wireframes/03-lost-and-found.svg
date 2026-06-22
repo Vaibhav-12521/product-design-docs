@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 900" width="1280" height="900" font-family="Inter, sans-serif">
+  <title>Lost &amp; Found — Redesign Wireframe</title>
+  <rect width="1280" height="900" fill="#F8FAFC"/>
+
+  <!-- TOP NAV -->
+  <g id="nav">
+    <rect x="0" y="0" width="1280" height="64" fill="#FFFFFF"/>
+    <line x1="0" y1="64" x2="1280" y2="64" stroke="#E2E8F0"/>
+    <rect x="32" y="18" width="32" height="28" rx="6" fill="#2563EB"/>
+    <text x="48" y="37" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">L&amp;F</text>
+    <text x="76" y="38" font-size="14" font-weight="600" fill="#0F172A">Lost &amp; Found</text>
+
+    <!-- search bar -->
+    <rect x="380" y="14" width="520" height="36" rx="8" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <text x="400" y="38" font-size="13" fill="#94A3B8">🔍 &#160;Search by item, location, or keyword…</text>
+
+    <!-- city -->
+    <rect x="940" y="14" width="140" height="36" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="958" y="38" font-size="13" fill="#0F172A">📍 Lucknow ▾</text>
+
+    <!-- post button -->
+    <rect x="1100" y="14" width="148" height="36" rx="8" fill="#2563EB"/>
+    <text x="1174" y="38" font-size="13" font-weight="500" fill="#FFFFFF" text-anchor="middle">+ Post an item</text>
+  </g>
+
+  <!-- HEADER STRIP / FILTERS -->
+  <g id="filters">
+    <text x="32" y="108" font-size="22" font-weight="600" fill="#0F172A">Items near you</text>
+    <text x="32" y="132" font-size="13" fill="#475569">128 active reports · 64 reunited this month</text>
+
+    <!-- toggle pill -->
+    <rect x="32" y="156" width="220" height="36" rx="18" fill="#F1F5F9"/>
+    <rect x="34" y="158" width="108" height="32" rx="16" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <text x="88" y="180" font-size="13" font-weight="500" fill="#0F172A" text-anchor="middle">🔴 Lost (87)</text>
+    <text x="196" y="180" font-size="13" font-weight="500" fill="#475569" text-anchor="middle">🟢 Found (41)</text>
+
+    <!-- chips -->
+    <g font-size="12" font-weight="500">
+      <rect x="280" y="158" width="86" height="32" rx="16" fill="#FFFFFF" stroke="#CBD5E1"/><text x="323" y="178" fill="#0F172A" text-anchor="middle">All</text>
+      <rect x="374" y="158" width="100" height="32" rx="16" fill="#FFFFFF" stroke="#CBD5E1"/><text x="424" y="178" fill="#475569" text-anchor="middle">📱 Phones</text>
+      <rect x="482" y="158" width="98" height="32" rx="16" fill="#FFFFFF" stroke="#CBD5E1"/><text x="531" y="178" fill="#475569" text-anchor="middle">💼 Bags</text>
+      <rect x="588" y="158" width="98" height="32" rx="16" fill="#FFFFFF" stroke="#CBD5E1"/><text x="637" y="178" fill="#475569" text-anchor="middle">🔑 Keys</text>
+      <rect x="694" y="158" width="86" height="32" rx="16" fill="#FFFFFF" stroke="#CBD5E1"/><text x="737" y="178" fill="#475569" text-anchor="middle">🧥 Items</text>
+      <rect x="788" y="158" width="106" height="32" rx="16" fill="#FFFFFF" stroke="#CBD5E1"/><text x="841" y="178" fill="#475569" text-anchor="middle">🐕 Pets</text>
+    </g>
+
+    <text x="1248" y="178" font-size="13" font-weight="500" fill="#475569" text-anchor="end">Sort: Most recent ▾</text>
+  </g>
+
+  <!-- TWO COLUMN LAYOUT: list (left) + map (right) -->
+  <!-- LEFT: list -->
+  <g id="list">
+    <!-- Card 1 -->
+    <g>
+      <rect x="32" y="220" width="520" height="120" rx="14" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <rect x="48" y="236" width="88" height="88" rx="10" fill="#FEE2E2"/>
+      <text x="92" y="286" font-size="32" text-anchor="middle">📱</text>
+      <rect x="152" y="240" width="44" height="22" rx="4" fill="#FEE2E2"/>
+      <text x="174" y="255" font-size="11" font-weight="500" fill="#991B1B" text-anchor="middle">LOST</text>
+      <text x="152" y="286" font-size="16" font-weight="600" fill="#0F172A">iPhone 14 Pro · Space Black</text>
+      <text x="152" y="306" font-size="13" fill="#475569">📍 Hazratganj Metro · 2 hours ago</text>
+      <text x="152" y="324" font-size="12" fill="#94A3B8">Reward offered · Posted by Aman K.</text>
+      <rect x="468" y="280" width="68" height="32" rx="8" fill="#2563EB"/>
+      <text x="502" y="300" font-size="12" font-weight="500" fill="#FFFFFF" text-anchor="middle">Contact</text>
+    </g>
+    <!-- Card 2 -->
+    <g>
+      <rect x="32" y="356" width="520" height="120" rx="14" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <rect x="48" y="372" width="88" height="88" rx="10" fill="#D1FAE5"/>
+      <text x="92" y="422" font-size="32" text-anchor="middle">💼</text>
+      <rect x="152" y="376" width="56" height="22" rx="4" fill="#D1FAE5"/>
+      <text x="180" y="391" font-size="11" font-weight="500" fill="#047857" text-anchor="middle">FOUND</text>
+      <text x="152" y="422" font-size="16" font-weight="600" fill="#0F172A">Brown leather wallet</text>
+      <text x="152" y="442" font-size="13" fill="#475569">📍 Ambedkar Park · 5 hours ago</text>
+      <text x="152" y="460" font-size="12" fill="#94A3B8">Held at security desk · Posted by Priya M.</text>
+      <rect x="468" y="416" width="68" height="32" rx="8" fill="#2563EB"/>
+      <text x="502" y="436" font-size="12" font-weight="500" fill="#FFFFFF" text-anchor="middle">Claim</text>
+    </g>
+    <!-- Card 3 -->
+    <g>
+      <rect x="32" y="492" width="520" height="120" rx="14" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <rect x="48" y="508" width="88" height="88" rx="10" fill="#FEE2E2"/>
+      <text x="92" y="558" font-size="32" text-anchor="middle">🔑</text>
+      <rect x="152" y="512" width="44" height="22" rx="4" fill="#FEE2E2"/>
+      <text x="174" y="527" font-size="11" font-weight="500" fill="#991B1B" text-anchor="middle">LOST</text>
+      <text x="152" y="558" font-size="16" font-weight="600" fill="#0F172A">Honda car keys w/ red keychain</text>
+      <text x="152" y="578" font-size="13" fill="#475569">📍 Phoenix Mall parking · 1 day ago</text>
+      <text x="152" y="596" font-size="12" fill="#94A3B8">3 messages · Posted by Karan S.</text>
+      <rect x="468" y="552" width="68" height="32" rx="8" fill="#2563EB"/>
+      <text x="502" y="572" font-size="12" font-weight="500" fill="#FFFFFF" text-anchor="middle">Contact</text>
+    </g>
+    <!-- Card 4 -->
+    <g>
+      <rect x="32" y="628" width="520" height="120" rx="14" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <rect x="48" y="644" width="88" height="88" rx="10" fill="#D1FAE5"/>
+      <text x="92" y="694" font-size="32" text-anchor="middle">🐕</text>
+      <rect x="152" y="648" width="56" height="22" rx="4" fill="#D1FAE5"/>
+      <text x="180" y="663" font-size="11" font-weight="500" fill="#047857" text-anchor="middle">FOUND</text>
+      <text x="152" y="694" font-size="16" font-weight="600" fill="#0F172A">Golden Retriever · friendly</text>
+      <text x="152" y="714" font-size="13" fill="#475569">📍 Gomti Nagar · 8 hours ago</text>
+      <text x="152" y="732" font-size="12" fill="#94A3B8">Wearing blue collar · Posted by Neha R.</text>
+      <rect x="468" y="688" width="68" height="32" rx="8" fill="#2563EB"/>
+      <text x="502" y="708" font-size="12" font-weight="500" fill="#FFFFFF" text-anchor="middle">Claim</text>
+    </g>
+
+    <text x="32" y="780" font-size="13" fill="#475569">Showing 4 of 128 · </text>
+    <text x="148" y="780" font-size="13" font-weight="500" fill="#2563EB">Load more →</text>
+  </g>
+
+  <!-- RIGHT: map -->
+  <g id="map">
+    <rect x="572" y="220" width="676" height="528" rx="14" fill="#E0F2FE" stroke="#BAE6FD"/>
+    <!-- fake roads -->
+    <line x1="572" y1="380" x2="1248" y2="420" stroke="#BAE6FD" stroke-width="6"/>
+    <line x1="650" y1="220" x2="720" y2="748" stroke="#BAE6FD" stroke-width="4"/>
+    <line x1="900" y1="220" x2="980" y2="748" stroke="#BAE6FD" stroke-width="4"/>
+    <line x1="572" y1="560" x2="1248" y2="600" stroke="#BAE6FD" stroke-width="5"/>
+    <line x1="572" y1="290" x2="1100" y2="700" stroke="#BAE6FD" stroke-width="3"/>
+
+    <!-- Pins -->
+    <g>
+      <circle cx="780" cy="340" r="22" fill="#EF4444" opacity="0.2"/>
+      <circle cx="780" cy="340" r="12" fill="#EF4444"/>
+      <text x="780" y="345" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">📱</text>
+    </g>
+    <g>
+      <circle cx="950" cy="450" r="20" fill="#10B981" opacity="0.2"/>
+      <circle cx="950" cy="450" r="11" fill="#10B981"/>
+      <text x="950" y="455" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">💼</text>
+    </g>
+    <g>
+      <circle cx="1080" cy="350" r="18" fill="#EF4444" opacity="0.2"/>
+      <circle cx="1080" cy="350" r="10" fill="#EF4444"/>
+    </g>
+    <g>
+      <circle cx="700" cy="540" r="18" fill="#EF4444" opacity="0.2"/>
+      <circle cx="700" cy="540" r="10" fill="#EF4444"/>
+    </g>
+    <g>
+      <circle cx="900" cy="620" r="20" fill="#10B981" opacity="0.2"/>
+      <circle cx="900" cy="620" r="11" fill="#10B981"/>
+      <text x="900" y="625" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">🐕</text>
+    </g>
+    <g>
+      <circle cx="1140" cy="600" r="16" fill="#EF4444" opacity="0.2"/>
+      <circle cx="1140" cy="600" r="9" fill="#EF4444"/>
+    </g>
+    <g>
+      <circle cx="820" cy="690" r="16" fill="#10B981" opacity="0.2"/>
+      <circle cx="820" cy="690" r="9" fill="#10B981"/>
+    </g>
+
+    <!-- Map controls -->
+    <rect x="592" y="240" width="40" height="40" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="612" y="266" font-size="18" font-weight="600" text-anchor="middle">+</text>
+    <rect x="592" y="288" width="40" height="40" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="612" y="314" font-size="18" font-weight="600" text-anchor="middle">−</text>
+
+    <!-- Selected pin tooltip -->
+    <rect x="800" y="244" width="220" height="84" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="820" y="270" font-size="11" font-weight="600" fill="#991B1B" letter-spacing="1">LOST · 2H AGO</text>
+    <text x="820" y="294" font-size="14" font-weight="600" fill="#0F172A">iPhone 14 Pro</text>
+    <text x="820" y="314" font-size="12" fill="#475569">Hazratganj Metro</text>
+    <path d="M 800 320 L 770 350 L 830 320 Z" fill="#FFFFFF" stroke="#E2E8F0"/>
+  </g>
+
+  <!-- annotation -->
+  <text x="32" y="824" font-family="JetBrains Mono, monospace" font-size="11" fill="#94A3B8">03 / lost_and_found · Map + list view · 1280 × 900</text>
+</svg>
