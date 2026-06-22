@@ -12,7 +12,7 @@
 | Attribute | Expression |
 |-----------|------------|
 | **Voice** | Plain, conversational, pharmacy-appropriate ("Refill reminder", "Bill copy", "Customer") |
-| **Mood** | Calm, dependable, clean — like a well-lit pharmacy counter |
+| **Mood** | Calm, dependable, clean  like a well-lit pharmacy counter |
 | **Density** | Whitespace > density. Cards breathe. Never cram. |
 | **Hierarchy** | One dominant CTA per screen. Secondary actions step back. |
 | **Speed** | Visually fast: light surfaces, minimal shadow, no decorative motion |
@@ -25,7 +25,7 @@
 
 ### 2.1 Brand Palette (Pharmacy Blue + Green)
 
-**Primary — Trust Blue** (clinical, dependable; used for primary CTAs, links, focus rings)
+**Primary  Trust Blue** (clinical, dependable; used for primary CTAs, links, focus rings)
 
 | Token | Hex | Use |
 |-------|-----|-----|
@@ -35,7 +35,7 @@
 | `--primary-600` | `#1D4ED8` | Hover/pressed primary |
 | `--primary-700` | `#1E40AF` | Focus ring on light surfaces |
 
-**Secondary — Care Green** (success, healthy state, "Active", "Repeat" tags)
+**Secondary  Care Green** (success, healthy state, "Active", "Repeat" tags)
 
 | Token | Hex | Use |
 |-------|-----|-----|
@@ -108,7 +108,7 @@ Drop into `globals.css`:
 }
 ```
 
-> **Dark mode:** Out of scope for V1 (per "Speed > Perfection" — Rule 11). Stub variables only; ship light theme.
+> **Dark mode:** Out of scope for V1 (per "Speed > Perfection"  Rule 11). Stub variables only; ship light theme.
 
 ---
 
@@ -132,7 +132,7 @@ Drop into `globals.css`:
 
 **Mobile:** scale body to 15/22 to maintain readability without zoom.
 
-**Numerals:** use `font-variant-numeric: tabular-nums` on all currency, counts, and timestamps — keeps dashboard cards from jittering as values update.
+**Numerals:** use `font-variant-numeric: tabular-nums` on all currency, counts, and timestamps  keeps dashboard cards from jittering as values update.
 
 ---
 
@@ -156,7 +156,7 @@ Drop into `globals.css`:
 | `radius-md` | 10px | Buttons, small cards |
 | `radius-lg` | 14px | Primary cards, dashboard tiles |
 
-### Elevation (use sparingly — rule: at most one elevated layer per screen)
+### Elevation (use sparingly  rule: at most one elevated layer per screen)
 
 | Token | Shadow |
 |-------|--------|
@@ -172,17 +172,17 @@ Drop into `globals.css`:
 
 | Variant | Style | When |
 |---------|-------|------|
-| **Primary** | Solid `--primary-500`, white text | One per screen — "Send", "Save", "Create Customer" |
+| **Primary** | Solid `--primary-500`, white text | One per screen  "Send", "Save", "Create Customer" |
 | **Secondary** | White bg, `--border-strong` outline, `--text` | "Cancel", non-dominant action |
 | **Ghost** | No bg, `--text-muted` | Tertiary actions in tables/cards |
-| **Destructive** | Solid `--danger`, white text | "Delete", "Remove opt-in" — confirmation always required |
+| **Destructive** | Solid `--danger`, white text | "Delete", "Remove opt-in"  confirmation always required |
 | **Success-pill** | `--success-100` bg, `--success-700` text | Status confirmations only, never as CTA |
 
 **Sizes:** `sm 32px · md 40px · lg 48px`. Mobile defaults to `lg` for 44px touch target compliance (Rule 12).
 
 ### 5.2 Cards
 
-Two card patterns only — resist inventing more.
+Two card patterns only  resist inventing more.
 
 1. **Metric Card** (Dashboard tiles)
    - Title (caption, muted) → Value (display) → Delta line (success/danger w/ arrow)
@@ -215,7 +215,7 @@ Two card patterns only — resist inventing more.
 
 - Pill shape, `radius-sm`, 12px text, 500 weight
 - Padding: 4px vertical / 10px horizontal
-- Color mapping per §2.4 — never freestyle
+- Color mapping per §2.4  never freestyle
 
 ### 5.6 Activity Timeline (PRD §2.7)
 
@@ -231,8 +231,8 @@ Two card patterns only — resist inventing more.
 
 Per Rules §3 and §9, this surface must visibly enforce constraints:
 
-- **Rate-limit meter:** persistent chip in send composer, e.g., `7 / 10 sent this hour` — turns warning amber at 8, danger red at 10
-- **Bulk-send threshold guard:** modal blocker when count > 100 ("Manual approval required" — admin only)
+- **Rate-limit meter:** persistent chip in send composer, e.g., `7 / 10 sent this hour`  turns warning amber at 8, danger red at 10
+- **Bulk-send threshold guard:** modal blocker when count > 100 ("Manual approval required"  admin only)
 - **Opt-out badge:** if recipient is OptOut, send button disabled with inline explanation
 - **Schedule defaults:** send window 9 AM – 8 PM hard-locked in time picker
 
@@ -242,7 +242,7 @@ Per Rules §3 and §9, this surface must visibly enforce constraints:
 
 ## 6. Iconography
 
-- **Library:** `lucide-react` (ships with shadcn/ui — no new dependency)
+- **Library:** `lucide-react` (ships with shadcn/ui  no new dependency)
 - **Stroke:** 1.5px
 - **Size:** 16px inline, 20px buttons, 24px nav
 - **Color:** inherits text color; never standalone-colored except status icons
@@ -263,7 +263,7 @@ Per Rules §3 and §9, this surface must visibly enforce constraints:
 
 ## 7. Motion
 
-Minimal by design (Rule 8 — simplicity).
+Minimal by design (Rule 8  simplicity).
 
 | Animation | Duration | Easing |
 |-----------|----------|--------|
@@ -279,7 +279,7 @@ Minimal by design (Rule 8 — simplicity).
 ## 8. Accessibility
 
 - **Contrast:** all text/icon combinations ≥ WCAG AA (4.5:1 body, 3:1 large). Trust Blue 500 on white = 5.8:1. ✓
-- **Focus ring:** 2px `--primary-700` with 2px offset — visible on every interactive element
+- **Focus ring:** 2px `--primary-700` with 2px offset  visible on every interactive element
 - **Touch targets:** ≥ 44×44 px on mobile (Rule 12)
 - **Form errors:** announced via `aria-live="polite"`, never color-only
 - **Plain language:** all error and helper text passes the "50-year-old pharmacist" test (Rule 5)
@@ -293,7 +293,7 @@ Minimal by design (Rule 8 — simplicity).
 | **Comfortable** *(default)* | Customer profile, forms, dashboard | base scale |
 | **Compact** | Customer list, campaign history table | scale × 0.75 (rows 48px) |
 
-No third density. Owner cannot toggle in V1 — stays simple.
+No third density. Owner cannot toggle in V1  stays simple.
 
 ---
 
@@ -310,7 +310,7 @@ Border:      #E2E8F0
 Font:        Inter, system-ui
 Radius:      6 / 10 / 14
 Base spacing: 4px (4·8·12·16·24·32·48·64)
-Components:  shadcn/ui only — no custom forks
+Components:  shadcn/ui only  no custom forks
 Density:     Comfortable default; Compact for tables
 Motion:      120–200ms, ease-out, no decorative
 Touch:       ≥44px on mobile
@@ -320,7 +320,7 @@ Touch:       ≥44px on mobile
 
 ## 11. Theme Acceptance Checklist (every screen)
 
-- [ ] One dominant primary CTA — no competing primaries
+- [ ] One dominant primary CTA  no competing primaries
 - [ ] Tags use only the six approved colors
 - [ ] Numbers use tabular-nums
 - [ ] Mobile touch targets ≥ 44px
