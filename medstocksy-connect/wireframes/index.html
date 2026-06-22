@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Medstocksy Connect — Wireframes v1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: { 50: '#EFF6FF', 100: '#DBEAFE', 500: '#2563EB', 600: '#1D4ED8', 700: '#1E40AF' },
+          success: { 50: '#ECFDF5', 100: '#D1FAE5', 500: '#10B981', 700: '#047857' },
+          info: '#0EA5E9',
+          warning: '#F59E0B',
+          danger: '#EF4444',
+          gold: { 100: '#FEF3C7', 700: '#92400E', 500: '#D97706' },
+          chronic: { 100: '#EDE9FE', 700: '#5B21B6' },
+          optout: { 100: '#FEE2E2', 700: '#991B1B' },
+          surface: '#F8FAFC',
+          'surface-hover': '#F1F5F9',
+          'border-soft': '#E2E8F0',
+          'border-strong': '#CBD5E1',
+          ink: '#0F172A',
+          muted: '#475569',
+          subtle: '#94A3B8',
+        },
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace'],
+        },
+        borderRadius: { sm2: '6px', md2: '10px', lg2: '14px' },
+        boxShadow: {
+          card: '0 1px 2px rgba(15,23,42,0.04), 0 1px 3px rgba(15,23,42,0.06)',
+          popover: '0 8px 24px rgba(15,23,42,0.08)',
+          modal: '0 24px 48px rgba(15,23,42,0.18)',
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; background: #eef2f7; color: #0F172A; -webkit-font-smoothing: antialiased; }
+  .num { font-variant-numeric: tabular-nums; }
+  .mono { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+  .frame { display: none; }
+  .frame.active { display: block; }
+  .nav-tab { padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 500; color: #475569; cursor: pointer; transition: all 120ms ease-out; }
+  .nav-tab.active { background: #2563EB; color: white; }
+  .nav-tab:not(.active):hover { background: #F1F5F9; color: #0F172A; }
+  .focus-ring:focus { outline: 2px solid #1E40AF; outline-offset: 2px; }
+  /* meter */
+  .meter-track { height: 6px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 999px; overflow: hidden; }
+  /* timeline */
+  .timeline-line { position: absolute; top: 8px; bottom: 0; left: 7px; width: 1px; background: #E2E8F0; }
+  /* device chrome around each frame */
+  .viewport { background: white; border: 1px solid #E2E8F0; border-radius: 16px; overflow: hidden; box-shadow: 0 24px 48px rgba(15,23,42,0.08); }
+  .viewport-bar { background: #F8FAFC; border-bottom: 1px solid #E2E8F0; padding: 10px 14px; display: flex; align-items: center; gap: 8px; }
+  .viewport-bar .dot { width: 10px; height: 10px; border-radius: 999px; }
+  /* Sidebar nav (in-app) */
+  .side-link { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; font-size: 14px; font-weight: 500; color: #475569; cursor: pointer; }
+  .side-link:hover { background: #F1F5F9; color: #0F172A; }
+  .side-link.active { background: #EFF6FF; color: #1E40AF; }
+  /* Pills */
+  .pill { padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center; gap: 4px; }
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 10px; font-size: 14px; font-weight: 500; transition: all 120ms ease-out; cursor: pointer; }
+  .btn-primary { background: #2563EB; color: white; }
+  .btn-primary:hover { background: #1D4ED8; }
+  .btn-secondary { background: white; border: 1px solid #CBD5E1; color: #0F172A; }
+  .btn-secondary:hover { background: #F1F5F9; }
+  .btn-ghost { background: transparent; color: #475569; }
+  .btn-ghost:hover { background: #F1F5F9; color: #0F172A; }
+  .btn-danger { background: #EF4444; color: white; }
+  .btn-sm { height: 32px; padding: 0 12px; font-size: 13px; border-radius: 8px; }
+  .btn-lg { height: 48px; padding: 0 20px; font-size: 15px; }
+  /* Inputs */
+  .input { height: 40px; padding: 0 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-size: 14px; background: white; width: 100%; color: #0F172A; }
+  .input:focus { outline: 2px solid #1E40AF; outline-offset: 2px; border-color: #2563EB; }
+  .label { font-size: 13px; font-weight: 500; color: #0F172A; margin-bottom: 6px; display: block; }
+  .helper { font-size: 12px; color: #475569; margin-top: 6px; }
+  /* Badge dots */
+  .dot-event { width: 14px; height: 14px; border-radius: 999px; border: 3px solid white; box-shadow: 0 0 0 1px #E2E8F0; flex-shrink: 0; }
+  /* SVG icons sized */
+  svg { display: inline-block; vertical-align: middle; }
+  /* Step indicator */
+  .step { display: flex; align-items: center; gap: 8px; }
+  .step-num { width: 24px; height: 24px; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
+  .step-active .step-num { background: #2563EB; color: white; }
+  .step-done .step-num { background: #10B981; color: white; }
+  .step-pending .step-num { background: #F1F5F9; color: #94A3B8; }
+  .step-pending .step-label { color: #94A3B8; }
+  .step-line { flex: 1; height: 2px; background: #E2E8F0; }
+  .step-line.done { background: #10B981; }
+  /* Subtle keyboard kbd */
+  kbd { font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 2px 6px; border: 1px solid #CBD5E1; border-radius: 4px; background: #F8FAFC; color: #475569; }
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- ============================================================
+     PAGE HEADER (wireframes board nav — not part of the product)
+============================================================ -->
+<header class="bg-white border-b border-border-soft sticky top-0 z-30">
+  <div class="max-w-[1400px] mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-lg bg-primary-500 flex items-center justify-center text-white font-bold">M</div>
+      <div>
+        <div class="text-base font-semibold">Medstocksy Connect</div>
+        <div class="text-xs text-muted">Wireframes v1.0 · Theme-applied</div>
+      </div>
+    </div>
+    <div class="text-xs text-muted flex items-center gap-3">
+      <span class="pill bg-primary-100 text-primary-700">PRD v1.0</span>
+      <span class="pill bg-success-100 text-success-700">Theme v1.0</span>
+    </div>
+  </div>
+  <nav class="max-w-[1400px] mx-auto px-6 pb-3 flex flex-wrap gap-1.5">
+    <button class="nav-tab active" data-tab="dashboard">Dashboard</button>
+    <button class="nav-tab" data-tab="customers">Customers list</button>
+    <button class="nav-tab" data-tab="profile">Customer profile</button>
+    <button class="nav-tab" data-tab="compose">WhatsApp compose</button>
+    <button class="nav-tab" data-tab="campaign">Campaign wizard</button>
+    <button class="nav-tab" data-tab="reminders">Reminder rules</button>
+    <button class="nav-tab" data-tab="add">Add customer</button>
+    <button class="nav-tab" data-tab="mobile">Mobile companion</button>
+    <button class="nav-tab" data-tab="theme">Theme reference</button>
+  </nav>
+</header>
+
+<main class="max-w-[1400px] mx-auto px-6 py-8">
+
+<!-- =========================================================================
+     SHARED APP SHELL — used by all desktop frames (rendered inline per frame)
+========================================================================= -->
+
+<!-- ===================== FRAME: DASHBOARD ===================== -->
+<section id="frame-dashboard" class="frame active">
+  <div class="mb-3 flex items-center justify-between">
+    <div>
+      <div class="text-xs uppercase tracking-wider text-subtle font-semibold">Frame 01</div>
+      <div class="text-lg font-semibold">Dashboard — Owner / Admin</div>
+    </div>
+    <div class="text-xs text-muted">Desktop · 1280w · primary CTA: Send Campaign</div>
+  </div>
+
+  <div class="viewport">
+    <div class="viewport-bar">
+      <div class="dot bg-danger"></div><div class="dot bg-warning"></div><div class="dot bg-success-500"></div>
+      <div class="ml-2 text-xs text-muted mono">app.medstocksy.com/dashboard</div>
+    </div>
+
+    <!-- App layout -->
+    <div class="grid grid-cols-[240px_1fr] min-h-[760px]">
+      <!-- Sidebar -->
+      <aside class="border-r border-border-soft bg-white p-4">
+        <div class="flex items-center gap-2 px-2 mb-6">
+          <div class="w-8 h-8 rounded-md bg-primary-500 flex items-center justify-center text-white font-bold text-sm">M</div>
+          <div class="text-sm font-semibold">Medstocksy</div>
+        </div>
+        <nav class="space-y-1">
+          <div class="side-link active">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Dashboard
+          </div>
+          <div class="side-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Customers
+          </div>
+          <div class="side-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+            Campaigns
+          </div>
+          <div class="side-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+            Reminders
+          </div>
+          <div class="side-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Reports
+          </div>
+          <div class="h-px bg-border-soft my-3"></div>
+          <div class="side-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            Settings
+          </div>
+        </nav>
+        <div class="mt-auto pt-6">
+          <div class="flex items-center gap-3 p-3 rounded-lg bg-surface">
+            <div class="w-8 h-8 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-xs font-semibold">RS</div>
+            <div class="flex-1 min-w-0">
+              <div class="text-sm font-medium truncate">Rajesh S.</div>
+              <div class="text-xs text-muted">Admin · MedPlus Sec 14</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <div class="bg-surface p-8 overflow-hidden">
+        <div class="flex items-start justify-between mb-7">
+          <div>
+            <h1 class="text-2xl font-semibold">Welcome back, Rajesh</h1>
+            <p class="text-sm text-muted mt-1">Here's what's happening at MedPlus Sec 14 today.</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button class="btn btn-secondary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16l7-3 7 3z"/></svg>
+              + New Customer
+            </button>
+            <button class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+              Send campaign
+            </button>
+          </div>
+        </div>
+
+        <!-- Metric tiles -->
+        <div class="grid grid-cols-3 gap-4 mb-6">
+          <!-- Tile 1 -->
+          <div class="bg-white rounded-lg2 border border-border-soft shadow-card p-5">
+            <div class="text-xs uppercase tracking-wider text-muted font-semibold">Total customers</div>
+            <div class="num text-3xl font-semibold mt-2">347</div>
+            <div class="text-xs text-success-700 mt-2 flex items-center gap-1">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+              <span class="num">+12</span> this month
+            </div>
+          </div>
+          <!-- Tile 2 -->
+          <div class="bg-white rounded-lg2 border border-border-soft shadow-card p-5">
+            <div class="text-xs uppercase tracking-wider text-muted font-semibold">Repeat rate</div>
+            <div class="num text-3xl font-semibold mt-2">38%</div>
+            <div class="text-xs text-success-700 mt-2 flex items-center gap-1">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+              <span class="num">+3%</span> vs last month
+            </div>
+          </div>
+          <!-- Tile 3 -->
+          <div class="bg-white rounded-lg2 border border-border-soft shadow-card p-5">
+            <div class="text-xs uppercase tracking-wider text-muted font-semibold">Inactive %</div>
+            <div class="num text-3xl font-semibold mt-2">18%</div>
+            <div class="text-xs text-warning mt-2 flex items-center gap-1">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              <span class="num">+2%</span> needs attention
+            </div>
+          </div>
+          <!-- Tile 4 -->
+          <div class="bg-white rounded-lg2 border border-border-soft shadow-card p-5">
+            <div class="text-xs uppercase tracking-wider text-muted font-semibold">Messages today</div>
+            <div class="num text-3xl font-semibold mt-2">42</div>
+            <div class="text-xs text-muted mt-2"><span class="num">15</span> manual · <span class="num">27</span> auto</div>
+          </div>
+          <!-- Tile 5 -->
+          <div class="bg-white rounded-lg2 border border-border-soft shadow-card p-5">
+            <div class="text-xs uppercase tracking-wider text-muted font-semibold">Upcoming reminders</div>
+            <div class="num text-3xl font-semibold mt-2">23</div>
+            <div class="text-xs text-muted mt-2">Next 7 days</div>
+          </div>
+          <!-- Tile 6 -->
+          <div class="bg-white rounded-lg2 border border-border-soft shadow-card p-5">
+            <div class="text-xs uppercase tracking-wider text-muted font-semibold">Send success rate</div>
+            <div class="num text-3xl font-semibold mt-2">98%</div>
+            <div class="text-xs text-success-700 mt-2"><span class="num">1</span> failed today</div>
+          </div>
+        </div>
+
+        <!-- Two-col area -->
+        <div class="grid grid-cols-[1.4fr_1fr] gap-4">
+          <!-- Upcoming reminders -->
+          <div class="bg-white rounded-lg2 border border-border-soft shadow-card">
+            <div class="px-5 py-4 border-b border-border-soft flex items-center justify-between">
+              <div class="text-base font-semibold">Upcoming reminders · next 7 days</div>
+              <button class="btn btn-ghost btn-sm">View all</button>
+            </div>
+            <div class="divide-y divide-border-soft">
+              <!-- row -->
+              <div class="px-5 py-3 flex items-center gap-4 hover:bg-surface-hover">
+                <div class="w-9 h-9 rounded-md bg-gold-100 text-gold-700 flex items-center justify-center">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-sm font-medium">Ramesh Singh — Amlodipine refill</div>
+                  <div class="text-xs text-muted mono">+91 98765 43210 · BP medicine</div>
+                </div>
+                <div class="text-xs text-muted">Tomorrow · 9:00 AM</div>
+                <button class="btn btn-secondary btn-sm">Preview</button>
+              </div>
+              <div class="px-5 py-3 flex items-center gap-4 hover:bg-surface-hover">
+                <div class="w-9 h-9 rounded-md bg-gold-100 text-gold-700 flex items-center justify-center">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-sm font-medium">Priya Sharma — Vitamin D refill</div>
+                  <div class="text-xs text-muted mono">+91 91234 56789 · Vitamins</div>
+                </div>
+                <div class="text-xs text-muted">May 8 · 9:00 AM</div>
+                <button class="btn btn-secondary btn-sm">Preview</button>
+              </div>
+              <div class="px-5 py-3 flex items-center gap-4 hover:bg-surface-hover">
+                <div class="w-9 h-9 rounded-md bg-gold-100 text-gold-700 flex items-center justify-center">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-sm font-medium">Amit Patel — Metformin refill</div>
+                  <div class="text-xs text-muted mono">+91 99887 76655 · Diabetes</div>
+                </div>
+                <div class="text-xs text-muted">May 9 · 9:00 AM</div>
+                <button class="btn btn-secondary btn-sm">Preview</button>
+              </div>
+              <div class="px-5 py-3 flex items-center gap-4 hover:bg-surface-hover">
+                <div class="w-9 h-9 rounded-md bg-info/10 text-info flex items-center justify-center" style="background:#E0F2FE;color:#0369A1">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-sm font-medium">Follow-up batch — Inactive 30+ days</div>
+                  <div class="text-xs text-muted">47 customers · Win-back template</div>
+                </div>
+                <div class="text-xs text-muted">May 10 · 10:00 AM</div>
+                <button class="btn btn-secondary btn-sm">Preview</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- WhatsApp health -->
+          <div class="bg-white rounded-lg2 border border-border-soft shadow-card">
+            <div class="px-5 py-4 border-b border-border-soft">
+              <div class="text-base font-semibold">WhatsApp health</div>
+              <div class="text-xs text-muted mt-1">Live · last 1 hour</div>
+            </div>
+            <div class="p-5 space-y-5">
+              <!-- rate -->
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <div class="text-sm font-medium">Rate this hour</div>
+                  <div class="text-sm mono"><span class="text-warning font-semibold">8</span> / 10</div>
+                </div>
+                <div class="meter-track"><div style="width:80%;height:100%;background:#F59E0B"></div></div>
+                <div class="helper">Approaching cap — sends will queue at 10/hour.</div>
+              </div>
+              <!-- bounce -->
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <div class="text-sm font-medium">Bounce rate · 24h</div>
+                  <div class="text-sm mono"><span class="text-success-700 font-semibold">2.1%</span></div>
+                </div>
+                <div class="meter-track"><div style="width:21%;height:100%;background:#10B981"></div></div>
+                <div class="helper">Healthy. Alert threshold: 5%.</div>
+              </div>
+              <!-- opt-out -->
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <div class="text-sm font-medium">Opt-outs · 30d</div>
+                  <div class="text-sm mono"><span class="text-success-700 font-semibold">1.4%</span></div>
+                </div>
+                <div class="meter-track"><div style="width:14%;height:100%;background:#10B981"></div></div>
+                <div class="helper">Below 2% target.</div>
+              </div>
+              <div class="pt-3 border-t border-border-soft">
+                <div class="text-xs text-muted">Send window today: <span class="font-medium text-ink">9:00 AM – 8:00 PM</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-xs text-muted mt-3">Notes — only one primary CTA (Send campaign). Six metric tiles, no charts (per PRD §2.8). WhatsApp health is ambient, not error state (theme rule: constraints visible at rest).</p>
+</section>
+
+
+<!-- ===================== FRAME: CUSTOMERS LIST ===================== -->
+<section id="frame-customers" class="frame">
+  <div class="mb-3 flex items-center justify-between">
+    <div>
+      <div class="text-xs uppercase tracking-wider text-subtle font-semibold">Frame 02</div>
+      <div class="text-lg font-semibold">Customers list</div>
+    </div>
+    <div class="text-xs text-muted">Compact density · row 48px · sticky filters</div>
+  </div>
+
+  <div class="viewport">
+    <div class="viewport-bar">
+      <div class="dot bg-danger"></div><div class="dot bg-warning"></div><div class="dot bg-success-500"></div>
+      <div class="ml-2 text-xs text-muted mono">app.medstocksy.com/customers</div>
+    </div>
+
+    <div class="grid grid-cols-[240px_1fr] min-h-[760px]">
+      <aside class="border-r border-border-soft bg-white p-4">
+        <div class="flex items-center gap-2 px-2 mb-6">
+          <div class="w-8 h-8 rounded-md bg-primary-500 flex items-center justify-center text-white font-bold text-sm">M</div>
+          <div class="text-sm font-semibold">Medstocksy</div>
+        </div>
+        <nav class="space-y-1">
+          <div class="side-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</div>
+          <div class="side-link active"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Customers</div>
+          <div class="side-link">Campaigns</div>
+          <div class="side-link">Reminders</div>
+          <div class="side-link">Reports</div>
+        </nav>
+      </aside>
+
+      <div class="bg-surface p-8">
+        <div class="flex items-center justify-between mb-5">
+          <div>
+            <h1 class="text-2xl font-semibold">Customers</h1>
+            <p class="text-sm text-muted mt-1"><span class="num">347</span> total · <span class="num">132</span> repeat · <span class="num">62</span> inactive</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button class="btn btn-secondary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export</button>
+            <button class="btn btn-primary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add customer</button>
+          </div>
+        </div>
+
+        <!-- Search + filters -->
+        <div class="bg-white rounded-lg2 border border-border-soft shadow-card mb-4 p-4">
+          <div class="flex items-center gap-3">
+            <div class="relative flex-1">
+              <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input class="input pl-9" placeholder="Search by name, phone, or medicine…" />
+            </div>
+            <button class="btn btn-secondary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>Filters</button>
+          </div>
+          <div class="flex flex-wrap gap-2 mt-3 pt-3 border-t border-border-soft">
+            <span class="pill bg-primary-500 text-white">All · 347</span>
+            <span class="pill bg-primary-100 text-primary-700">New · 28</span>
+            <span class="pill bg-success-100 text-success-700">Repeat · 132</span>
+            <span class="pill bg-surface-hover text-muted">Inactive · 62</span>
+            <span class="pill bg-gold-100 text-gold-700">High Value · 41</span>
+            <span class="pill bg-chronic-100 text-chronic-700">Chronic · 38</span>
+            <span class="pill bg-optout-100 text-optout-700">OptOut · 6</span>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="bg-white rounded-lg2 border border-border-soft shadow-card overflow-hidden">
+          <table class="w-full text-sm">
+            <thead class="bg-surface text-left">
+              <tr class="border-b border-border-soft">
+                <th class="py-3 px-4 text-xs font-semibold text-muted uppercase tracking-wider">Customer</th>
+                <th class="py-3 px-4 text-xs font-semibold text-muted uppercase tracking-wider">Phone</th>
+                <th class="py-3 px-4 text-xs font-semibold text-muted uppercase tracking-wider">Last visit</th>
+                <th class="py-3 px-4 text-xs font-semibold text-muted uppercase tracking-wider">Total spend</th>
+                <th class="py-3 px-4 text-xs font-semibold text-muted uppercase tracking-wider">Tags</th>
+                <th class="py-3 px-4 w-10"></th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border-soft">
+              <tr class="hover:bg-surface-hover cursor-pointer h-12">
+                <td class="px-4">
+                  <div class="font-medium">Ramesh Singh</div>
+                  <div class="text-xs text-muted">45 · Male</div>
+                </td>
+                <td class="px-4 mono text-muted">+91 98765 43210</td>
+                <td class="px-4 num">2 days ago</td>
+                <td class="px-4 mono font-medium">₹15,420</td>
+                <td class="px-4">
+                  <span class="pill bg-success-100 text-success-700">Repeat</span>
+                  <span class="pill bg-gold-100 text-gold-700">High Value</span>
+                  <span class="pill bg-chronic-100 text-chronic-700">Chronic</span>
+                </td>
+                <td class="px-4 text-muted">⋯</td>
+              </tr>
+              <tr class="hover:bg-surface-hover cursor-pointer h-12">
+                <td class="px-4">
+                  <div class="font-medium">Priya Sharma</div>
+                  <div class="text-xs text-muted">32 · Female</div>
+                </td>
+                <td class="px-4 mono text-muted">+91 91234 56789</td>
+                <td class="px-4 num">1 day ago</td>
+                <td class="px-4 mono font-medium">₹7,240</td>
+                <td class="px-4">
+                  <span class="pill bg-success-100 text-success-700">Repeat</span>
+                </td>
+                <td class="px-4 text-muted">⋯</td>
+              </tr>
+              <tr class="hover:bg-surface-hover cursor-pointer h-12">
+                <td class="px-4">
+                  <div class="font-medium">Amit Patel</div>
+                  <div class="text-xs text-muted">58 · Male</div>
+                </td>
+                <td class="px-4 mono text-muted">+91 99887 76655</td>
+                <td class="px-4 num">5 days ago</td>
+                <td class="px-4 mono font-medium">₹28,910</td>
+                <td class="px-4">
+                  <span class="pill bg-success-100 text-success-700">Repeat</span>
+                  <span class="pill bg-gold-100 text-gold-700">High Value</span>
+                  <span class="pill bg-chronic-100 text-chronic-700">Chronic</span>
+                </td>
+                <td class="px-4 text-muted">⋯</td>
+              </tr>
+              <tr class="hover:bg-surface-hover cursor-pointer h-12">
+                <td class="px-4">
+                  <div class="font-medium">Sunita Verma</div>
+                  <div class="text-xs text-muted">29 · Female</div>
+                </td>
+                <td class="px-4 mono text-muted">+91 90909 12345</td>
+                <td class="px-4 num">3 hours ago</td>
+                <td class="px-4 mono font-medium">₹890</td>
+                <td class="px-4">
+                  <span class="pill bg-primary-100 text-primary-700">New</span>
+                </td>
+                <td class="px-4 text-muted">⋯</td>
+              </tr>
+              <tr class="hover:bg-surface-hover cursor-pointer h-12">
+                <td class="px-4">
+                  <div class="font-medium">Karan Mehta</div>
+                  <div class="text-xs text-muted">41 · Male</div>
+                </td>
+                <td class="px-4 mono text-muted">+91 98123 45678</td>
+                <td class="px-4 num text-muted">45 days ago</td>
+                <td class="px-4 mono font-medium">₹4,120</td>
+                <td class="px-4">
+                  <span class="pill bg-surface-hover text-muted">Inactive</span>
+                </td>
+                <td class="px-4 text-muted">⋯</td>
+              </tr>
+              <tr class="hover:bg-surface-hover cursor-pointer h-12">
+                <td class="px-4">
+                  <div class="font-medium">Divya Nair</div>
+                  <div class="text-xs text-muted">36 · Female</div>
+                </td>
+                <td class="px-4 mono text-muted">+91 96677 88990</td>
+                <td class="px-4 num">7 days ago</td>
+                <td class="px-4 mono font-medium">₹12,560</td>
+                <td class="px-4">
+                  <span class="pill bg-success-100 text-success-700">Repeat</span>
+                  <span class="pill bg-gold-100 text-gold-700">High Value</span>
+                </td>
+                <td class="px-4 text-muted">⋯</td>
+              </tr>
+              <tr class="hover:bg-surface-hover cursor-pointer h-12">
+                <td class="px-4">
+                  <div class="font-medium">Rohit Kumar</div>
+                  <div class="text-xs text-muted">52 · Male</div>
+                </td>
+                <td class="px-4 mono text-muted">+91 95544 33221</td>
+                <td class="px-4 num text-muted">62 days ago</td>
+                <td class="px-4 mono font-medium">₹2,340</td>
+                <td class="px-4">
+                  <span class="pill bg-optout-100 text-optout-700">OptOut</span>
+                </td>
+                <td class="px-4 text-muted">⋯</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="px-4 py-3 border-t border-border-soft flex items-center justify-between bg-surface">
+            <div class="text-xs text-muted">Showing <span class="num">1–7</span> of <span class="num">347</span></div>
+            <div class="flex items-center gap-1">
+              <button class="btn btn-ghost btn-sm">‹ Prev</button>
+              <button class="btn btn-ghost btn-sm">Next ›</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-xs text-muted mt-3">Notes — segment chips render only the six approved tag colors. Mono font on phone + amount stops jitter when sorting. Clicking a row opens the profile (no extra "view" affordance needed).</p>
+</section>
+
+
+<!-- ===================== FRAME: CUSTOMER PROFILE ===================== -->
+<section id="frame-profile" class="frame">
+  <div class="mb-3 flex items-center justify-between">
+    <div>
+      <div class="text-xs uppercase tracking-wider text-subtle font-semibold">Frame 03</div>
+      <div class="text-lg font-semibold">Customer profile + activity timeline</div>
+    </div>
+    <div class="text-xs text-muted">The heart of the loop. One primary CTA: Send message.</div>
+  </div>
+
+  <div class="viewport">
+    <div class="viewport-bar">
+      <div class="dot bg-danger"></div><div class="dot bg-warning"></div><div class="dot bg-success-500"></div>
+      <div class="ml-2 text-xs text-muted mono">app.medstocksy.com/customers/priya-sharma</div>
+    </div>
+
+    <div class="grid grid-cols-[240px_1fr] min-h-[760px]">
+      <aside class="border-r border-border-soft bg-white p-4">
+        <div class="flex items-center gap-2 px-2 mb-6">
+          <div class="w-8 h-8 rounded-md bg-primary-500 flex items-center justify-center text-white font-bold text-sm">M</div>
+          <div class="text-sm font-semibold">Medstocksy</div>
+        </div>
+        <nav class="space-y-1">
+          <div class="side-link">Dashboard</div>
+          <div class="side-link active">Customers</div>
+          <div class="side-link">Campaigns</div>
+          <div class="side-link">Reminders</div>
+          <div class="side-link">Reports</div>
+        </nav>
+      </aside>
+
+      <div class="bg-surface">
+        <!-- Breadcrumb -->
+        <div class="px-8 pt-6 text-xs text-muted">
+          <a class="hover:text-ink cursor-pointer">Customers</a>
+          <span class="mx-1.5">›</span>
+          <span class="text-ink">Priya Sharma</span>
+        </div>
+
+        <!-- Header card -->
+        <div class="p-8 pb-4">
+          <div class="bg-white rounded-lg2 border border-border-soft shadow-card p-6">
+            <div class="flex items-start justify-between gap-6">
+              <div class="flex items-start gap-5">
+                <div class="w-16 h-16 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-xl font-semibold">PS</div>
+                <div>
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <h1 class="text-2xl font-semibold">Priya Sharma</h1>
+                    <span class="pill bg-success-100 text-success-700">Active</span>
+                  </div>
+                  <div class="text-sm text-muted mt-1 flex items-center gap-3 flex-wrap">
+                    <span class="mono">+91 91234 56789</span>
+                    <span>·</span>
+                    <span>32 · Female</span>
+                    <span>·</span>
+                    <span>Customer since Aug 2024</span>
+                  </div>
+                  <div class="flex flex-wrap gap-1.5 mt-3">
+                    <span class="pill bg-success-100 text-success-700">Repeat</span>
+                    <span class="pill bg-gold-100 text-gold-700">High Value</span>
+                    <span class="btn-ghost text-xs px-2 py-1 rounded border border-dashed border-border-strong text-muted cursor-pointer">+ Add tag</span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <button class="btn btn-secondary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><polygon points="18.5 2.5 22 6 12 16 8 17 9 13 18.5 2.5"/></svg>
+                  Edit
+                </button>
+                <button class="btn btn-primary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  Send message
+                </button>
+              </div>
+            </div>
+
+            <!-- Stat strip -->
+            <div class="grid grid-cols-4 gap-6 mt-6 pt-6 border-t border-border-soft">
+              <div>
+                <div class="text-xs uppercase tracking-wider text-muted font-semibold">Last visit</div>
+                <div class="num text-lg font-semibold mt-1">2 days ago</div>
+                <div class="text-xs text-muted mt-0.5">May 4, 2026</div>
+              </div>
+              <div>
+                <div class="text-xs uppercase tracking-wider text-muted font-semibold">Total spend</div>
+                <div class="num mono text-lg font-semibold mt-1">₹7,240</div>
+                <div class="text-xs text-muted mt-0.5">12 purchases</div>
+              </div>
+              <div>
+                <div class="text-xs uppercase tracking-wider text-muted font-semibold">Frequency</div>
+                <div class="num text-lg font-semibold mt-1">Every 17 days</div>
+                <div class="text-xs text-muted mt-0.5">Regular buyer</div>
+              </div>
+              <div>
+                <div class="text-xs uppercase tracking-wider text-muted font-semibold">Monthly avg</div>
+                <div class="num mono text-lg font-semibold mt-1">₹1,795</div>
+                <div class="text-xs text-success-700 mt-0.5">↑ 8% vs Apr</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Two cols: Bills + Timeline -->
+        <div class="px-8 pb-8 grid grid-cols-[1fr_1fr] gap-4">
+          <!-- Recent bills -->
+          <div class="bg-white rounded-lg2 border border-border-soft shadow-card">
+            <div class="px-5 py-4 border-b border-border-soft flex items-center justify-between">
+              <div class="text-base font-semibold">Recent bills</div>
+              <button class="btn btn-ghost btn-sm">View all (12)</button>
+            </div>
+            <div class="divide-y divide-border-soft">
+              <div class="px-5 py-3 hover:bg-surface-hover cursor-pointer">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="text-sm font-medium mono">#INV-5847</div>
+                    <div class="text-xs text-muted">May 4 · 2:05 PM</div>
+                  </div>
+                  <div class="num mono font-semibold">₹2,150</div>
+                </div>
+                <div class="text-xs text-muted mt-1">Vitamins (2), Cough syrup (1)</div>
+              </div>
+              <div class="px-5 py-3 hover:bg-surface-hover cursor-pointer">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="text-sm font-medium mono">#INV-5821</div>
+                    <div class="text-xs text-muted">Apr 28 · 10:30 AM</div>
+                  </div>
+                  <div class="num mono font-semibold">₹1,890</div>
+                </div>
+                <div class="text-xs text-muted mt-1">Antibiotics (1), Cough syrup (1)</div>
+              </div>
+              <div class="px-5 py-3 hover:bg-surface-hover cursor-pointer">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="text-sm font-medium mono">#INV-5712</div>
+                    <div class="text-xs text-muted">Apr 10 · 6:45 PM</div>
+                  </div>
+                  <div class="num mono font-semibold">₹3,200</div>
+                </div>
+                <div class="text-xs text-muted mt-1">BP meds, Vitamins</div>
+              </div>
+            </div>
+
+            <!-- Pattern card -->
+            <div class="m-5 p-4 rounded-md2 bg-primary-50 border border-primary-100">
+              <div class="flex items-start gap-3">
+                <div class="w-7 h-7 rounded-md bg-primary-500 text-white flex items-center justify-center flex-shrink-0">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                </div>
+                <div>
+                  <div class="text-sm font-medium text-primary-700">Buying pattern detected</div>
+                  <div class="text-xs text-muted mt-0.5">Cough syrup every 17 days. Next refill due <span class="font-medium text-ink">May 21</span> — reminder scheduled.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline -->
+          <div class="bg-white rounded-lg2 border border-border-soft shadow-card">
+            <div class="px-5 py-4 border-b border-border-soft flex items-center justify-between">
+              <div class="text-base font-semibold">Activity timeline</div>
+              <div class="flex items-center gap-1">
+                <button class="btn btn-ghost btn-sm">All</button>
+                <button class="btn btn-ghost btn-sm text-muted">Bills</button>
+                <button class="btn btn-ghost btn-sm text-muted">Messages</button>
+              </div>
+            </div>
+            <div class="p-5">
+              <div class="relative pl-7">
+                <div class="timeline-line"></div>
+                <!-- Event 1 -->
+                <div class="relative mb-5">
+                  <div class="dot-event absolute -left-7 mt-1" style="background:#0EA5E9"></div>
+                  <div class="text-xs text-muted">May 5 · 2:15 PM</div>
+                  <div class="text-sm font-medium mt-0.5">Message sent: "Thank you for your purchase"</div>
+                  <div class="text-xs text-muted mt-0.5">Status: <span class="text-success-700 font-medium">Delivered</span> · Template T1</div>
+                </div>
+                <!-- Event 2 -->
+                <div class="relative mb-5">
+                  <div class="dot-event absolute -left-7 mt-1" style="background:#2563EB"></div>
+                  <div class="text-xs text-muted">May 4 · 2:05 PM</div>
+                  <div class="text-sm font-medium mt-0.5">Bill created · <span class="mono">#INV-5847</span> · ₹2,150</div>
+                  <div class="text-xs text-muted mt-0.5">Vitamins (2), Cough syrup (1)</div>
+                </div>
+                <!-- Event 3 -->
+                <div class="relative mb-5">
+                  <div class="dot-event absolute -left-7 mt-1" style="background:#D97706"></div>
+                  <div class="text-xs text-muted">Apr 28 · 1:30 PM</div>
+                  <div class="text-sm font-medium mt-0.5">Reminder triggered: "Time to refill Cough syrup"</div>
+                  <div class="text-xs text-muted mt-0.5">Status: <span class="text-success-700 font-medium">Sent</span> · Customer purchased same day ✓</div>
+                </div>
+                <!-- Event 4 -->
+                <div class="relative mb-5">
+                  <div class="dot-event absolute -left-7 mt-1" style="background:#2563EB"></div>
+                  <div class="text-xs text-muted">Apr 28 · 10:30 AM</div>
+                  <div class="text-sm font-medium mt-0.5">Bill created · <span class="mono">#INV-5821</span> · ₹1,890</div>
+                  <div class="text-xs text-muted mt-0.5">Antibiotics (1), Cough syrup (1)</div>
+                </div>
+                <!-- Event 5 -->
+                <div class="relative">
+                  <div class="dot-event absolute -left-7 mt-1" style="background:#475569"></div>
+                  <div class="text-xs text-muted">Apr 20 · 3:00 PM</div>
+                  <div class="text-sm font-medium mt-0.5">Note added: "Prefers morning calls"</div>
+                  <div class="text-xs text-muted mt-0.5">By Rajesh (Staff)</div>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-4 border-t border-border-soft">
+                <div class="flex gap-2">
+                  <input class="input flex-1" placeholder="Add a note (visible to staff only)…" />
+                  <button class="btn btn-secondary">Add note</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-xs text-muted mt-3">Notes — Send message is the single dominant CTA. Stat strip is the only place numbers grow large. Timeline dots use the reserved event colors from theme §5.6.</p>
+</section>
+
+
+<!-- ===================== FRAME: WHATSAPP COMPOSE ===================== -->
+<section id="frame-compose" class="frame">
+  <div class="mb-3 flex items-center justify-between">
+    <div>
+      <div class="text-xs uppercase tracking-wider text-subtle font-semibold">Frame 04</div>
+      <div class="text-lg font-semibold">WhatsApp compose — single recipient</div>
+    </div>
+    <div class="text-xs text-muted">Highest-stakes UI. Constraints visible at rest, not in error.</div>
+  </div>
+
+  <div class="viewport">
+    <div class="viewport-bar">
+      <div class="dot bg-danger"></div><div class="dot bg-warning"></div><div class="dot bg-success-500"></div>
+      <div class="ml-2 text-xs text-muted mono">Drawer · over /customers/priya-sharma</div>
+    </div>
+
+    <!-- Behind: dimmed profile / In front: drawer from right -->
+    <div class="relative" style="min-height:760px; background:#F8FAFC">
+      <!-- Dim layer (fake background) -->
+      <div class="absolute inset-0 p-8">
+        <div class="bg-white rounded-lg2 border border-border-soft shadow-card p-6 opacity-30">
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 rounded-full bg-primary-100"></div>
+            <div>
+              <div class="text-xl font-semibold">Priya Sharma</div>
+              <div class="text-sm text-muted">+91 91234 56789</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drawer -->
+      <div class="absolute right-0 top-0 bottom-0 w-[560px] bg-white shadow-modal border-l border-border-soft flex flex-col">
+        <!-- Header -->
+        <div class="px-6 py-5 border-b border-border-soft flex items-center justify-between">
+          <div>
+            <div class="text-base font-semibold">New message</div>
+            <div class="text-xs text-muted mt-0.5">via WhatsApp Business</div>
+          </div>
+          <button class="btn btn-ghost btn-sm">✕</button>
+        </div>
+
+        <!-- Body -->
+        <div class="flex-1 p-6 overflow-y-auto space-y-5">
+          <!-- Recipient -->
+          <div>
+            <label class="label">Recipient</label>
+            <div class="flex items-center gap-3 p-3 border border-border-soft rounded-md2 bg-surface">
+              <div class="w-9 h-9 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-xs font-semibold">PS</div>
+              <div class="flex-1 min-w-0">
+                <div class="text-sm font-medium">Priya Sharma</div>
+                <div class="text-xs text-muted mono">+91 91234 56789</div>
+              </div>
+              <span class="pill bg-success-100 text-success-700">Opted in</span>
+            </div>
+          </div>
+
+          <!-- Tabs Template / Custom -->
+          <div>
+            <div class="flex border-b border-border-soft">
+              <button class="px-4 py-2 text-sm font-medium border-b-2 border-primary-500 text-primary-700">Template</button>
+              <button class="px-4 py-2 text-sm font-medium text-muted border-b-2 border-transparent hover:text-ink">Custom message</button>
+            </div>
+          </div>
+
+          <!-- Template select -->
+          <div>
+            <label class="label">Template</label>
+            <select class="input">
+              <option>T1 · Thank you (post-purchase)</option>
+              <option selected>T2 · Refill reminder</option>
+              <option>T3 · Special offer</option>
+            </select>
+            <p class="helper">Templates are pre-approved by WhatsApp. Required for messages outside the 24-hour window.</p>
+          </div>
+
+          <!-- Variables -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="label">Medicine</label>
+              <select class="input"><option>Cough syrup</option><option>Vitamin D</option></select>
+            </div>
+            <div>
+              <label class="label">Pharmacy phone</label>
+              <input class="input mono" value="+91 95555 12345" />
+            </div>
+          </div>
+
+          <!-- Preview -->
+          <div>
+            <label class="label">Preview</label>
+            <div class="rounded-md2 p-4" style="background:#E7FFDB; border:1px solid #BFE5A6;">
+              <div class="text-sm leading-relaxed" style="color:#0F172A;">
+                Hi <span class="font-medium">Priya</span>,<br><br>
+                Time to refill your <span class="font-medium">Cough syrup</span>?<br>
+                We have it in stock.<br><br>
+                Call: <span class="mono">+91 95555 12345</span><br>
+                Or visit our store.
+              </div>
+              <div class="text-xs text-muted mt-3 flex items-center gap-1.5 justify-end">
+                <span class="mono">2:34 PM</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sticky safety footer -->
+        <div class="border-t border-border-soft bg-surface px-6 py-4 space-y-3">
+          <!-- Rate limit chip + meter -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span class="text-sm font-medium">Sends this hour</span>
+              </div>
+              <span class="text-sm mono"><span class="text-warning font-semibold">7</span> / 10</span>
+            </div>
+            <div class="meter-track"><div style="width:70%;height:100%;background:#F59E0B"></div></div>
+          </div>
+          <!-- Window -->
+          <div class="flex items-center justify-between text-xs text-muted">
+            <div class="flex items-center gap-1.5">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Send window: 9:00 AM – 8:00 PM IST
+            </div>
+            <div>Within window ✓</div>
+          </div>
+          <!-- Buttons -->
+          <div class="flex items-center gap-2 pt-1">
+            <button class="btn btn-secondary flex-1">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Schedule
+            </button>
+            <button class="btn btn-primary flex-1">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Send now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-xs text-muted mt-3">Notes — rate-limit meter, send window, and opt-in badge are part of the layout, not modal warnings. If recipient were OptOut, the Send button would disable with inline reason (theme §5.7).</p>
+</section>
+
+
+<!-- ===================== FRAME: CAMPAIGN WIZARD ===================== -->
+<section id="frame-campaign" class="frame">
+  <div class="mb-3 flex items-center justify-between">
+    <div>
+      <div class="text-xs uppercase tracking-wider text-subtle font-semibold">Frame 05</div>
+      <div class="text-lg font-semibold">Campaign wizard — 3 steps</div>
+    </div>
+    <div class="text-xs text-muted">Step 2 of 3 shown · max 3 screens to complete</div>
+  </div>
+
+  <div class="viewport">
+    <div class="viewport-bar">
+      <div class="dot bg-danger"></div><div class="dot bg-warning"></div><div class="dot bg-success-500"></div>
+      <div class="ml-2 text-xs text-muted mono">app.medstocksy.com/campaigns/new</div>
+    </div>
+
+    <div class="grid grid-cols-[240px_1fr] min-h-[760px]">
+      <aside class="border-r border-border-soft bg-white p-4">
+        <div class="flex items-center gap-2 px-2 mb-6">
+          <div class="w-8 h-8 rounded-md bg-primary-500 flex items-center justify-center text-white font-bold text-sm">M</div>
+          <div class="text-sm font-semibold">Medstocksy</div>
+        </div>
+        <nav class="space-y-1">
+          <div class="side-link">Dashboard</div>
+          <div class="side-link">Customers</div>
+          <div class="side-link active">Campaigns</div>
+          <div class="side-link">Reminders</div>
+          <div class="side-link">Reports</div>
+        </nav>
+      </aside>
+
+      <div class="bg-surface p-8">
+        <div class="text-xs text-muted mb-2">Campaigns › New campaign</div>
+        <h1 class="text-2xl font-semibold mb-6">Create campaign</h1>
+
+        <!-- Stepper -->
+        <div class="flex items-center gap-3 mb-7 max-w-2xl">
+          <div class="step step-done">
+            <div class="step-num">✓</div>
+            <div class="step-label text-sm font-medium">Segment</div>
+          </div>
+          <div class="step-line done"></div>
+          <div class="step step-active">
+            <div class="step-num">2</div>
+            <div class="step-label text-sm font-medium">Template</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step step-pending">
+            <div class="step-num">3</div>
+            <div class="step-label text-sm font-medium">Schedule</div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-[1.4fr_1fr] gap-4">
+          <!-- LEFT: form -->
+          <div class="bg-white rounded-lg2 border border-border-soft shadow-card p-6">
+            <!-- Selected segment summary -->
+            <div class="mb-6 flex items-center justify-between p-4 rounded-md2 bg-primary-50 border border-primary-100">
+              <div>
+                <div class="text-xs text-primary-700 font-semibold uppercase tracking-wider">Selected segment</div>
+                <div class="text-base font-semibold mt-1">High Spenders</div>
+                <div class="text-xs text-muted mt-0.5">Monthly spend &gt; ₹5,000 · 41 customers · 0 opted-out</div>
+              </div>
+              <button class="btn btn-ghost btn-sm">Change</button>
+            </div>
+
+            <h2 class="text-base font-semibold mb-4">Choose template</h2>
+
+            <!-- Template radio cards -->
+            <div class="space-y-2.5">
+              <label class="block p-4 rounded-md2 border-2 border-border-soft cursor-pointer hover:bg-surface-hover">
+                <div class="flex items-start gap-3">
+                  <input type="radio" name="tpl" class="mt-1" />
+                  <div class="flex-1">
+                    <div class="text-sm font-medium">T1 · Thank you (post-purchase)</div>
+                    <div class="text-xs text-muted mt-1">Best for new customers and repeat acknowledgment.</div>
+                  </div>
+                </div>
+              </label>
+              <label class="block p-4 rounded-md2 border-2 border-primary-500 bg-primary-50 cursor-pointer">
+                <div class="flex items-start gap-3">
+                  <input type="radio" name="tpl" checked class="mt-1" />
+                  <div class="flex-1">
+                    <div class="flex items-center gap-2">
+                      <div class="text-sm font-medium">T3 · Special offer</div>
+                      <span class="pill bg-gold-100 text-gold-700">Recommended</span>
+                    </div>
+                    <div class="text-xs text-muted mt-1">Promote a specific category with a time-bound discount.</div>
+                  </div>
+                </div>
+              </label>
+              <label class="block p-4 rounded-md2 border-2 border-border-soft cursor-pointer hover:bg-surface-hover">
+                <div class="flex items-start gap-3">
+                  <input type="radio" name="tpl" class="mt-1" />
+                  <div class="flex-1">
+                    <div class="text-sm font-medium">T2 · Refill reminder</div>
+                    <div class="text-xs text-muted mt-1">Better for individual triggered sends — not bulk.</div>
+                  </div>
+                </div>
+              </label>
+            </div>
+
+            <div class="mt-6 pt-6 border-t border-border-soft grid grid-cols-3 gap-3">
+              <div>
+                <label class="label">Category</label>
+                <select class="input"><option>Vitamins</option><option>BP medicine</option></select>
+              </div>
+              <div>
+                <label class="label">Discount %</label>
+                <input class="input mono" value="20" />
+              </div>
+              <div>
+                <label class="label">Valid till</label>
+                <input class="input" value="May 31, 2026" />
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: preview + safety -->
+          <div class="space-y-4">
+            <div class="bg-white rounded-lg2 border border-border-soft shadow-card p-5">
+              <div class="text-xs uppercase tracking-wider text-muted font-semibold mb-3">Preview · sample customer</div>
+              <div class="text-xs text-muted mb-2">Sending as: <span class="font-medium text-ink">Divya Nair (₹12,560 LTV)</span></div>
+              <div class="rounded-md2 p-4" style="background:#E7FFDB; border:1px solid #BFE5A6;">
+                <div class="text-sm leading-relaxed">
+                  Hi <span class="font-medium">Divya</span>,<br><br>
+                  Special offer on <span class="font-medium">vitamins</span>: <span class="font-medium">20% off!</span><br>
+                  Valid till <span class="font-medium">May 31</span>.<br><br>
+                  Limited stock. Order now.
+                </div>
+                <div class="text-xs text-muted mt-3 flex items-center gap-1.5 justify-end">
+                  <span class="mono">2:34 PM</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Safety summary -->
+            <div class="bg-white rounded-lg2 border border-border-soft shadow-card p-5">
+              <div class="text-xs uppercase tracking-wider text-muted font-semibold mb-3">Send safety</div>
+              <ul class="space-y-2.5 text-sm">
+                <li class="flex items-start gap-2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>41 recipients · all opted-in</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Below bulk approval threshold (100)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Auto rate-limit: 10/hr · ~5 hours to complete</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Within send window (9 AM – 8 PM)</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Bulk warning example (subtle) -->
+            <div class="rounded-md2 p-4 bg-gold-100 border border-gold-100" style="border-color:#FCD34D">
+              <div class="flex items-start gap-2.5">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#92400E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <div class="text-xs text-gold-700">
+                  <span class="font-semibold">Heads up:</span> sending more than 100 recipients in one batch requires admin approval. This batch is fine.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wizard footer -->
+        <div class="mt-6 flex items-center justify-between">
+          <button class="btn btn-ghost">‹ Back</button>
+          <div class="flex items-center gap-2">
+            <button class="btn btn-secondary">Save draft</button>
+            <button class="btn btn-primary">Continue · Schedule ›</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-xs text-muted mt-3">Notes — only one Recommended badge to avoid choice paralysis. Safety summary preempts confusion before send. Single primary CTA (Continue) at the wizard footer.</p>
+</section>
+
+
+<!-- ===================== FRAME: REMINDER RULES ===================== -->
+<section id="frame-reminders" class="frame">
+  <div class="mb-3 flex items-center justify-between">
+    <div>
+      <div class="text-xs uppercase tracking-wider text-subtle font-semibold">Frame 06</div>
+      <div class="text-lg font-semibold">Reminder rules — admin only</div>
+    </div>
+    <div class="text-xs text-muted">Desktop only per Rule 6 · 4-field form</div>
+  </div>
+
+  <div class="viewport">
+    <div class="viewport-bar">
+      <div class="dot bg-danger"></div><div class="dot bg-warning"></div><div class="dot bg-success-500"></div>
+      <div class="ml-2 text-xs text-muted mono">app.medstocksy.com/reminders</div>
+    </div>
+
+    <div class="grid grid-cols-[240px_1fr] min-h-[760px]">
+      <aside class="border-r border-border-soft bg-white p-4">
+        <div class="flex items-center gap-2 px-2 mb-6">
+          <div class="w-8 h-8 rounded-md bg-primary-500 flex items-center justify-center text-white font-bold text-sm">M</div>
+          <div class="text-sm font-semibold">Medstocksy</div>
+        </div>
+        <nav class="space-y-1">
+          <div class="side-link">Dashboard</div>
+          <div class="side-link">Customers</div>
+          <div class="side-link">Campaigns</div>
+          <div class="side-link active">Reminders</div>
+          <div class="side-link">Reports</div>
+        </nav>
+      </aside>
+
+      <div class="bg-surface p-8">
+        <div class="flex items-center justify-between mb-5">
+          <div>
+            <h1 class="text-2xl font-semibold">Reminder rules</h1>
+            <p class="text-sm text-muted mt-1">Schedule refill reminders by medicine type. Sent at 9:00 AM by default.</p>
+          </div>
+          <button class="btn btn-primary">+ New rule</button>
+        </div>
+
+        <div class="grid grid-cols-[1.4fr_1fr] gap-4">
+          <!-- Rules table -->
+          <div class="bg-white rounded-lg2 border border-border-soft shadow-card overflow-hidden">
+            <table class="w-full text-sm">
+              <thead class="bg-surface text-left">
+                <tr class="border-b border-border-soft">
+                  <th class="py-3 px-4 text-xs font-semibold text-muted uppercase tracking-wider">Medicine</th>
+                  <th class="py-3 px-4 text-xs font-semibold text-muted uppercase tracking-wider">Refill cycle</th>
+                  <th class="py-3 px-4 text-xs font-semibold text-muted uppercase tracking-wider">Reminder offset</th>
+                  <th class="py-3 px-4 text-xs font-semibold text-muted uppercase tracking-wider">Template</th>
+                  <th class="py-3 px-4 text-xs font-semibold text-muted uppercase tracking-wider">Status</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border-soft">
+                <tr class="h-14 hover:bg-surface-hover cursor-pointer">
+                  <td class="px-4 font-medium">BP medicine</td>
+                  <td class="px-4 num">30 days</td>
+                  <td class="px-4 num">25 days</td>
+                  <td class="px-4 text-muted">T2 · Refill reminder</td>
+                  <td class="px-4"><span class="pill bg-success-100 text-success-700">Active</span></td>
+                </tr>
+                <tr class="h-14 hover:bg-surface-hover cursor-pointer bg-primary-50">
+                  <td class="px-4 font-medium">Diabetes medicine</td>
+                  <td class="px-4 num">30 days</td>
+                  <td class="px-4 num">25 days</td>
+                  <td class="px-4 text-muted">T2 · Refill reminder</td>
+                  <td class="px-4"><span class="pill bg-success-100 text-success-700">Active</span></td>
+                </tr>
+                <tr class="h-14 hover:bg-surface-hover cursor-pointer">
+                  <td class="px-4 font-medium">Vitamins</td>
+                  <td class="px-4 num">60 days</td>
+                  <td class="px-4 num">55 days</td>
+                  <td class="px-4 text-muted">T2 · Refill reminder</td>
+                  <td class="px-4"><span class="pill bg-success-100 text-success-700">Active</span></td>
+                </tr>
+                <tr class="h-14 hover:bg-surface-hover cursor-pointer">
+                  <td class="px-4 font-medium">Cough syrup</td>
+                  <td class="px-4 num">30 days</td>
+                  <td class="px-4 num">25 days</td>
+                  <td class="px-4 text-muted">T2 · Refill reminder</td>
+                  <td class="px-4"><span class="pill bg-success-100 text-success-700">Active</span></td>
+                </tr>
+                <tr class="h-14 hover:bg-surface-hover cursor-pointer">
+                  <td class="px-4 font-medium">Antibiotics</td>
+                  <td class="px-4 num text-muted">—</td>
+                  <td class="px-4 num text-muted">—</td>
+                  <td class="px-4 text-muted">No reminder</td>
+                  <td class="px-4"><span class="pill bg-surface-hover text-muted">Off</span></td>
+                </tr>
+                <tr class="h-14 hover:bg-surface-hover cursor-pointer">
+                  <td class="px-4 font-medium">Pain relief (as needed)</td>
+                  <td class="px-4 num text-muted">—</td>
+                  <td class="px-4 num text-muted">—</td>
+                  <td class="px-4 text-muted">No reminder</td>
+                  <td class="px-4"><span class="pill bg-surface-hover text-muted">Off</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Edit panel -->
+          <div class="bg-white rounded-lg2 border border-border-soft shadow-card p-5">
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-base font-semibold">Edit rule · Diabetes medicine</div>
+              <span class="pill bg-success-100 text-success-700">Active</span>
+            </div>
+            <div class="space-y-4">
+              <div>
+                <label class="label">Medicine type</label>
+                <select class="input"><option>Diabetes medicine</option></select>
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="label">Refill cycle (days)</label>
+                  <input class="input mono" value="30" />
+                </div>
+                <div>
+                  <label class="label">Reminder offset (days)</label>
+                  <input class="input mono" value="25" />
+                  <p class="helper">Sent 5 days before expected refill.</p>
+                </div>
+              </div>
+              <div>
+                <label class="label">Message template</label>
+                <select class="input"><option>T2 · Refill reminder</option><option>T3 · Special offer</option></select>
+              </div>
+              <div>
+                <label class="label">Send time</label>
+                <select class="input"><option>9:00 AM (recommended)</option><option>10:00 AM</option><option>5:00 PM</option></select>
+                <p class="helper">Send window 9 AM – 8 PM IST is enforced.</p>
+              </div>
+            </div>
+            <div class="mt-5 pt-5 border-t border-border-soft flex items-center justify-between">
+              <button class="btn btn-ghost text-danger">Disable rule</button>
+              <div class="flex gap-2">
+                <button class="btn btn-secondary">Cancel</button>
+                <button class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-xs text-muted mt-3">Defaults from PRD §2.4 · BP/Diabetes/Cough → 30d cycle / 25d reminder · Vitamins → 60d/55d · Antibiotics &amp; Pain relief → no reminder</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== FRAME: ADD CUSTOMER ===================== -->
+<section id="frame-add" class="frame">
+  <div class="mb-3 flex items-center justify-between">
+    <div>
+      <div class="text-xs uppercase tracking-wider text-subtle font-semibold">Frame 07</div>
+      <div class="text-lg font-semibold">Add customer — sheet</div>
+    </div>
+    <div class="text-xs text-muted">Two required fields. Everything else collapsed.</div>
+  </div>
+
+  <div class="viewport">
+    <div class="viewport-bar">
+      <div class="dot bg-danger"></div><div class="dot bg-warning"></div><div class="dot bg-success-500"></div>
+      <div class="ml-2 text-xs text-muted mono">Sheet · over /customers</div>
+    </div>
+
+    <div class="relative" style="min-height:760px; background:#F8FAFC">
+      <div class="absolute inset-0 p-8 opacity-30">
+        <div class="bg-white rounded-lg2 border border-border-soft shadow-card h-32"></div>
+        <div class="bg-white rounded-lg2 border border-border-soft shadow-card mt-4 h-96"></div>
+      </div>
+
+      <div class="absolute right-0 top-0 bottom-0 w-[480px] bg-white shadow-modal border-l border-border-soft flex flex-col">
+        <div class="px-6 py-5 border-b border-border-soft flex items-center justify-between">
+          <div>
+            <div class="text-base font-semibold">Add customer</div>
+            <div class="text-xs text-muted mt-0.5">Phone is the unique key. Auto-detects duplicates.</div>
+          </div>
+          <button class="btn btn-ghost btn-sm">✕</button>
+        </div>
+
+        <div class="flex-1 p-6 space-y-5 overflow-y-auto">
+          <div>
+            <label class="label">Name <span class="text-danger">*</span></label>
+            <input class="input" placeholder="e.g. Ramesh Singh" />
+          </div>
+          <div>
+            <label class="label">Phone <span class="text-danger">*</span></label>
+            <div class="flex">
+              <div class="px-3 flex items-center border border-border-soft border-r-0 rounded-l-md bg-surface text-muted text-sm mono select-none">+91</div>
+              <input class="input rounded-l-none mono" placeholder="98765 43210" />
+            </div>
+            <p class="helper">Used as primary key. WhatsApp messages will be sent to this number.</p>
+          </div>
+
+          <!-- Collapsed details -->
+          <div>
+            <button class="text-sm font-medium text-primary-700 hover:text-primary-600 flex items-center gap-1">
+              Add more details
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <p class="helper">Age, Gender, Address, and Tags. Optional.</p>
+          </div>
+
+          <!-- Expanded preview (visually shown to demonstrate) -->
+          <div class="pt-3 border-t border-border-soft space-y-4">
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="label">Age</label>
+                <input class="input mono" placeholder="—" />
+              </div>
+              <div>
+                <label class="label">Gender</label>
+                <select class="input"><option>—</option><option>Male</option><option>Female</option><option>Other</option></select>
+              </div>
+            </div>
+            <div>
+              <label class="label">Address</label>
+              <input class="input" placeholder="Optional" />
+            </div>
+            <div>
+              <label class="label">Tags</label>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="pill bg-chronic-100 text-chronic-700 cursor-pointer">+ Chronic</span>
+                <span class="pill bg-surface-hover text-muted cursor-pointer">+ VIP</span>
+                <span class="pill bg-surface-hover text-muted cursor-pointer">+ Custom…</span>
+              </div>
+              <p class="helper">Auto tags (New, Repeat, Inactive, High Value) are applied based on activity — you don't need to set them.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-border-soft bg-surface px-6 py-4 flex items-center justify-between">
+          <label class="flex items-center gap-2 text-sm text-muted">
+            <input type="checkbox" checked class="rounded" /> Send welcome WhatsApp
+          </label>
+          <div class="flex gap-2">
+            <button class="btn btn-secondary">Cancel</button>
+            <button class="btn btn-primary">Save customer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-xs text-muted mt-3">Notes — Name + Phone meet the 2-field minimum from PRD §2.1. Locked +91 prefix. Auto-tags suppressed in form to keep entry fast.</p>
+</section>
+
+
+<!-- ===================== FRAME: MOBILE COMPANION ===================== -->
+<section id="frame-mobile" class="frame">
+  <div class="mb-3 flex items-center justify-between">
+    <div>
+      <div class="text-xs uppercase tracking-wider text-subtle font-semibold">Frame 08</div>
+      <div class="text-lg font-semibold">Mobile companion (read-only + quick send)</div>
+    </div>
+    <div class="text-xs text-muted">Per Rule 6 · no configuration on mobile</div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-6">
+    <!-- Mobile Dashboard -->
+    <div class="flex flex-col items-center">
+      <div class="text-xs text-muted mb-2 font-medium">Dashboard</div>
+      <div class="w-[320px] h-[640px] bg-black rounded-[36px] p-2.5 shadow-modal">
+        <div class="w-full h-full bg-white rounded-[28px] overflow-hidden flex flex-col">
+          <div class="px-4 py-3 border-b border-border-soft flex items-center justify-between bg-surface">
+            <div class="flex items-center gap-2">
+              <div class="w-7 h-7 rounded-md bg-primary-500 flex items-center justify-center text-white font-bold text-xs">M</div>
+              <div class="text-sm font-semibold">Medstocksy</div>
+            </div>
+            <div class="w-7 h-7 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-xs font-semibold">RS</div>
+          </div>
+          <div class="flex-1 p-4 overflow-y-auto space-y-3 bg-surface">
+            <div class="text-base font-semibold">Today</div>
+            <div class="grid grid-cols-2 gap-2.5">
+              <div class="bg-white border border-border-soft rounded-md2 p-3">
+                <div class="text-xs text-muted">Customers</div>
+                <div class="num text-xl font-semibold">347</div>
+              </div>
+              <div class="bg-white border border-border-soft rounded-md2 p-3">
+                <div class="text-xs text-muted">Repeat rate</div>
+                <div class="num text-xl font-semibold">38%</div>
+              </div>
+              <div class="bg-white border border-border-soft rounded-md2 p-3">
+                <div class="text-xs text-muted">Messages</div>
+                <div class="num text-xl font-semibold">42</div>
+              </div>
+              <div class="bg-white border border-border-soft rounded-md2 p-3">
+                <div class="text-xs text-muted">Reminders 7d</div>
+                <div class="num text-xl font-semibold">23</div>
+              </div>
+            </div>
+            <div class="bg-white border border-border-soft rounded-md2 p-4">
+              <div class="text-xs text-muted mb-1">WhatsApp this hour</div>
+              <div class="flex items-center justify-between mb-1.5">
+                <div class="text-sm font-medium">Rate</div>
+                <div class="text-sm mono"><span class="text-warning font-semibold">7</span> / 10</div>
+              </div>
+              <div class="meter-track"><div style="width:70%;height:100%;background:#F59E0B"></div></div>
+            </div>
+            <div class="bg-white border border-border-soft rounded-md2 p-4">
+              <div class="text-xs uppercase tracking-wider text-muted font-semibold mb-2">Tomorrow's reminders</div>
+              <div class="space-y-2.5">
+                <div class="text-sm">Ramesh Singh — Amlodipine</div>
+                <div class="text-sm">Priya Sharma — Vitamin D</div>
+                <div class="text-sm">Amit Patel — Metformin</div>
+              </div>
+            </div>
+          </div>
+          <div class="border-t border-border-soft grid grid-cols-4 bg-white">
+            <div class="py-2.5 flex flex-col items-center gap-0.5 text-primary-700">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              <div class="text-[10px] font-medium">Home</div>
+            </div>
+            <div class="py-2.5 flex flex-col items-center gap-0.5 text-muted">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              <div class="text-[10px] font-medium">Customers</div>
+            </div>
+            <div class="py-2.5 flex flex-col items-center gap-0.5 text-muted">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/></svg>
+              <div class="text-[10px] font-medium">Reminders</div>
+            </div>
+            <div class="py-2.5 flex flex-col items-center gap-0.5 text-muted">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              <div class="text-[10px] font-medium">More</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Customer profile -->
+    <div class="flex flex-col items-center">
+      <div class="text-xs text-muted mb-2 font-medium">Customer profile</div>
+      <div class="w-[320px] h-[640px] bg-black rounded-[36px] p-2.5 shadow-modal">
+        <div class="w-full h-full bg-white rounded-[28px] overflow-hidden flex flex-col">
+          <div class="px-4 py-3 border-b border-border-soft flex items-center gap-3 bg-white">
+            <button class="text-muted">‹</button>
+            <div class="text-sm font-semibold flex-1">Customer</div>
+            <button class="text-muted">⋯</button>
+          </div>
+          <div class="flex-1 overflow-y-auto bg-surface">
+            <div class="bg-white p-4 border-b border-border-soft">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-base font-semibold">PS</div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-base font-semibold">Priya Sharma</div>
+                  <div class="text-xs text-muted mono">+91 91234 56789</div>
+                </div>
+              </div>
+              <div class="flex gap-1.5 mt-3">
+                <span class="pill bg-success-100 text-success-700">Repeat</span>
+                <span class="pill bg-gold-100 text-gold-700">High Value</span>
+              </div>
+              <div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-border-soft">
+                <div>
+                  <div class="text-[10px] uppercase text-muted">Spend</div>
+                  <div class="num mono text-sm font-semibold">₹7,240</div>
+                </div>
+                <div>
+                  <div class="text-[10px] uppercase text-muted">Visits</div>
+                  <div class="num text-sm font-semibold">12</div>
+                </div>
+                <div>
+                  <div class="text-[10px] uppercase text-muted">Cycle</div>
+                  <div class="num text-sm font-semibold">17d</div>
+                </div>
+              </div>
+            </div>
+            <div class="p-4">
+              <div class="text-xs uppercase tracking-wider text-muted font-semibold mb-2">Recent</div>
+              <div class="bg-white border border-border-soft rounded-md2 p-3 mb-2">
+                <div class="flex justify-between">
+                  <div class="text-xs text-muted mono">#INV-5847</div>
+                  <div class="num mono text-sm font-semibold">₹2,150</div>
+                </div>
+                <div class="text-xs text-muted mt-0.5">May 4 · 2:05 PM</div>
+              </div>
+              <div class="bg-white border border-border-soft rounded-md2 p-3 mb-2">
+                <div class="flex justify-between">
+                  <div class="text-xs text-muted mono">#INV-5821</div>
+                  <div class="num mono text-sm font-semibold">₹1,890</div>
+                </div>
+                <div class="text-xs text-muted mt-0.5">Apr 28 · 10:30 AM</div>
+              </div>
+            </div>
+          </div>
+          <div class="p-3 border-t border-border-soft bg-white">
+            <button class="btn btn-primary btn-lg w-full">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Send message
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Send sheet -->
+    <div class="flex flex-col items-center">
+      <div class="text-xs text-muted mb-2 font-medium">Send message · sheet</div>
+      <div class="w-[320px] h-[640px] bg-black rounded-[36px] p-2.5 shadow-modal">
+        <div class="w-full h-full bg-white rounded-[28px] overflow-hidden flex flex-col relative">
+          <div class="absolute inset-0 bg-ink/40" style="opacity:0.4;background:#0F172A"></div>
+          <div class="absolute bottom-0 left-0 right-0 bg-white rounded-t-[20px] shadow-modal flex flex-col" style="height:75%;">
+            <div class="w-12 h-1 rounded-full bg-border-strong mx-auto mt-2"></div>
+            <div class="px-4 pt-3 pb-2 flex items-center justify-between border-b border-border-soft">
+              <div class="text-sm font-semibold">New message</div>
+              <button class="text-muted text-sm">Cancel</button>
+            </div>
+            <div class="flex-1 p-4 overflow-y-auto space-y-3 bg-surface">
+              <div class="bg-white rounded-md2 border border-border-soft p-3 flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-xs font-semibold">PS</div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-sm font-medium">Priya Sharma</div>
+                  <div class="text-xs text-muted mono">+91 91234 56789</div>
+                </div>
+                <span class="pill bg-success-100 text-success-700">Opted in</span>
+              </div>
+              <div>
+                <label class="label">Template</label>
+                <select class="input"><option>T2 · Refill reminder</option></select>
+              </div>
+              <div class="rounded-md2 p-3" style="background:#E7FFDB; border:1px solid #BFE5A6;">
+                <div class="text-xs leading-relaxed">
+                  Hi Priya,<br><br>Time to refill your Cough syrup? We have it in stock.<br><br>Call: <span class="mono">+91 95555 12345</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-3 border-t border-border-soft bg-white space-y-2">
+              <div class="flex items-center justify-between text-xs">
+                <div class="flex items-center gap-1 text-warning"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Rate this hour</div>
+                <div class="mono"><span class="text-warning font-semibold">7</span> / 10</div>
+              </div>
+              <div class="meter-track"><div style="width:70%;height:100%;background:#F59E0B"></div></div>
+              <button class="btn btn-primary btn-lg w-full mt-2">Send now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-xs text-muted mt-3">Notes — mobile is read-only + quick send. No reminder rules, no campaign creation, no settings (Rule 6). All buttons are 48px tall (touch target compliance).</p>
+</section>
+
+
+<!-- ===================== FRAME: THEME REFERENCE ===================== -->
+<section id="frame-theme" class="frame">
+  <div class="mb-3">
+    <div class="text-xs uppercase tracking-wider text-subtle font-semibold">Frame 09</div>
+    <div class="text-lg font-semibold">Theme reference — tokens, components, anti-patterns</div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-6">
+    <!-- Colors -->
+    <div class="bg-white rounded-lg2 border border-border-soft shadow-card p-6">
+      <h3 class="text-base font-semibold mb-4">Color tokens</h3>
+      <div class="space-y-4">
+        <div>
+          <div class="text-xs uppercase tracking-wider text-muted font-semibold mb-2">Primary · Trust Blue</div>
+          <div class="grid grid-cols-5 gap-2">
+            <div><div class="h-12 rounded-md" style="background:#EFF6FF"></div><div class="text-[10px] mono mt-1">50</div></div>
+            <div><div class="h-12 rounded-md" style="background:#DBEAFE"></div><div class="text-[10px] mono mt-1">100</div></div>
+            <div><div class="h-12 rounded-md" style="background:#2563EB"></div><div class="text-[10px] mono mt-1">500</div></div>
+            <div><div class="h-12 rounded-md" style="background:#1D4ED8"></div><div class="text-[10px] mono mt-1">600</div></div>
+            <div><div class="h-12 rounded-md" style="background:#1E40AF"></div><div class="text-[10px] mono mt-1">700</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="text-xs uppercase tracking-wider text-muted font-semibold mb-2">Care Green</div>
+          <div class="grid grid-cols-4 gap-2">
+            <div><div class="h-12 rounded-md" style="background:#ECFDF5"></div><div class="text-[10px] mono mt-1">50</div></div>
+            <div><div class="h-12 rounded-md" style="background:#D1FAE5"></div><div class="text-[10px] mono mt-1">100</div></div>
+            <div><div class="h-12 rounded-md" style="background:#10B981"></div><div class="text-[10px] mono mt-1">500</div></div>
+            <div><div class="h-12 rounded-md" style="background:#047857"></div><div class="text-[10px] mono mt-1">700</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="text-xs uppercase tracking-wider text-muted font-semibold mb-2">Semantic</div>
+          <div class="grid grid-cols-4 gap-2">
+            <div><div class="h-12 rounded-md" style="background:#0EA5E9"></div><div class="text-[10px] mono mt-1">info</div></div>
+            <div><div class="h-12 rounded-md" style="background:#F59E0B"></div><div class="text-[10px] mono mt-1">warning</div></div>
+            <div><div class="h-12 rounded-md" style="background:#EF4444"></div><div class="text-[10px] mono mt-1">danger</div></div>
+            <div><div class="h-12 rounded-md" style="background:#D97706"></div><div class="text-[10px] mono mt-1">gold</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="text-xs uppercase tracking-wider text-muted font-semibold mb-2">Neutrals</div>
+          <div class="grid grid-cols-7 gap-2">
+            <div><div class="h-10 rounded-md" style="background:#FFFFFF;border:1px solid #E2E8F0"></div><div class="text-[10px] mono mt-1">bg</div></div>
+            <div><div class="h-10 rounded-md" style="background:#F8FAFC"></div><div class="text-[10px] mono mt-1">surface</div></div>
+            <div><div class="h-10 rounded-md" style="background:#F1F5F9"></div><div class="text-[10px] mono mt-1">hover</div></div>
+            <div><div class="h-10 rounded-md" style="background:#E2E8F0"></div><div class="text-[10px] mono mt-1">border</div></div>
+            <div><div class="h-10 rounded-md" style="background:#94A3B8"></div><div class="text-[10px] mono mt-1">subtle</div></div>
+            <div><div class="h-10 rounded-md" style="background:#475569"></div><div class="text-[10px] mono mt-1">muted</div></div>
+            <div><div class="h-10 rounded-md" style="background:#0F172A"></div><div class="text-[10px] mono mt-1">ink</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tags + Buttons + Type -->
+    <div class="space-y-6">
+      <div class="bg-white rounded-lg2 border border-border-soft shadow-card p-6">
+        <h3 class="text-base font-semibold mb-4">Tag palette · capped at 6</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="pill bg-primary-100 text-primary-700">New</span>
+          <span class="pill bg-success-100 text-success-700">Repeat</span>
+          <span class="pill bg-gold-100 text-gold-700">High Value</span>
+          <span class="pill bg-surface-hover text-muted">Inactive</span>
+          <span class="pill bg-chronic-100 text-chronic-700">Chronic</span>
+          <span class="pill bg-optout-100 text-optout-700">OptOut</span>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg2 border border-border-soft shadow-card p-6">
+        <h3 class="text-base font-semibold mb-4">Buttons</h3>
+        <div class="flex flex-wrap gap-3 items-center">
+          <button class="btn btn-primary">Primary</button>
+          <button class="btn btn-secondary">Secondary</button>
+          <button class="btn btn-ghost">Ghost</button>
+          <button class="btn btn-danger">Destructive</button>
+          <span class="pill bg-success-100 text-success-700">Success pill (status, not CTA)</span>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg2 border border-border-soft shadow-card p-6">
+        <h3 class="text-base font-semibold mb-4">Type scale</h3>
+        <div class="space-y-2">
+          <div class="text-3xl font-semibold">Display 30/36 · 600</div>
+          <div class="text-2xl font-semibold">H1 24/32 · 600</div>
+          <div class="text-xl font-semibold">H2 20/28 · 600</div>
+          <div class="text-base font-semibold">H3 16/24 · 600</div>
+          <div class="text-sm">Body 14/20 · 400</div>
+          <div class="text-[13px] font-medium">Label 13/18 · 500</div>
+          <div class="text-xs text-muted">Caption 12/16 · 400</div>
+          <div class="mono text-[13px] font-medium">Mono 13/20 · ₹2,150 · +91 9876543210</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Anti-patterns -->
+  <div class="mt-6 bg-white rounded-lg2 border border-border-soft shadow-card p-6">
+    <h3 class="text-base font-semibold mb-4">Anti-patterns to reject during review</h3>
+    <div class="grid grid-cols-3 gap-4">
+      <div class="rounded-md2 p-4 border border-optout-100" style="background:#FEF2F2">
+        <div class="text-sm font-semibold text-optout-700 mb-1">Two primary CTAs</div>
+        <div class="text-xs text-muted">One dominant action per screen. Demote the rest to secondary.</div>
+      </div>
+      <div class="rounded-md2 p-4 border border-optout-100" style="background:#FEF2F2">
+        <div class="text-sm font-semibold text-optout-700 mb-1">7th tag color</div>
+        <div class="text-xs text-muted">Tag palette is capped. Add metadata, not a new color.</div>
+      </div>
+      <div class="rounded-md2 p-4 border border-optout-100" style="background:#FEF2F2">
+        <div class="text-sm font-semibold text-optout-700 mb-1">Charts on dashboard</div>
+        <div class="text-xs text-muted">PRD §2.8: simple numbers/bars only. No line/pie charts in V1.</div>
+      </div>
+      <div class="rounded-md2 p-4 border border-optout-100" style="background:#FEF2F2">
+        <div class="text-sm font-semibold text-optout-700 mb-1">Configuration on mobile</div>
+        <div class="text-xs text-muted">Rule 6: campaigns, reminder rules, settings are desktop-only.</div>
+      </div>
+      <div class="rounded-md2 p-4 border border-optout-100" style="background:#FEF2F2">
+        <div class="text-sm font-semibold text-optout-700 mb-1">Rate-limit shown only on error</div>
+        <div class="text-xs text-muted">Theme §5.7: WhatsApp constraints are ambient, visible at rest.</div>
+      </div>
+      <div class="rounded-md2 p-4 border border-optout-100" style="background:#FEF2F2">
+        <div class="text-sm font-semibold text-optout-700 mb-1">Floating labels in forms</div>
+        <div class="text-xs text-muted">Predictability over novelty. Labels stay above inputs.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-xs text-muted mt-4">All wireframes on this page use only the tokens above — no off-palette color, no new component patterns. If something doesn't fit here, redesign before code (Rule 17).</p>
+</section>
+
+</main>
+
+<footer class="max-w-[1400px] mx-auto px-6 pb-10 text-xs text-muted flex items-center justify-between">
+  <div>Medstocksy Connect Wireframes v1.0 · aligned with PRD v1.0 + Rules v1.0 + Theme v1.0</div>
+  <div>Use <kbd>←</kbd> <kbd>→</kbd> to navigate frames</div>
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.nav-tab');
+  const frames = document.querySelectorAll('.frame');
+  const order = Array.from(tabs).map(t => t.dataset.tab);
+
+  function show(name) {
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === name));
+    frames.forEach(f => f.classList.toggle('active', f.id === 'frame-' + name));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  tabs.forEach(t => t.addEventListener('click', () => show(t.dataset.tab)));
+  document.addEventListener('keydown', (e) => {
+    const idx = order.indexOf(document.querySelector('.nav-tab.active').dataset.tab);
+    if (e.key === 'ArrowRight' && idx < order.length - 1) show(order[idx + 1]);
+    if (e.key === 'ArrowLeft' && idx > 0) show(order[idx - 1]);
+  });
+</script>
+</body>
+</html>
