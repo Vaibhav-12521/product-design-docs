@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Medstocksy — Product Requirements Document</title>
+<title>Medstocksy  Product Requirements Document</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -171,10 +171,10 @@ code{background:var(--paper3);padding:1px 6px;border-radius:3px;font-size:12.5px
     <div class="meta-strip">
       <span class="meta-tag tag-prd">PRD</span>
       <span class="meta-tag tag-stack">React · TypeScript · Supabase · Vite · Tailwind</span>
-      <span class="meta-tag tag-live">Live — app.medstocksy.in</span>
+      <span class="meta-tag tag-live">Live  app.medstocksy.in</span>
     </div>
     <h1 class="doc-title">Medstocksy<br/><em>Inventory Management</em></h1>
-    <p class="doc-subtitle">Product Requirements Document derived from the open-source codebase at <strong>github.com/Arham0003/Medstocksy</strong> — a pharmacy inventory SaaS built with React, TypeScript, and Supabase, deployed on Vercel.</p>
+    <p class="doc-subtitle">Product Requirements Document derived from the open-source codebase at <strong>github.com/Arham0003/Medstocksy</strong>  a pharmacy inventory SaaS built with React, TypeScript, and Supabase, deployed on Vercel.</p>
     <div class="meta-grid">
       <div class="meta-cell"><div class="label">Author</div><div class="value">Arham0003</div></div>
       <div class="meta-cell"><div class="label">Repository</div><div class="value">Arham0003/Medstocksy</div></div>
@@ -186,14 +186,14 @@ code{background:var(--paper3);padding:1px 6px;border-radius:3px;font-size:12.5px
 
   <!-- 1 -->
   <section class="section" id="overview">
-    <div class="sec-eyebrow">01 — Overview</div>
+    <div class="sec-eyebrow">01  Overview</div>
     <h2 class="sec-title">Product Overview</h2>
     <div class="sec-rule"></div>
     <p class="body">Medstocksy is a comprehensive, open-source web-based inventory management system purpose-built for pharmacies, medical stores, and chemist shops. Built with a React + TypeScript frontend and Supabase as its backend-as-a-service, it replaces paper-based pharmacy workflows with a real-time digital system covering inventory tracking, GST billing, customer CRM, and WhatsApp automation.</p>
     <p class="body">The codebase at <strong>github.com/Arham0003/Medstocksy</strong> has 34 commits, is 91.5% TypeScript, includes PL/pgSQL stored procedures (5.2%), and is deployed on Vercel at medstocksy.vercel.app (→ app.medstocksy.in).</p>
     <div class="callout callout-ok">
       <div class="callout-icon">✦</div>
-      <div><b>Core Value:</b> Replace manual pharmacy workflows — paper ledgers, notebook customer records, untracked expiry — with a real-time SaaS system that automates every step from stock entry to patient refill reminders.</div>
+      <div><b>Core Value:</b> Replace manual pharmacy workflows  paper ledgers, notebook customer records, untracked expiry  with a real-time SaaS system that automates every step from stock entry to patient refill reminders.</div>
     </div>
     <div class="grid2">
       <div class="card">
@@ -202,7 +202,7 @@ code{background:var(--paper3);padding:1px 6px;border-radius:3px;font-size:12.5px
           <li>Digitise pharmacy operations currently on paper or legacy desktop software</li>
           <li>Reduce inventory waste from untracked expiry dates</li>
           <li>Increase repeat revenue through automated CRM and WhatsApp reminders</li>
-          <li>Provide actionable analytics — margins, turnover, top products</li>
+          <li>Provide actionable analytics  margins, turnover, top products</li>
         </ul>
       </div>
       <div class="card">
@@ -211,7 +211,7 @@ code{background:var(--paper3);padding:1px 6px;border-radius:3px;font-size:12.5px
           <li>SPA with client-side routing via React Router; no page reloads</li>
           <li>Real-time inventory updates via Supabase Realtime subscriptions</li>
           <li>Google OAuth + email/password auth with DB-level RLS isolation</li>
-          <li>Zero-infrastructure deployment — Vercel (frontend) + Supabase (backend)</li>
+          <li>Zero-infrastructure deployment  Vercel (frontend) + Supabase (backend)</li>
         </ul>
       </div>
     </div>
@@ -219,7 +219,7 @@ code{background:var(--paper3);padding:1px 6px;border-radius:3px;font-size:12.5px
 
   <!-- 2 -->
   <section class="section" id="personas">
-    <div class="sec-eyebrow">02 — Users</div>
+    <div class="sec-eyebrow">02  Users</div>
     <h2 class="sec-title">User Personas</h2>
     <div class="sec-rule"></div>
     <div class="grid2">
@@ -248,7 +248,7 @@ code{background:var(--paper3);padding:1px 6px;border-radius:3px;font-size:12.5px
 
   <!-- 3 -->
   <section class="section" id="problem">
-    <div class="sec-eyebrow">03 — Problem</div>
+    <div class="sec-eyebrow">03  Problem</div>
     <h2 class="sec-title">Problem Statement</h2>
     <div class="sec-rule"></div>
     <p class="body">India's ~10 lakh registered medical stores manage ₹3 lakh crore in annual retail, yet the vast majority use paper ledgers, Excel files, or outdated local software. This creates four compounding failures that Medstocksy directly addresses:</p>
@@ -274,19 +274,19 @@ code{background:var(--paper3);padding:1px 6px;border-radius:3px;font-size:12.5px
 
   <!-- 4 -->
   <section class="section" id="features">
-    <div class="sec-eyebrow">04 — Features</div>
+    <div class="sec-eyebrow">04  Features</div>
     <h2 class="sec-title">Feature Modules</h2>
     <div class="sec-rule"></div>
     <p class="sec-lead">Five modules derived directly from the repository structure, source code, and documentation files.</p>
 
     <div class="card">
-      <div class="card-head"><div class="card-icon">🏪</div><div class="card-title">Module 1 — Inventory Management</div></div>
+      <div class="card-head"><div class="card-icon">🏪</div><div class="card-title">Module 1  Inventory Management</div></div>
       <p>Core module. Every product tracked in real-time. Stock auto-decrements on sale, increments on purchase or return.</p>
       <ul class="flist">
         <li>Add / edit / delete products: name, batch, MRP, purchase price, manufacturer, HSN code</li>
         <li>Real-time stock level with unit of measure; updates on every transaction</li>
-        <li>Low-stock threshold per product — dashboard alert when stock ≤ threshold</li>
-        <li>Expiry date tracking per batch — alerts at 30 / 60 / 90 day lead times</li>
+        <li>Low-stock threshold per product  dashboard alert when stock ≤ threshold</li>
+        <li>Expiry date tracking per batch  alerts at 30 / 60 / 90 day lead times</li>
         <li>Medicine search by name, composition, manufacturer</li>
         <li>Stock adjustment with reason log (damage, theft, reconciliation)</li>
         <li>5,400+ medicine catalog entries</li>
@@ -294,26 +294,26 @@ code{background:var(--paper3);padding:1px 6px;border-radius:3px;font-size:12.5px
     </div>
 
     <div class="card">
-      <div class="card-head"><div class="card-icon">🧾</div><div class="card-title">Module 2 — Sales & Billing</div></div>
+      <div class="card-head"><div class="card-icon">🧾</div><div class="card-title">Module 2  Sales & Billing</div></div>
       <p>Point-of-sale module. GST-compliant invoicing auto-updates inventory and links to patient CRM. Sales return flow tracked and fixed via PL/pgSQL migration (see repo docs).</p>
       <ul class="flist">
         <li>Create sale with multiple line items; inline medicine search</li>
         <li>GST invoice: CGST/SGST/IGST breakdown, HSN codes, GSTIN field</li>
         <li>Link every sale to a customer profile at checkout</li>
         <li>Automatic inventory deduction on confirmed sale</li>
-        <li>Sales return flow with stock re-addition (bug fixed — FIX_SALES_RETURN_STOCK.md)</li>
+        <li>Sales return flow with stock re-addition (bug fixed  FIX_SALES_RETURN_STOCK.md)</li>
         <li>Multiple payment modes: cash, UPI, card, credit</li>
-        <li>Invoice PDF — print or share via WhatsApp</li>
+        <li>Invoice PDF  print or share via WhatsApp</li>
         <li>Daily cash register summary and shift reconciliation</li>
       </ul>
     </div>
 
     <div class="card">
-      <div class="card-head"><div class="card-icon">💬</div><div class="card-title">Module 3 — Customer CRM</div></div>
+      <div class="card-head"><div class="card-icon">💬</div><div class="card-title">Module 3  Customer CRM</div></div>
       <p>Turns transactional visits into ongoing patient relationships via WhatsApp automation and prescription tracking.</p>
       <ul class="flist">
         <li>Customer profiles: name, phone, address, chronic flag</li>
-        <li>Full purchase history per customer — all invoices, products, dates</li>
+        <li>Full purchase history per customer  all invoices, products, dates</li>
         <li>Prescription logging: medicine, dosage, frequency, refill interval</li>
         <li>Automated WhatsApp refill reminder at prescription refill schedule</li>
         <li>WhatsApp delivery status tracking: sent / delivered / read</li>
@@ -323,7 +323,7 @@ code{background:var(--paper3);padding:1px 6px;border-radius:3px;font-size:12.5px
     </div>
 
     <div class="card">
-      <div class="card-head"><div class="card-icon">📊</div><div class="card-title">Module 4 — Analytics & Reports</div></div>
+      <div class="card-head"><div class="card-icon">📊</div><div class="card-title">Module 4  Analytics & Reports</div></div>
       <p>Data-driven insights for procurement, pricing, and operations decisions.</p>
       <ul class="flist">
         <li>Real-time dashboard: daily sales, active transactions, low stock count, WhatsApp alerts sent</li>
@@ -337,10 +337,10 @@ code{background:var(--paper3);padding:1px 6px;border-radius:3px;font-size:12.5px
     </div>
 
     <div class="card">
-      <div class="card-head"><div class="card-icon">🔐</div><div class="card-title">Module 5 — Auth & User Management</div></div>
+      <div class="card-head"><div class="card-icon">🔐</div><div class="card-title">Module 5  Auth & User Management</div></div>
       <p>Supabase Auth with Google OAuth and email/password. Row-Level Security enforces tenant isolation at database level.</p>
       <ul class="flist">
-        <li>Google Sign-In (OAuth 2.0) — Vercel redirect issue fixed in recent commits</li>
+        <li>Google Sign-In (OAuth 2.0)  Vercel redirect issue fixed in recent commits</li>
         <li>Email + password with email verification and OTP reset</li>
         <li>Role-based access: owner (full), manager (no settings), staff (billing only)</li>
         <li>Multi-device concurrent sessions supported</li>
@@ -352,7 +352,7 @@ code{background:var(--paper3);padding:1px 6px;border-radius:3px;font-size:12.5px
 
   <!-- 5 -->
   <section class="section" id="functional">
-    <div class="sec-eyebrow">05 — Functional Requirements</div>
+    <div class="sec-eyebrow">05  Functional Requirements</div>
     <h2 class="sec-title">Functional Requirements</h2>
     <div class="sec-rule"></div>
     <p class="sec-lead">MoSCoW prioritised. <span style="color:var(--red)">Must</span> = launch blocker · <span style="color:var(--amber)">Should</span> = high value · <span style="color:var(--green)">Could</span> = future iteration.</p>
@@ -374,7 +374,7 @@ code{background:var(--paper3);padding:1px 6px;border-radius:3px;font-size:12.5px
           <tr><td>FR-12</td><td>Dashboard landing page</td><td>Analytics</td><td><span class="badge b-must">Must</span></td><td>Default page post-login with today's KPIs, low stock count, alerts</td></tr>
           <tr><td>FR-13</td><td>Purchase order management</td><td>Inventory</td><td><span class="badge b-should">Should</span></td><td>Create PO → supplier → receive stock → auto-increment inventory</td></tr>
           <tr><td>FR-14</td><td>P&amp;L report</td><td>Analytics</td><td><span class="badge b-should">Should</span></td><td>Gross margin per product; overall P&amp;L for any date range</td></tr>
-          <tr><td>FR-15</td><td>Role-based access control</td><td>Auth</td><td><span class="badge b-should">Should</span></td><td>Owner, manager, staff — staff cannot access reports or settings</td></tr>
+          <tr><td>FR-15</td><td>Role-based access control</td><td>Auth</td><td><span class="badge b-should">Should</span></td><td>Owner, manager, staff  staff cannot access reports or settings</td></tr>
           <tr><td>FR-16</td><td>Export PDF / CSV</td><td>Analytics</td><td><span class="badge b-should">Should</span></td><td>Any report downloadable in ≤ 2 clicks</td></tr>
           <tr><td>FR-17</td><td>Multi-store dashboard</td><td>Enterprise</td><td><span class="badge b-should">Should</span></td><td>Centralised view across ≤ 5 stores under one account</td></tr>
           <tr><td>FR-18</td><td>Camera barcode scanning</td><td>Inventory</td><td><span class="badge b-could">Could</span></td><td>Camera opens on mobile → barcode decoded → medicine identified</td></tr>
@@ -387,16 +387,16 @@ code{background:var(--paper3);padding:1px 6px;border-radius:3px;font-size:12.5px
 
   <!-- 6 -->
   <section class="section" id="nonfunctional">
-    <div class="sec-eyebrow">06 — Non-Functional</div>
+    <div class="sec-eyebrow">06  Non-Functional</div>
     <h2 class="sec-title">Non-Functional Requirements</h2>
     <div class="sec-rule"></div>
     <div class="grid2">
       <div class="card">
         <div class="card-head"><div class="card-icon">⚡</div><div class="card-title">Performance</div></div>
         <ul class="flist">
-          <li>FCP &lt; 1.5s on 4G — Vite-optimised bundle with code splitting</li>
+          <li>FCP &lt; 1.5s on 4G  Vite-optimised bundle with code splitting</li>
           <li>Invoice generation &lt; 500ms end-to-end</li>
-          <li>Medicine search &lt; 300ms — client-side filter + Supabase index</li>
+          <li>Medicine search &lt; 300ms  client-side filter + Supabase index</li>
           <li>1,000+ concurrent sessions on Vercel Edge CDN</li>
           <li>99.9% uptime backed by Vercel + Supabase SLAs</li>
         </ul>
@@ -404,28 +404,28 @@ code{background:var(--paper3);padding:1px 6px;border-radius:3px;font-size:12.5px
       <div class="card">
         <div class="card-head"><div class="card-icon">🔒</div><div class="card-title">Security</div></div>
         <ul class="flist">
-          <li>Supabase RLS — each pharmacy DB-isolated by <code>user_id</code></li>
-          <li>All traffic HTTPS / TLS 1.3 — Vercel enforced</li>
+          <li>Supabase RLS  each pharmacy DB-isolated by <code>user_id</code></li>
+          <li>All traffic HTTPS / TLS 1.3  Vercel enforced</li>
           <li>Supabase JWT tokens for all API calls; auto-refresh</li>
           <li>Patient data AES-256 encrypted at rest (Supabase)</li>
           <li>DPDPA 2023 + IT Act 2000 compliance</li>
-          <li><code>.env</code> secrets never committed — enforced via <code>.gitignore</code></li>
+          <li><code>.env</code> secrets never committed  enforced via <code>.gitignore</code></li>
         </ul>
       </div>
       <div class="card">
         <div class="card-head"><div class="card-icon">📱</div><div class="card-title">Compatibility</div></div>
         <ul class="flist">
-          <li>Fully responsive — desktop, tablet, mobile (Tailwind CSS)</li>
+          <li>Fully responsive  desktop, tablet, mobile (Tailwind CSS)</li>
           <li>Chrome 90+, Firefox 90+, Safari 14+, Edge 90+</li>
-          <li>PWA — installable on Android / iOS homescreen</li>
-          <li>Usable on 3G — lazy-loaded routes via React Router</li>
+          <li>PWA  installable on Android / iOS homescreen</li>
+          <li>Usable on 3G  lazy-loaded routes via React Router</li>
           <li>Hindi UI support planned (Phase 2)</li>
         </ul>
       </div>
       <div class="card">
         <div class="card-head"><div class="card-icon">🛠️</div><div class="card-title">Maintainability</div></div>
         <ul class="flist">
-          <li>TypeScript strict mode — 91.5% of codebase typed</li>
+          <li>TypeScript strict mode  91.5% of codebase typed</li>
           <li>ESLint via <code>eslint.config.js</code>; PostCSS for CSS processing</li>
           <li>Supabase migrations versioned in <code>/supabase</code> folder</li>
           <li>Zero-downtime deploys via Vercel Git integration (master branch)</li>
@@ -437,7 +437,7 @@ code{background:var(--paper3);padding:1px 6px;border-radius:3px;font-size:12.5px
 
   <!-- 7 -->
   <section class="section" id="ux">
-    <div class="sec-eyebrow">07 — UX</div>
+    <div class="sec-eyebrow">07  UX</div>
     <h2 class="sec-title">UX Requirements</h2>
     <div class="sec-rule"></div>
     <div class="callout callout-info">
@@ -463,9 +463,9 @@ code{background:var(--paper3);padding:1px 6px;border-radius:3px;font-size:12.5px
       <div class="card">
         <div class="card-head"><div class="card-icon">🎨</div><div class="card-title">Component Library</div></div>
         <ul class="flist">
-          <li><strong>shadcn/ui</strong> — accessible, pre-built components configured via <code>components.json</code></li>
-          <li><strong>Tailwind CSS</strong> — utility classes with PostCSS; <code>tailwind.config.ts</code> in root</li>
-          <li><strong>Lucide React</strong> — consistent iconography across all modules</li>
+          <li><strong>shadcn/ui</strong>  accessible, pre-built components configured via <code>components.json</code></li>
+          <li><strong>Tailwind CSS</strong>  utility classes with PostCSS; <code>tailwind.config.ts</code> in root</li>
+          <li><strong>Lucide React</strong>  consistent iconography across all modules</li>
           <li>Colour-coded status: red=critical, amber=warning, green=ok</li>
         </ul>
       </div>
@@ -476,7 +476,7 @@ code{background:var(--paper3);padding:1px 6px;border-radius:3px;font-size:12.5px
           <li>ARIA labels on buttons, inputs, and modals</li>
           <li>Minimum contrast ratio 4.5:1 for all body text</li>
           <li>Touch targets ≥ 44×44px for mobile billing counter use</li>
-          <li>Error messages in plain language — no raw error codes shown to users</li>
+          <li>Error messages in plain language  no raw error codes shown to users</li>
         </ul>
       </div>
     </div>
@@ -484,12 +484,12 @@ code{background:var(--paper3);padding:1px 6px;border-radius:3px;font-size:12.5px
 
   <!-- 8 -->
   <section class="section" id="architecture">
-    <div class="sec-eyebrow">08 — Architecture</div>
+    <div class="sec-eyebrow">08  Architecture</div>
     <h2 class="sec-title">Technical Architecture</h2>
     <div class="sec-rule"></div>
     <div class="callout callout-ok">
       <div class="callout-icon">✦</div>
-      <div><b>Pattern:</b> Jamstack SPA — React frontend on Vercel Edge; Supabase as BaaS (PostgreSQL + Auth + Realtime + Storage). No custom backend server. <code>vercel.json</code> handles SPA routing fallback.</div>
+      <div><b>Pattern:</b> Jamstack SPA  React frontend on Vercel Edge; Supabase as BaaS (PostgreSQL + Auth + Realtime + Storage). No custom backend server. <code>vercel.json</code> handles SPA routing fallback.</div>
     </div>
     <div class="card" style="margin-top:20px">
       <div class="card-head"><div class="card-icon">🔧</div><div class="card-title">Full Technology Stack</div></div>
@@ -512,7 +512,7 @@ code{background:var(--paper3);padding:1px 6px;border-radius:3px;font-size:12.5px
 
   <!-- 9 -->
   <section class="section" id="database">
-    <div class="sec-eyebrow">09 — Database</div>
+    <div class="sec-eyebrow">09  Database</div>
     <h2 class="sec-title">Database Schema</h2>
     <div class="sec-rule"></div>
     <p class="sec-lead">PostgreSQL via Supabase. Migrations in <code>/supabase</code>. PL/pgSQL stored procedures handle complex operations like sales returns. Schema inferred from repo files, documentation, and SQL debug scripts.</p>
@@ -604,7 +604,7 @@ CREATE POLICY "user_isolation" ON products
 
   <!-- 10 -->
   <section class="section" id="auth">
-    <div class="sec-eyebrow">10 — Authentication</div>
+    <div class="sec-eyebrow">10  Authentication</div>
     <h2 class="sec-title">Authentication Flow</h2>
     <div class="sec-rule"></div>
     <div class="grid2">
@@ -633,19 +633,19 @@ CREATE POLICY "user_isolation" ON products
     </div>
     <div class="card" style="margin-top:4px">
       <div class="card-head"><div class="card-icon">🛡️</div><div class="card-title">Row Level Security (RLS)</div></div>
-      <p>Every table has RLS policies. The <code>user_id</code> column is the isolation key. A pharmacy can only access rows where <code>user_id = auth.uid()</code>. This prevents cross-tenant data access at DB level — no application-layer enforcement needed.</p>
+      <p>Every table has RLS policies. The <code>user_id</code> column is the isolation key. A pharmacy can only access rows where <code>user_id = auth.uid()</code>. This prevents cross-tenant data access at DB level  no application-layer enforcement needed.</p>
       <ul class="flist" style="margin-top:10px">
         <li>SELECT policy: <code>user_id = auth.uid()</code> on every table</li>
         <li>INSERT policy: auto-sets <code>user_id = auth.uid()</code></li>
         <li>UPDATE / DELETE policy: only row owner</li>
-        <li>Only the anon key is exposed to the frontend via VITE env vars — service-role key stays server-side</li>
+        <li>Only the anon key is exposed to the frontend via VITE env vars  service-role key stays server-side</li>
       </ul>
     </div>
   </section>
 
   <!-- 11 -->
   <section class="section" id="integrations">
-    <div class="sec-eyebrow">11 — Integrations</div>
+    <div class="sec-eyebrow">11  Integrations</div>
     <h2 class="sec-title">Integrations</h2>
     <div class="sec-rule"></div>
     <div class="grid2">
@@ -678,14 +678,14 @@ CREATE POLICY "user_isolation" ON products
 
   <!-- 12 -->
   <section class="section" id="roadmap">
-    <div class="sec-eyebrow">12 — Roadmap</div>
+    <div class="sec-eyebrow">12  Roadmap</div>
     <h2 class="sec-title">Product Roadmap</h2>
     <div class="sec-rule"></div>
     <div>
       <div class="milestone">
         <div class="ml-left"><div class="ml-phase">Phase 1</div><span class="badge b-done">✓ Done</span></div>
         <div>
-          <div class="ml-name">Core Platform — Live</div>
+          <div class="ml-name">Core Platform  Live</div>
           <div class="ml-desc">React + TypeScript + Supabase foundation. Google OAuth auth (with Vercel redirect fix), product inventory, GST billing, customer CRM, sales tracking, WhatsApp integration, Razorpay subscription billing. Deployed at app.medstocksy.in. 34 commits on master branch.</div>
           <div class="ml-date">34 commits · Live Q1 2026</div>
         </div>
@@ -694,7 +694,7 @@ CREATE POLICY "user_isolation" ON products
         <div class="ml-left"><div class="ml-phase">Phase 2</div><span class="badge b-active">Active</span></div>
         <div>
           <div class="ml-name">Stability, Analytics & UX Polish</div>
-          <div class="ml-desc">Sales return flow bug fixed (PL/pgSQL migration — FIX_SALES_RETURN_STOCK.md). Deeper analytics: P&L, product performance, expiry risk reports. UI improvements from user feedback. Hindi language support. Enhanced mobile experience. Role-based access control implementation.</div>
+          <div class="ml-desc">Sales return flow bug fixed (PL/pgSQL migration  FIX_SALES_RETURN_STOCK.md). Deeper analytics: P&L, product performance, expiry risk reports. UI improvements from user feedback. Hindi language support. Enhanced mobile experience. Role-based access control implementation.</div>
           <div class="ml-date">Target Q2–Q3 2026</div>
         </div>
       </div>
@@ -719,11 +719,11 @@ CREATE POLICY "user_isolation" ON products
 
   <!-- 13 -->
   <section class="section" id="metrics">
-    <div class="sec-eyebrow">13 — Metrics</div>
+    <div class="sec-eyebrow">13  Metrics</div>
     <h2 class="sec-title">Success Metrics</h2>
     <div class="sec-rule"></div>
     <div class="metric-row">
-      <div class="metric-card"><div class="metric-val">1K+</div><div class="metric-lbl">Active pharmacies target — Dec 2026</div></div>
+      <div class="metric-card"><div class="metric-val">1K+</div><div class="metric-lbl">Active pharmacies target  Dec 2026</div></div>
       <div class="metric-card"><div class="metric-val">&lt;10m</div><div class="metric-lbl">Signup → first invoice</div></div>
       <div class="metric-card"><div class="metric-val">84%</div><div class="metric-lbl">Target patient retention rate</div></div>
       <div class="metric-card"><div class="metric-val">99.9%</div><div class="metric-lbl">Platform uptime SLA</div></div>
@@ -746,7 +746,7 @@ CREATE POLICY "user_isolation" ON products
 
   <!-- 14 -->
   <section class="section" id="risks">
-    <div class="sec-eyebrow">14 — Risks</div>
+    <div class="sec-eyebrow">14  Risks</div>
     <h2 class="sec-title">Risks & Mitigations</h2>
     <div class="sec-rule"></div>
     <div class="card">
@@ -758,7 +758,7 @@ CREATE POLICY "user_isolation" ON products
       <div class="risk">
         <span class="badge b-high">High</span>
         <div class="risk-name">Google OAuth redirect failures (known recurrence)</div>
-        <div class="risk-mit">Already occurred on Vercel deployment — fixed and documented in recent commits. Mitigation: Document all redirect URIs in VERCEL_DEPLOYMENT.md; test Google auth on every production deploy.</div>
+        <div class="risk-mit">Already occurred on Vercel deployment  fixed and documented in recent commits. Mitigation: Document all redirect URIs in VERCEL_DEPLOYMENT.md; test Google auth on every production deploy.</div>
       </div>
       <div class="risk">
         <span class="badge b-high">High</span>
@@ -777,7 +777,7 @@ CREATE POLICY "user_isolation" ON products
       </div>
       <div class="risk">
         <span class="badge b-med">Med</span>
-        <div class="risk-name">DPDPA 2023 — patient data liability</div>
+        <div class="risk-name">DPDPA 2023  patient data liability</div>
         <div class="risk-mit">Prescription and patient health data require explicit consent, minimization, and erasure rights. Mitigation: Consent flow at signup, data minimization policy, legal review of data handling practices.</div>
       </div>
       <div class="risk">
@@ -790,7 +790,7 @@ CREATE POLICY "user_isolation" ON products
 
   <!-- 15 -->
   <section class="section" id="compliance">
-    <div class="sec-eyebrow">15 — Compliance</div>
+    <div class="sec-eyebrow">15  Compliance</div>
     <h2 class="sec-title">Compliance & Legal</h2>
     <div class="sec-rule"></div>
     <div class="grid2">
